@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
 [RequireComponent( typeof( CharacterController ) )]
-public class FPSWalkerEnhanced : MonoBehaviour
+public class Player : MonoBehaviour
 {
+	public static Player Instance;
+
 	[Tooltip("How fast the player moves when walking (default move speed).")]
 	[SerializeField]
 	private float m_WalkSpeed = 6.0f;
@@ -69,6 +71,10 @@ public class FPSWalkerEnhanced : MonoBehaviour
 	private bool m_PlayerControl = false;
 	private int m_JumpTimer;
 
+	private void Awake()
+	{
+		Instance = this;
+	}
 
 	private void Start()
 	{
