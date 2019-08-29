@@ -43,8 +43,10 @@ public class NPC_Commune : NPC
 	protected List<Point> Path = new List<Point>();
 	protected float CurrentMoveTime = 0;
 
-    void Start()
+    public override void Start()
     {
+		base.Start();
+
 		CurrentPos = new Point( Random.Range( 0, BuildableArea.Instance.GridSquares ), Random.Range( 0, BuildableArea.Instance.GridSquares ) );
 		TargetPos = CurrentPos;
 
