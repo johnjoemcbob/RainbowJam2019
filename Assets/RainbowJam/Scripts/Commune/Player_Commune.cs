@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
 [RequireComponent( typeof( CharacterController ) )]
-public class Player : MonoBehaviour
+public class Player_Commune : MonoBehaviour
 {
-	public static Player Instance;
+	public static Player_Commune Instance;
 
 	[Tooltip("How fast the player moves when walking (default move speed).")]
 	[SerializeField]
