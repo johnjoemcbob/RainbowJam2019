@@ -20,7 +20,7 @@ public class NPC : MonoBehaviour
     private GameObject Pin;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         if(Shirt == null || Hat == null || Sunglasses == null || Pin == null)
         {
