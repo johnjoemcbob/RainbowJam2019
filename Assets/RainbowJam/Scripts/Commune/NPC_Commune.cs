@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using NesScripts.Controls.PathFind;
 
 public class NPC_Commune : NPC
@@ -17,11 +18,14 @@ public class NPC_Commune : NPC
 
 	// Jobs
 	public const int RelaxTrigger = 5;
+	// TODO could be better, more modular carrying code
+	[HideInInspector]
+	public int Berries = 0;
 
 	// Pathing
 	public float MoveTime = 1;
 	[HideInInspector]
-	public Point Current;
+	public Point CurrentPos;
 
 	// Jobs
 	protected int RelaxPoints = 0;
@@ -29,21 +33,20 @@ public class NPC_Commune : NPC
 	protected Job[] JobClasses = new Job[] {
 		new RelaxJob(),
 		new PlantingJob(),
-		new Job(),
-		new Job(),
-		new Job(),
+		new GatheringJob(),
+		new CookingJob(),
 		new Job(),
 	};
 
 	// Pathing
-	protected Point Target;
+	protected Point TargetPos;
 	protected List<Point> Path = new List<Point>();
 	protected float CurrentMoveTime = 0;
 
     void Start()
     {
-		Current = new Point( Random.Range( 0, BuildableArea.Instance.GridSquares ), Random.Range( 0, BuildableArea.Instance.GridSquares ) );
-		Target = Current;
+		CurrentPos = new Point( Random.Range( 0, BuildableArea.Instance.GridSquares ), Random.Range( 0, BuildableArea.Instance.GridSquares ) );
+		TargetPos = CurrentPos;
 
 		JobClasses[(int) CurrentJob].Start( this );
 	}
@@ -51,11 +54,17 @@ public class NPC_Commune : NPC
     void Update()
     {
         // Debug Test pathfinding - If no target then choose random valid within grid
-		if ( Path.Count <= 0 || Target == Current )
+		if ( Path.Count <= 0 || TargetPos == CurrentPos )
 		{
 			SetTargetCell( new Point( Random.Range( 0, BuildableArea.Instance.GridSquares ), Random.Range( 0, BuildableArea.Instance.GridSquares ) ) );
 			CurrentMoveTime = Time.time;
 		}
+		// Debug UI
+		GetComponentInChildren<Text>().text = @"
+" + CurrentJob + @"
+" + CurrentPos.x + ", " + CurrentPos.y + " to " + TargetPos.x + ", " + TargetPos.y + @"
+Berries: " + Berries + @"
+";
 
 		UpdateMove();
 		JobClasses[(int) CurrentJob].Update();
@@ -67,16 +76,19 @@ public class NPC_Commune : NPC
 		{
 			// Lerp to each cell on the journey
 			float progress = ( Time.time - CurrentMoveTime ) / MoveTime;
-			Vector3 start = BuildableArea.GetPositionFromCell( Current.x, Current.y );
+			Vector3 start = BuildableArea.GetPositionFromCell( CurrentPos.x, CurrentPos.y );
 			Vector3 finish = BuildableArea.GetPositionFromCell( Path[0].x, Path[0].y );
 			transform.position = Vector3.Lerp( start, finish, progress );
-			transform.LookAt( finish );
-			transform.localEulerAngles = new Vector3( 0, transform.localEulerAngles.y, 0 );
+			if ( !GetComponent<Billboard>().enabled )
+			{
+				transform.LookAt( finish );
+				transform.localEulerAngles = new Vector3( 0, transform.localEulerAngles.y, 0 );
+			}
 
 			// Set new current once reached grid cell
 			if ( Time.time - CurrentMoveTime >= MoveTime )
 			{
-				Current = Path[0];
+				CurrentPos = Path[0];
 				Path.RemoveAt( 0 );
 				CurrentMoveTime = Time.time;
 			}
@@ -108,13 +120,13 @@ public class NPC_Commune : NPC
 
 	public void OnJobFinished()
 	{
-		Target = Current;
+		TargetPos = CurrentPos;
 		FindJob();
 	}
 
 	public void SetTargetCell( Point cell )
 	{
-		Target = cell;
-		Path = Pathfinding.FindPath( BuildableArea.Instance.Grid, Current, Target );
+		TargetPos = cell;
+		Path = Pathfinding.FindPath( BuildableArea.Instance.Grid, CurrentPos, TargetPos );
 	}
 }

@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class SoilBush : MonoBehaviour
 {
-	public const float GrowthTime = 1;
+	public const float BushGrowthTime = 5;
+	public const float BerryGrowthTime = 3;
 
 	public enum Stage
 	{
 		Tilled,
 		Planted,
-		Grown
+		Grown,
+		Harvestable
 	}
 
 	public GameObject Bush;
+	public Berry[] Berries;
 
 	[HideInInspector]
 	public Stage CurrentStage;
-	//[HideInInspector]
+	[HideInInspector]
 	public NPC_Commune AssignedNPC;
 
-	protected float PlantTime = 0;
+	protected float StageTime = 0;
 
     void Start()
 	{
@@ -29,20 +32,33 @@ public class SoilBush : MonoBehaviour
 
     void Update()
     {
+		float progress;
 		switch ( CurrentStage )
 		{
 			case Stage.Tilled:
 				break;
 			case Stage.Planted:
-				float progress = ( Time.time - PlantTime ) / GrowthTime;
+				progress = ( Time.time - StageTime ) / BushGrowthTime;
 				Bush.transform.localScale = Vector3.one * progress;
-				if ( Time.time - PlantTime >= GrowthTime )
+				if ( Time.time - StageTime >= BushGrowthTime )
 				{
-					CurrentStage = Stage.Grown;
+					StartBerries();
 				}
 
 				break;
 			case Stage.Grown:
+				progress = Mathf.Max( 0, ( Time.time - StageTime ) / ( BerryGrowthTime / 2 ) - 1 );
+				foreach ( var berry in Berries )
+				{
+					berry.transform.localScale = Vector3.one * progress;
+				}
+				if ( Time.time - StageTime >= BerryGrowthTime )
+				{
+					CurrentStage = Stage.Harvestable;
+					StageTime = Time.time;
+				}
+				break;
+			case Stage.Harvestable:
 				break;
 			default:
 				break;
@@ -53,9 +69,25 @@ public class SoilBush : MonoBehaviour
 	{
 		CurrentStage = Stage.Planted;
 		Bush.SetActive( true );
-		PlantTime = Time.time;
+		Bush.transform.localScale = Vector3.zero;
+		StageTime = Time.time;
 
 		// temp testing
 		Bush.transform.localScale = Vector3.one;
+	}
+
+	public void StartBerries()
+	{
+		CurrentStage = Stage.Grown;
+		StageTime = Time.time;
+
+		// TODO Define positions for berries to appear?
+	}
+
+	public int Harvest()
+	{
+		StartBerries();
+		// TODO different random? at least add to better variable control at top
+		return Random.Range( 3, 6 );
 	}
 }

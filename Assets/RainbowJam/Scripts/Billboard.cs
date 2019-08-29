@@ -10,7 +10,13 @@ public class Billboard : MonoBehaviour
 {
     void Update()
     {
-		transform.LookAt( Camera.main.transform );
+		// Type 1
+		//transform.LookAt( Camera.main.transform );
+
+		// Type 2
+		transform.eulerAngles = Camera.main.transform.eulerAngles + new Vector3( 0, 180, 0 );
+
+		// Only rotate yaw
 		transform.localEulerAngles = new Vector3( 0, transform.localEulerAngles.y, 0 );
-    }
+	}
 }

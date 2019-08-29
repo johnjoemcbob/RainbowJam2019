@@ -8,18 +8,17 @@ public class PlantingJob : Job
 
 	public override bool IsAvailable( NPC_Commune npc )
 	{
-		List<SoilBush> Plantable = new List<SoilBush>();
+		List<SoilBush> plantable = new List<SoilBush>();
 			foreach ( var tilledsoil in GameObject.FindObjectsOfType<SoilBush>() )
 			{
 				if ( tilledsoil.CurrentStage == SoilBush.Stage.Tilled && tilledsoil.AssignedNPC == null )
 				{
-					Plantable.Add( tilledsoil );
+					plantable.Add( tilledsoil );
 				}
 			}
-		if ( Plantable.Count > 0 )
+		if ( plantable.Count > 0 )
 		{
-			SoilBush = Plantable[Random.Range( 0, Plantable.Count )];
-			Debug.Log( SoilBush.GetInstanceID() + ", " + SoilBush.AssignedNPC + ", " + Time.time );
+			SoilBush = plantable[Random.Range( 0, plantable.Count )];
 			SoilBush.AssignedNPC = npc;
 			return true;
 		}
@@ -41,7 +40,7 @@ public class PlantingJob : Job
 		base.Update();
 
 		// Plant if reach
-		if ( NPC.Current == BuildableArea.GetCellFromPosition( SoilBush.gameObject ) )
+		if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( SoilBush.gameObject ) )
 		{
 			SoilBush.Plant();
 			SoilBush.AssignedNPC = null;
@@ -57,7 +56,5 @@ public class PlantingJob : Job
 	public override void Finish()
 	{
 		base.Finish();
-
-		//SoilBush.AssignedNPC = null;
 	}
 }
