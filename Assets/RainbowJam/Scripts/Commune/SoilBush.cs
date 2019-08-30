@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoilBush : MonoBehaviour
 {
 	public const float BushGrowthTime = 5;
-	public const float BerryGrowthTime = 3;
+	public static Vector2 BerryGrowthTime = new Vector2( 10, 20 );
 
 	public enum Stage
 	{
@@ -24,10 +24,15 @@ public class SoilBush : MonoBehaviour
 	public NPC_Commune AssignedNPC;
 
 	protected float StageTime = 0;
+	protected float GrowTime = 0;
 
     void Start()
 	{
 		transform.GetChild( 0 ).localScale *= BuildableArea.Instance.CellSize;
+
+		// Ensure data grid is filled properly (in case added in editor)
+		var cell = BuildableArea.GetCellFromPosition( gameObject );
+		BuildableArea.Instance.Grid.nodes[cell.x, cell.y].Type = NesScripts.Controls.PathFind.NodeContent.TilledSoil;
 	}
 
     void Update()
@@ -47,12 +52,12 @@ public class SoilBush : MonoBehaviour
 
 				break;
 			case Stage.Grown:
-				progress = Mathf.Max( 0, ( Time.time - StageTime ) / ( BerryGrowthTime / 2 ) - 1 );
+				progress = Mathf.Max( 0, ( Time.time - StageTime ) / ( GrowTime / 2 ) - 1 );
 				foreach ( var berry in Berries )
 				{
 					berry.transform.localScale = Vector3.one * progress;
 				}
-				if ( Time.time - StageTime >= BerryGrowthTime )
+				if ( Time.time - StageTime >= GrowTime )
 				{
 					CurrentStage = Stage.Harvestable;
 					StageTime = Time.time;
@@ -80,6 +85,7 @@ public class SoilBush : MonoBehaviour
 	{
 		CurrentStage = Stage.Grown;
 		StageTime = Time.time;
+		GrowTime = Random.Range( BerryGrowthTime.x, BerryGrowthTime.y );
 
 		// TODO Define positions for berries to appear?
 	}

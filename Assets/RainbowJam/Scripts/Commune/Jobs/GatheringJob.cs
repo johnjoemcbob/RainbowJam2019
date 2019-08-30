@@ -55,10 +55,10 @@ public class GatheringJob : Job
 			{
 				FindWorkstation();
 			}
-			else 
+			else
 			{
-				NPC.SetTargetCell( BuildableArea.GetCellFromPosition( DropOff.gameObject ) );
-				if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( DropOff.gameObject ) )
+				NPC.SetIfNotTargetCell( BuildableArea.GetCellFromPosition( DropOff.DropZone ) );
+				if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( DropOff.DropZone ) )
 				{
 					// Remove number of berries accepted and repeat until hands empty
 					NPC.Berries = DropOff.AddBerry( NPC.Berries );
@@ -80,6 +80,8 @@ public class GatheringJob : Job
 	public override void Finish()
 	{
 		base.Finish();
+
+		NPC.Berries = 0;
 	}
 
 	protected void FindWorkstation()
@@ -102,7 +104,7 @@ public class GatheringJob : Job
 		}
 		if ( DropOff != null )
 		{
-			NPC.SetTargetCell( BuildableArea.GetCellFromPosition( DropOff.gameObject ) );
+			NPC.SetTargetCell( BuildableArea.GetCellFromPosition( DropOff.DropZone ) );
 			// If find then set duration back to 0
 			Duration = 0;
 		}

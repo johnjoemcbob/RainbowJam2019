@@ -17,6 +17,11 @@ public class Workstation : MonoBehaviour
 	public Transform BerriesParent;
 	public Transform JamsParent;
 
+	public GameObject RightSide;
+	public GameObject DropZone;
+	public GameObject CookZone;
+	public GameObject PickupZone;
+
 	[HideInInspector]
 	public NPC_Commune AssignedNPC;
 
@@ -25,6 +30,18 @@ public class Workstation : MonoBehaviour
 	private void Start()
 	{
 		UpdateResources();
+
+		// Ensure data grid is filled properly (in case added in editor)
+		{
+			// Workstation impassable
+			NesScripts.Controls.PathFind.Point cell;
+			foreach ( var obj in new GameObject[] { gameObject, RightSide } )
+			{
+				cell = BuildableArea.GetCellFromPosition( obj );
+				BuildableArea.Instance.Grid.nodes[cell.x, cell.y].Type = NesScripts.Controls.PathFind.NodeContent.Workstation;
+				BuildableArea.Instance.Grid.nodes[cell.x, cell.y].walkable = false;
+			}
+		}
 	}
 
 	// Return any that could not be accepted

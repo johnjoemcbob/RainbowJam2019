@@ -28,6 +28,7 @@ public class RelaxJob : Job
 		// TODO chug jam
 		if ( NPC.CurrentPos == TargetPos )
 		{
+			// TODO regen if no path found (could try to path to impasse tile, bad)
 			TargetPos = new Point( Random.Range( 0, BuildableArea.Instance.GridSquares ), Random.Range( 0, BuildableArea.Instance.GridSquares ) );
 			NPC.SetTargetCell( TargetPos );
 		}

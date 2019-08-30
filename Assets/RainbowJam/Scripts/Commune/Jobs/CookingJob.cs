@@ -32,7 +32,7 @@ public class CookingJob : Job
 		Duration = 0;
 
 		// Path towards the station
-		NPC.SetTargetCell( BuildableArea.GetCellFromPosition( Workstation.gameObject ) );
+		NPC.SetTargetCell( BuildableArea.GetCellFromPosition( Workstation.CookZone ) );
 	}
 
 	public override void Update()
@@ -40,7 +40,7 @@ public class CookingJob : Job
 		base.Update();
 
 		// Cook if reached
-		if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( Workstation.gameObject ) )
+		if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( Workstation.CookZone ) )
 		{
 			NPC.SetTargetCell( NPC.CurrentPos ); // Safety, left over from bad debug
 			if ( Workstation.Cook() )

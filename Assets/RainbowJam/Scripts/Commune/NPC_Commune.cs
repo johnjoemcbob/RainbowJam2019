@@ -13,7 +13,8 @@ public class NPC_Commune : NPC
 		Gathering,
 		Selling,
 		Cooking, // Includes bottling
-		Count // Also used to wait for NPC to stop moving before new job is assigned
+		FinishMoving, // Wait for NPC to stop moving before new job is assigned
+		Count
 	}
 
 	// Jobs
@@ -38,6 +39,7 @@ public class NPC_Commune : NPC
 		new GatheringJob(),
 		new SellingJob(),
 		new CookingJob(),
+		new FinishMovingJob(),
 		new Job(), // Count
 	};
 
@@ -73,18 +75,7 @@ public class NPC_Commune : NPC
 		";
 
 		UpdateMove();
-		if ( CurrentJob == JobType.Count )
-		{
-			// Wait for NPC to stop moving before assigning new job
-			if ( CurrentPos == TargetPos )
-			{
-				FindJob();
-			}
-		}
-		else
-		{
-			JobClasses[(int) CurrentJob].Update();
-		}
+		JobClasses[(int) CurrentJob].Update();
 	}
 
 	protected void UpdateMove()
@@ -108,11 +99,19 @@ public class NPC_Commune : NPC
 				CurrentPos = Path[0];
 				Path.RemoveAt( 0 );
 				CurrentMoveTime = Time.time;
+
+				// TODO Testing regen path each tile, to avoid other NPCs/player
+				SetTargetCell( TargetPos );
 			}
+		}
+		else if ( CurrentPos != TargetPos )
+		{
+			// Try to find new path if they still have a target unreached
+			SetTargetCell( TargetPos );
 		}
 	}
 
-	protected void FindJob()
+	public void FindJob()
 	{
 		if ( RelaxPoints >= RelaxTrigger )
 		{
@@ -121,7 +120,8 @@ public class NPC_Commune : NPC
 		else
 		{
 			// Try to find a job open at each priority starting with highest, otherwise go back to relaxing
-			for ( int job = (int) JobType.Count - 1; job >= 0; job-- )
+			// -2 to ignore FinishMoving
+			for ( int job = (int) JobType.Count - 2; job >= 0; job-- )
 			{
 				if ( JobClasses[job].IsAvailable( this ) )
 				{
@@ -155,13 +155,24 @@ public class NPC_Commune : NPC
 		}
 
 		// Flag to find new job once stopped moving
-		CurrentJob = JobType.Count;
+		CurrentJob = JobType.FinishMoving;
+		JobClasses[(int) CurrentJob].Start( this );
 	}
 
 	public void SetTargetCell( Point cell )
 	{
 		TargetPos = cell;
-		Path = Pathfinding.FindPath( BuildableArea.Instance.Grid, CurrentPos, TargetPos );
+		Path = Pathfinding.FindPath( BuildableArea.Instance.GridWithMovables, CurrentPos, TargetPos );
+	}
+
+	// Only generate path if it's actually new
+	public void SetIfNotTargetCell( Point cell )
+	{
+		if ( TargetPos != cell )
+		{
+			TargetPos = cell;
+			Path = Pathfinding.FindPath( BuildableArea.Instance.GridWithMovables, CurrentPos, TargetPos );
+		}
 	}
 
 	public void TaskComplete()

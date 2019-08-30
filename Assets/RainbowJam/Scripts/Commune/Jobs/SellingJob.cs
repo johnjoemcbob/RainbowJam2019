@@ -31,7 +31,7 @@ public class SellingJob : Job
 		Duration = 0;
 
 		// Path towards the station
-		NPC.SetTargetCell( BuildableArea.GetCellFromPosition( Workstation.gameObject ) );
+		NPC.SetTargetCell( BuildableArea.GetCellFromPosition( Workstation.PickupZone ) );
 	}
 
 	public override void Update()
@@ -41,9 +41,9 @@ public class SellingJob : Job
 		if ( NPC.Jams == 0 )
 		{
 			// Pickup jam if reached
-			if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( Workstation.gameObject ) )
+			if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( Workstation.PickupZone ) )
 			{
-				NPC.SetTargetCell( BuildableArea.GetCellFromPosition( SellBox.Instance.gameObject ) );
+				NPC.SetTargetCell( BuildableArea.GetCellFromPosition( SellBox.Instance.DropZone ) );
 
 				NPC.Jams = 1;
 				Workstation.AddJam( -1 );
@@ -51,7 +51,7 @@ public class SellingJob : Job
 		}
 		else
 		{
-			if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( SellBox.Instance.gameObject ) )
+			if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( SellBox.Instance.DropZone ) )
 			{
 				SellBox.Instance.SellJam( NPC.Jams );
 				NPC.Jams = 0;

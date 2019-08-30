@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NesScripts.Controls.PathFind;
@@ -21,12 +23,14 @@ public class BuildableArea : MonoBehaviour
 
 	[HideInInspector]
 	public NesScripts.Controls.PathFind.Grid Grid;
+	public NesScripts.Controls.PathFind.Grid GridWithMovables;
 
 	private void Awake()
 	{
 		Instance = this;
 
 		Grid = new NesScripts.Controls.PathFind.Grid( GridSquares, GridSquares );
+		GridWithMovables = new NesScripts.Controls.PathFind.Grid( GridSquares, GridSquares );
 
 		// Add default impasses (e.g. house etc)
 		foreach ( var area in DefaultImpasseAreas )
@@ -49,7 +53,29 @@ public class BuildableArea : MonoBehaviour
 
 	void Update()
 	{
-		// Does the ray intersect any objects excluding the player layer
+		// Each frame, copy base grid over and add npc/players as impasse
+		for ( int x = 0; x < GridSquares; x++ )
+		{
+			for ( int z = 0; z < GridSquares; z++ )
+			{
+				GridWithMovables.nodes[x, z].Type = Grid.nodes[x, z].Type;
+				GridWithMovables.nodes[x, z].walkable = Grid.nodes[x, z].walkable;
+				GridWithMovables.nodes[x, z].price = Grid.nodes[x, z].price;
+			}
+		}
+		// Player
+		var cell = GetCellFromPosition( Player_Commune.Instance.gameObject );
+		GridWithMovables.nodes[cell.x, cell.y].Type = NodeContent.Impasse;
+		GridWithMovables.nodes[cell.x, cell.y].price = 100;
+		// NPCs
+		foreach ( var npc in FindObjectsOfType<NPC_Commune>() )
+		{
+			cell = GetCellFromPosition( npc.gameObject );
+			GridWithMovables.nodes[cell.x, cell.y].Type = NodeContent.Impasse;
+			GridWithMovables.nodes[cell.x, cell.y].price = 10;
+		}
+
+		// Raycast for player interaction
 		RaycastHit hit;
 		int layerMask = ~( 1 << 8 );
 		if ( Physics.Raycast( Camera.main.transform.position, Camera.main.transform.TransformDirection( Vector3.forward ), out hit, Mathf.Infinity, layerMask ) )
@@ -72,12 +98,15 @@ public class BuildableArea : MonoBehaviour
 		//Debug.Log( gridcell );
 		Test.transform.position = hit.point;
 		Test2.transform.position = gridpoint;
-		Test2.GetComponent<Renderer>().material.color = Grid.nodes[(int) gridcell.x, (int) gridcell.z].Type == NodeContent.Impasse ? Color.red : Color.white;
+		Test2.GetComponent<Renderer>().material.color = GridWithMovables.nodes[(int) gridcell.x, (int) gridcell.z].Type == NodeContent.Impasse ? Color.red : Color.white;
 
 		// User input, TODO maybe move to update so it's clearer
 		if ( Input.GetMouseButtonDown( 0 ) )
 		{
-			PlaceObject( gridcell.x, gridcell.z, NodeContent.TilledSoil );
+			if ( Grid.nodes[(int) gridcell.x, (int) gridcell.z].Type == NodeContent.Empty )
+			{
+				PlaceObject( gridcell.x, gridcell.z, NodeContent.TilledSoil );
+			}
 		}
 		if ( Input.GetMouseButtonDown( 1 ) )
 		{
