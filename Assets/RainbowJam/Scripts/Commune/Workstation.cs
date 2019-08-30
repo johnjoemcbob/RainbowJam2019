@@ -44,10 +44,10 @@ public class Workstation : MonoBehaviour
 		return count;
 	}
 
-	public void Cook()
+	public bool Cook()
 	{
-		if ( Berries < BERRIES_TO_JAM ) return;
-		if ( Jams >= MAX_JAMS ) return;
+		if ( Berries < BERRIES_TO_JAM ) return false;
+		if ( Jams >= MAX_JAMS ) return false;
 
 		if ( CookStartTime == 0 )
 		{
@@ -63,7 +63,11 @@ public class Workstation : MonoBehaviour
 
 			CookStartTime = 0;
 			Debug.Log( "Stop cook" );
+
+			return true; // Just cooked
 		}
+
+		return false;
 	}
 
 	protected void UpdateResources()

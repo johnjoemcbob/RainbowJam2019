@@ -40,34 +40,40 @@ public class GatheringJob : Job
 	{
 		base.Update();
 
-		// Plant if reach
-		if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( Bush.gameObject ) )
+		// Harvest if reach
+		if ( NPC.Berries == 0 )
 		{
-			NPC.Berries = Bush.Harvest();
-			Bush.AssignedNPC = null;
+			if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( Bush.gameObject ) )
+			{
+				NPC.Berries = Bush.Harvest();
+				Bush.AssignedNPC = null;
+			}
 		}
-
-		if ( NPC.Berries > 0 )
+		else
 		{
 			if ( DropOff == null )
 			{
 				FindWorkstation();
 			}
-			else if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( DropOff.gameObject ) )
+			else 
 			{
-				// Remove number of berries accepted and repeat until hands empty
-				NPC.Berries = DropOff.AddBerry( NPC.Berries );
-				if ( NPC.Berries != 0 )
+				NPC.SetTargetCell( BuildableArea.GetCellFromPosition( DropOff.gameObject ) );
+				if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( DropOff.gameObject ) )
 				{
-					DropOff = null;
+					// Remove number of berries accepted and repeat until hands empty
+					NPC.Berries = DropOff.AddBerry( NPC.Berries );
+					if ( NPC.Berries != 0 )
+					{
+						DropOff = null;
+					}
+					else
+					{
+						Finish();
+
+						NPC.TaskComplete();
+					}
 				}
 			}
-		}
-
-		// If plant is harvested and NPC has dropped off all berries then continue to next job
-		if ( Bush.CurrentStage != SoilBush.Stage.Harvestable && NPC.Berries == 0 )
-		{
-			Finish();
 		}
 	}
 
@@ -86,16 +92,21 @@ public class GatheringJob : Job
 		if ( DropOff.Berries >= Workstation.MAX_BERRIES )
 		{
 			DropOff = null;
-			Duration = 5; // TODO make this clearer variable
+
+			// If don't find one then set duration timeout, but still search every update
+			if ( Duration == 0 )
+			{
+				StartTime = Time.time;
+				Duration = 5; // TODO make this clearer variable
+			}
 		}
 		if ( DropOff != null )
 		{
 			NPC.SetTargetCell( BuildableArea.GetCellFromPosition( DropOff.gameObject ) );
+			// If find then set duration back to 0
 			Duration = 0;
 		}
 
-		// If don't find one then set duration timeout, but still search every update
-		// If find then set duration back to 0
 		// At end of timeout any fruit is destroyed
 		// TODO If it takes too long drop berries in sell bin?
 		// TODO Or just eat it?

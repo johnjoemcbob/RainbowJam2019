@@ -36,4 +36,9 @@ public class Job
 			NPC.OnJobFinished();
 		}
 	}
+
+	public float GetTimeRemaining()
+	{
+		return ( Time.time - StartTime );
+	}
 }

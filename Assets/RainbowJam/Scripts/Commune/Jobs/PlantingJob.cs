@@ -44,6 +44,8 @@ public class PlantingJob : Job
 		{
 			SoilBush.Plant();
 			SoilBush.AssignedNPC = null;
+
+			NPC.TaskComplete();
 		}
 
 		// If plant is planted by someone else also move on

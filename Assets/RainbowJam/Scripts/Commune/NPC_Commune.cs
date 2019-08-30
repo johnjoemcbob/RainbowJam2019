@@ -11,9 +11,9 @@ public class NPC_Commune : NPC
 		Relax,
 		Planting,
 		Gathering,
-		Cooking, // Includes bottling?
 		Selling,
-		Count
+		Cooking, // Includes bottling
+		Count // Also used to wait for NPC to stop moving before new job is assigned
 	}
 
 	// Jobs
@@ -21,6 +21,8 @@ public class NPC_Commune : NPC
 	// TODO could be better, more modular carrying code
 	[HideInInspector]
 	public int Berries = 0;
+	[HideInInspector]
+	public int Jams = 0;
 
 	// Pathing
 	public float MoveTime = 1;
@@ -34,8 +36,9 @@ public class NPC_Commune : NPC
 		new RelaxJob(),
 		new PlantingJob(),
 		new GatheringJob(),
+		new SellingJob(),
 		new CookingJob(),
-		new Job(),
+		new Job(), // Count
 	};
 
 	// Pathing
@@ -56,20 +59,32 @@ public class NPC_Commune : NPC
     void Update()
     {
         // Debug Test pathfinding - If no target then choose random valid within grid
-		if ( Path.Count <= 0 || TargetPos == CurrentPos )
-		{
-			SetTargetCell( new Point( Random.Range( 0, BuildableArea.Instance.GridSquares ), Random.Range( 0, BuildableArea.Instance.GridSquares ) ) );
-			CurrentMoveTime = Time.time;
-		}
+		//if ( Path.Count <= 0 || TargetPos == CurrentPos )
+		//{
+		//	SetTargetCell( new Point( Random.Range( 0, BuildableArea.Instance.GridSquares ), Random.Range( 0, BuildableArea.Instance.GridSquares ) ) );
+		//	CurrentMoveTime = Time.time;
+		//}
 		// Debug UI
 		GetComponentInChildren<Text>().text = @"
-" + CurrentJob + @"
-" + CurrentPos.x + ", " + CurrentPos.y + " to " + TargetPos.x + ", " + TargetPos.y + @"
-Berries: " + Berries + @"
-";
+		" + CurrentJob + " - Duration: " + JobClasses[(int) CurrentJob].GetTimeRemaining().ToString( "0.00" ) + "/" + JobClasses[(int) CurrentJob].Duration.ToString( "0.00" ) + @"
+		" + CurrentPos.x + ", " + CurrentPos.y + " to " + TargetPos.x + ", " + TargetPos.y + @"
+		Berries: " + Berries + @"
+		RelaxPoints: " + RelaxPoints + @"
+		";
 
 		UpdateMove();
-		JobClasses[(int) CurrentJob].Update();
+		if ( CurrentJob == JobType.Count )
+		{
+			// Wait for NPC to stop moving before assigning new job
+			if ( CurrentPos == TargetPos )
+			{
+				FindJob();
+			}
+		}
+		else
+		{
+			JobClasses[(int) CurrentJob].Update();
+		}
 	}
 
 	protected void UpdateMove()
@@ -110,25 +125,47 @@ Berries: " + Berries + @"
 			{
 				if ( JobClasses[job].IsAvailable( this ) )
 				{
-					Debug.Log( "Start job: " + (JobType) job );
 					CurrentJob = (JobType) job;
-					JobClasses[(int) CurrentJob].Start( this );
 
 					break;
 				}
 			}
 		}
+
+		Debug.Log( "Start job: " + CurrentJob );
+		JobClasses[(int) CurrentJob].Start( this );
+
+		// Currently relaxing, reset points
+		if ( CurrentJob == JobType.Relax )
+		{
+			RelaxPoints = 0;
+		}
 	}
 
 	public void OnJobFinished()
 	{
-		TargetPos = CurrentPos;
-		FindJob();
+		// Cancel any movement
+		if ( Path.Count > 0 )
+		{
+			SetTargetCell( Path[0] );
+		}
+		else
+		{
+			SetTargetCell( CurrentPos );
+		}
+
+		// Flag to find new job once stopped moving
+		CurrentJob = JobType.Count;
 	}
 
 	public void SetTargetCell( Point cell )
 	{
 		TargetPos = cell;
 		Path = Pathfinding.FindPath( BuildableArea.Instance.Grid, CurrentPos, TargetPos );
+	}
+
+	public void TaskComplete()
+	{
+		RelaxPoints++;
 	}
 }

@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NesScripts.Controls.PathFind;
 
 public class RelaxJob : Job
 {
+	protected Point TargetPos;
+
 	public override bool IsAvailable( NPC_Commune npc )
 	{
 		return true;
@@ -13,7 +16,8 @@ public class RelaxJob : Job
 	{
 		base.Start( npc );
 
-		Duration = Random.Range( 0.5f, 5 );
+		Duration = Random.Range( 5, 10 );
+		TargetPos = NPC.CurrentPos; // Flag to randomise next update
 	}
 
 	public override void Update()
@@ -22,6 +26,11 @@ public class RelaxJob : Job
 
 		// TODO try to find other people relaxing or go inside
 		// TODO chug jam
+		if ( NPC.CurrentPos == TargetPos )
+		{
+			TargetPos = new Point( Random.Range( 0, BuildableArea.Instance.GridSquares ), Random.Range( 0, BuildableArea.Instance.GridSquares ) );
+			NPC.SetTargetCell( TargetPos );
+		}
 	}
 
 	public override void Finish()

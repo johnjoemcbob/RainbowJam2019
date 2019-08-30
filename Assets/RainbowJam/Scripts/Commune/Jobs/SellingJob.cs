@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CookingJob : Job
+public class SellingJob : Job
 {
 	protected Workstation Workstation;
 
@@ -11,7 +11,7 @@ public class CookingJob : Job
 		List<Workstation> workable = new List<Workstation>();
 			foreach ( var station in GameObject.FindObjectsOfType<Workstation>() )
 			{
-				if ( station.Berries >= Workstation.BERRIES_TO_JAM && station.Jams < Workstation.MAX_JAMS && station.AssignedNPC == null )
+				if ( station.Jams > 0 )
 				{
 					workable.Add( station );
 				}
@@ -19,7 +19,6 @@ public class CookingJob : Job
 		if ( workable.Count > 0 )
 		{
 			Workstation = workable[Random.Range( 0, workable.Count )];
-			Workstation.AssignedNPC = npc;
 			return true;
 		}
 		return false;
@@ -39,24 +38,32 @@ public class CookingJob : Job
 	{
 		base.Update();
 
-		// Cook if reached
-		if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( Workstation.gameObject ) )
+		if ( NPC.Jams == 0 )
 		{
-			NPC.SetTargetCell( NPC.CurrentPos ); // Safety, left over from bad debug
-			if ( Workstation.Cook() )
+			// Pickup jam if reached
+			if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( Workstation.gameObject ) )
 			{
-				// Try to finish after each batch, but if wants to do more then may just be reassigned
-				Workstation.AssignedNPC = null;
-				Finish();
+				NPC.SetTargetCell( BuildableArea.GetCellFromPosition( SellBox.Instance.gameObject ) );
 
+				NPC.Jams = 1;
+				Workstation.AddJam( -1 );
+			}
+		}
+		else
+		{
+			if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( SellBox.Instance.gameObject ) )
+			{
+				SellBox.Instance.SellJam( NPC.Jams );
+				NPC.Jams = 0;
 				NPC.TaskComplete();
+
+				Finish();
 			}
 		}
 
-		// Don't stand around if nothing can be made
-		if ( Workstation.Berries < Workstation.BERRIES_TO_JAM || Workstation.Jams >= Workstation.MAX_JAMS )
+		// Someone else took the jam?
+		if ( Workstation.Jams == 0 && NPC.Jams == 0 )
 		{
-			Workstation.AssignedNPC = null;
 			Finish();
 		}
 	}
