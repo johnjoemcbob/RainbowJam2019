@@ -86,27 +86,30 @@ public class GatheringJob : Job
 
 	protected void FindWorkstation()
 	{
-		// TODO part of this job is bringing this harvested berry to a workstation
 		// Find workstation with space for berries (lowest?)
 		// TODO prioritise top up of currently worked stations?
-
-		DropOff = GameObject.FindObjectOfType<Workstation>();
-		if ( DropOff.Berries >= Workstation.MAX_BERRIES )
+		foreach ( var workstation in GameObject.FindObjectsOfType<Workstation>() )
 		{
-			DropOff = null;
+			if ( workstation.Berries < Workstation.MAX_BERRIES )
+			{
+				DropOff = workstation;
+				break;
+			}
+		}
 
+		if ( DropOff != null )
+		{
+			NPC.SetTargetCell( BuildableArea.GetCellFromPosition( DropOff.DropZone ) );
+			// If find then set duration back to 0
+			Duration = 0;
+		}
+		{
 			// If don't find one then set duration timeout, but still search every update
 			if ( Duration == 0 )
 			{
 				StartTime = Time.time;
 				Duration = 5; // TODO make this clearer variable
 			}
-		}
-		if ( DropOff != null )
-		{
-			NPC.SetTargetCell( BuildableArea.GetCellFromPosition( DropOff.DropZone ) );
-			// If find then set duration back to 0
-			Duration = 0;
 		}
 
 		// At end of timeout any fruit is destroyed
