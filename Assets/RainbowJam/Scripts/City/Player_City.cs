@@ -18,8 +18,6 @@ public class Player_City : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal") * speed * 0.5f;
         float vertical = Input.GetAxis("Vertical") * speed;
 
-        Debug.Log(horizontal + "  " + vertical);
-
         transform.Translate(-horizontal, 0, -vertical);
     }
 }
