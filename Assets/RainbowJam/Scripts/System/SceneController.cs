@@ -6,17 +6,20 @@ public class SceneController : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject CityScenePrefab;
+    private GameObject CityScene;
 
     [SerializeField]
-    private GameObject CommuneScenePrefab;
+    private GameObject CommuneScene;
+
+    [SerializeField]
+    private GameObject CommuneNPCPrefab;
 
     private GameStates CurrentState = GameStates.INVALID;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(CityScenePrefab == null || CommuneScenePrefab == null)
+        if(CityScene == null || CommuneScene == null)
         {
             Debug.LogError("ERROR: City Scene Prefab or Commune Scene Prefab have not been set!");
         }
@@ -38,7 +41,7 @@ public class SceneController : MonoBehaviour
                     Debug.Log("Switching to City scene!");
                     
                     // Disable other scenes.
-                    CommuneScenePrefab.SetActive(false);
+                    CommuneScene.SetActive(false);
                     
                     // Contact the city controller, and get it to set things up.
                     //var cityController = CityScenePrefab.GetComponent<CityController>();
@@ -47,7 +50,7 @@ public class SceneController : MonoBehaviour
                     
 
                     // Enable city scene.   
-                    CityScenePrefab.SetActive(true);
+                    CityScene.SetActive(true);
 
 
                     break;
@@ -58,15 +61,25 @@ public class SceneController : MonoBehaviour
                     Debug.Log("Switching to Commune scene!");
                     
                     // Disable other scenes.
-                    CityScenePrefab.SetActive(false);
+                    CityScene.SetActive(false);
+
+                    // Enable commune scene.
+                    CommuneScene.SetActive(true);
                     
                     // Contact the city controller, and get it to set things up.
                     //var communeController = CommuneScenePrefab.GetComponent<CommuneController>();
                     // communeController.PlayerReturnedFromCityWithFriends(List<PersonInfo> friends);
                     // communeController.SpawnNewFriends(); // or something
+
+                    // TODO: Replace this with something like the above.
+                    List<PersonInfo> newFriends = new List<PersonInfo>();
+                    for(int i = 0; i < 5; i++)
+                    {
+                        newFriends.Add(PersonInfo.GenerateRandom("DEBUG"));
+                    }
+                    SpawnNewFriends(newFriends);
                     
-                    // Enable city scene.
-                    CommuneScenePrefab.SetActive(true);
+                    
 
                     break;
                 default:
@@ -83,6 +96,29 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    // TODO: Move these to their own classes
+    public void SpawnNewFriends(List<PersonInfo> friends)
+    {
+        if(CommuneNPCPrefab != null)
+        {
+            foreach(var friend in friends)
+            {
+                GameObject friendObject = GameObject.Instantiate(CommuneNPCPrefab);
+                
+                var friendScript = friendObject.GetComponent<NPC_Commune>();
+                friendScript.GenerateAppearanceFromData(friend);
+
+                // Spawning all the friends together in one big clump might be, uh, weird?
+                friendObject.transform.SetParent(CommuneScene.transform);
+                
+                GameObject friendSpawn = SellBox.Instance.gameObject;
+                friendObject.transform.localPosition = friendSpawn.transform.localPosition;
+
+            }
+        }
         
     }
 }

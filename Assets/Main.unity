@@ -140,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 2996134048983614439, guid: 2c3d0132cda65d64ea8561780807a821,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2996134048983614439, guid: 2c3d0132cda65d64ea8561780807a821,
         type: 3}
@@ -150,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 2996134048983614439, guid: 2c3d0132cda65d64ea8561780807a821,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2996134048983614439, guid: 2c3d0132cda65d64ea8561780807a821,
         type: 3}
@@ -336,5 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da67184b4821584991e186dff5be9cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CityScenePrefab: {fileID: 202753568}
-  CommuneScenePrefab: {fileID: 57465118}
+  CityScene: {fileID: 202753568}
+  CommuneScene: {fileID: 57465118}
+  CommuneNPCPrefab: {fileID: 4051550088034769657, guid: 357e8883bd27f1c45a9b88bfddb3c58c,
+    type: 3}
