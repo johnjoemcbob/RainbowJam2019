@@ -45,8 +45,6 @@ public class CrowdManager : MonoBehaviour
 
         for (int i = 0; i < remainingCrowd; i++)
         {
-            Debug.Log("Spawning a blank character");
-
             //Spawn the rest of the crowd
             GameObject blankObject = GameObject.Instantiate(blankNPCPrefab);
             var npcScript = blankObject.GetComponent<NPC>();
