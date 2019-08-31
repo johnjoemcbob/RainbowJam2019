@@ -66,20 +66,13 @@ public class SceneController : MonoBehaviour
                     // Enable commune scene.
                     CommuneScene.SetActive(true);
                     
-                    // Contact the city controller, and get it to set things up.
-                    //var communeController = CommuneScenePrefab.GetComponent<CommuneController>();
-                    // communeController.PlayerReturnedFromCityWithFriends(List<PersonInfo> friends);
-                    // communeController.SpawnNewFriends(); // or something
+                    // Fetch gathered friends from city!
+                    var cityBridge = CityScene.GetComponentInChildren<CityToControllerBridge>();
 
-                    // TODO: Replace this with something like the above.
-                    List<PersonInfo> newFriends = new List<PersonInfo>();
-                    for(int i = 0; i < 5; i++)
+                    if(cityBridge != null)
                     {
-                        newFriends.Add(PersonInfo.GenerateRandom("DEBUG"));
+                        SpawnNewFriends(cityBridge.GetFriends());
                     }
-                    SpawnNewFriends(newFriends);
-                    
-                    
 
                     break;
                 default:
