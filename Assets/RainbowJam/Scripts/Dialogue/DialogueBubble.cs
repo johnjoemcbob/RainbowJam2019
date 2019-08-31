@@ -10,7 +10,7 @@ public class DialogueBubble : MonoBehaviour
     [HideInInspector]
     public string CurrentString;
 
-    public int TextAddFrameDelay = 3;
+    public int TextAddFrameDelay = 1;
 
     [HideInInspector]
     public bool FinishedDisplaying = false;
@@ -32,6 +32,18 @@ public class DialogueBubble : MonoBehaviour
     public bool Closing = false;
     
 
+    // Helper function.
+    
+    public static DialogueBubble SummonDialogueBubble(string targetText, GameObject dialogueBubblePrefab, Transform canvas)
+    {
+        var newBubble = GameObject.Instantiate(dialogueBubblePrefab);
+        newBubble.transform.SetParent(canvas);
+
+        var bubbleScript = newBubble.GetComponent<DialogueBubble>();
+        bubbleScript.TargetString = targetText;
+
+        return bubbleScript;
+    }
 
     // Start is called before the first frame update
     void Start()
