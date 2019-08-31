@@ -16,6 +16,8 @@ public class CrowdManager : MonoBehaviour
     public int friendPoolSize = 5;
     public int totalCrowdSize = 100;
 
+    float yOffset = 0.25f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +34,7 @@ public class CrowdManager : MonoBehaviour
 
                 friendObject.transform.SetParent(transform);
 
-                friendObject.transform.Translate(0, 0, 0);
+                friendObject.transform.Translate(0, yOffset, 0);
             }
         }
 
@@ -51,7 +53,7 @@ public class CrowdManager : MonoBehaviour
 
             blankObject.transform.SetParent(transform);
 
-            blankObject.transform.Translate(0, 0, 0);
+            blankObject.transform.Translate(0, yOffset, 0);
         }
     }
 

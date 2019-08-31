@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CityWander : MonoBehaviour
 {
-	public static float Speed = 0.05f;
+    public static float Speed = 0.025f;
 
 	protected Vector3 StartPos;
 	protected Vector3 Target;
@@ -21,18 +21,25 @@ public class CityWander : MonoBehaviour
 
 	void Update()
     {
-		if ( Time.time >= NextChange )
-		{
-			RandomiseDirection();
-		}
-		transform.localPosition = Vector3.Lerp( transform.localPosition, Target, Time.deltaTime * Speed );
+        float horizontal = Direction.x * Speed;
+        float vertical = Direction.z * Speed;
+
+        transform.Translate(horizontal, 0, vertical);
     }
 
-	protected void RandomiseDirection()
+    protected void RandomiseDirection()
 	{
-		Direction = new Vector3( Random.Range( -1, 1 ), 0, Random.Range( -1, 1 ) );
-		BetweenChange = Random.Range( 2, 10 );
-		NextChange = Time.deltaTime + BetweenChange;
-		Target = StartPos + Direction * 5;// * Mathf.Sin( Time.time );
+        Direction = new Vector3(Random.Range(-0.9f, 0.9f), 0, Random.Range(-0.9f, 0.9f));
 	}
+
+    void OnCollisionEnter(Collision collision)
+    {
+        RandomiseDirection();
+    }
+
+    void OnCollisionStay(Collision collisionInfo)
+    {
+        //NPC is stuck in a wall...
+        RandomiseDirection();
+    }
 }
