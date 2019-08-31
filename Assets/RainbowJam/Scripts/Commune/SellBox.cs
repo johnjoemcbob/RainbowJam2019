@@ -19,11 +19,22 @@ public class SellBox : MonoBehaviour
 	[HideInInspector]
 	public int Money = 0;
 
+	[SerializeField]
+	private RectTransform ThermometerTop;
+
+	[SerializeField]
+	private RectTransform ThermometerScale;
+
 	protected int CurrentMilestone = 0;
 
 	private void Awake()
 	{
 		Instance = this;
+
+		if(ThermometerScale == null || ThermometerTop == null)
+		{
+			Debug.LogError("Thermometer sprites haven't been set in the prefab. Oops!!");
+		}
 	}
 
 	void Start()
@@ -36,7 +47,8 @@ public class SellBox : MonoBehaviour
 
     void Update()
     {
-
+		// Make sure the thermometer scaling part meets the bottom of the thermometer top piece.
+		ThermometerScale.offsetMax = new Vector2(ThermometerScale.offsetMax.x, ThermometerTop.offsetMin.y);
     }
 
 	public void AddMoney( int add )
