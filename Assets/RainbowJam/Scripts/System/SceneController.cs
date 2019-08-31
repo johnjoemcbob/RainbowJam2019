@@ -11,8 +11,7 @@ public class SceneController : MonoBehaviour
     [SerializeField]
     private GameObject CommuneScene;
 
-    [SerializeField]
-    private GameObject CommuneNPCPrefab;
+
 
     private GameStates CurrentState = GameStates.INVALID;
 
@@ -68,13 +67,15 @@ public class SceneController : MonoBehaviour
                     
                     // Fetch gathered friends from city!
                     var cityBridge = CityScene.GetComponentInChildren<CityToControllerBridge>();
+                    var communeBridge = CommuneScene.GetComponentInChildren<CommuneToControllerBridge>();
 
-                    if(cityBridge != null)
+                    if(cityBridge != null && communeBridge != null)
                     {
-                        SpawnNewFriends(cityBridge.GetFriends());
+                        communeBridge.SpawnNewFriends(cityBridge.GetFriends());
                     }
 
                     break;
+                    
                 default:
                     Debug.LogError("Requested change to invalid state... this is probably not what you wanted.");
                     break;
@@ -92,26 +93,5 @@ public class SceneController : MonoBehaviour
         
     }
 
-    // TODO: Move these to their own classes
-    public void SpawnNewFriends(List<PersonInfo> friends)
-    {
-        if(CommuneNPCPrefab != null)
-        {
-            foreach(var friend in friends)
-            {
-                GameObject friendObject = GameObject.Instantiate(CommuneNPCPrefab);
-                
-                var friendScript = friendObject.GetComponent<NPC_Commune>();
-                friendScript.GenerateAppearanceFromData(friend);
-
-                // Spawning all the friends together in one big clump might be, uh, weird?
-                friendObject.transform.SetParent(CommuneScene.transform);
-                
-                GameObject friendSpawn = SellBox.Instance.gameObject;
-                friendObject.transform.localPosition = friendSpawn.transform.localPosition;
-
-            }
-        }
-        
-    }
+  
 }
