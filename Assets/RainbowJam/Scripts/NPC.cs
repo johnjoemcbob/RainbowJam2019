@@ -29,7 +29,7 @@ public class NPC : MonoBehaviour
         else
         {
             // TODO: Remove this. Data should be supplied from the overall crowd/city scene manager when spawning new NPCs.
-            GenerateAppearanceFromData(PersonInfo.GenerateRandom("DEBUG"));
+            //GenerateAppearanceFromData(PersonInfo.GenerateRandom("DEBUG"));
         }
     }
 
