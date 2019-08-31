@@ -70,20 +70,19 @@ public class SellBox : MonoBehaviour
 		Money += add;
 		MoneyText.text = "$" + Money.ToString();
 
+		// Special logic for if there are no milestones left.
+		if(CurrentMilestone+1 >= StoryMilestones.Length)
+		{
+			SetThermometerValue(1.0f);
+			return;
+		}
+
 		// Check for next milestone reached
 		if ( CurrentMilestone < StoryMilestones.Length - 1 && Money >= StoryMilestones[CurrentMilestone+1] )
 		{
 			House.Instance.AddStory();
-
-			if(CurrentMilestone+1 < StoryMilestones.Length)
-			{
-				CurrentMilestone++;
-				SetThermometerValue(0.0f);
-			}
-			else
-			{
-				SetThermometerValue(1.0f);
-			}
+			CurrentMilestone++;
+			SetThermometerValue(0.0f);
 		}
 		else
 		{
