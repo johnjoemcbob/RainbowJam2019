@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4053040999094811740}
   - component: {fileID: 3149502275199071587}
   - component: {fileID: 3324156152680029932}
+  - component: {fileID: 2271960005369715426}
+  - component: {fileID: 8355186845826350169}
   m_Layer: 9
   m_Name: Blank NPC (City)
   m_TagString: Untagged
@@ -61,6 +63,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b33810be9178e4fabff26677d7b899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &2271960005369715426
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834985754813758327}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!65 &8355186845826350169
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834985754813758327}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 1, z: 0.1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &7299274043760273164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187,6 +218,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051550088209605295, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0feac9899d45fcd4aa92736e0bdd1f30, type: 3}
