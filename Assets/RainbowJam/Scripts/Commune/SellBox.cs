@@ -35,6 +35,10 @@ public class SellBox : MonoBehaviour
 		{
 			Debug.LogError("Thermometer sprites haven't been set in the prefab. Oops!!");
 		}
+		else
+		{
+			SetThermometerValue(0.0f);
+		}
 	}
 
 	void Start()
@@ -43,6 +47,16 @@ public class SellBox : MonoBehaviour
 		var cell = BuildableArea.GetCellFromPosition( gameObject );
 		BuildableArea.Instance.Grid.nodes[cell.x, cell.y].Type = NesScripts.Controls.PathFind.NodeContent.Impasse;
 		BuildableArea.Instance.Grid.nodes[cell.x, cell.y].walkable = false;
+	}
+
+	/// 0.0 - 1.0
+	void SetThermometerValue(float value)
+	{
+		value = Mathf.Clamp(value, 0.0f, 1.0f);
+
+		// Magic-numbering the hell out of this, woop woop
+		float newYPos = (100) + (495 * value);
+		ThermometerTop.localPosition = new Vector3(ThermometerTop.localPosition.x, newYPos, ThermometerTop.localPosition.z);
 	}
 
     void Update()
@@ -60,7 +74,20 @@ public class SellBox : MonoBehaviour
 		if ( CurrentMilestone < StoryMilestones.Length - 1 && Money >= StoryMilestones[CurrentMilestone+1] )
 		{
 			House.Instance.AddStory();
-			CurrentMilestone++;
+
+			if(CurrentMilestone+1 < StoryMilestones.Length)
+			{
+				CurrentMilestone++;
+				SetThermometerValue(0.0f);
+			}
+			else
+			{
+				SetThermometerValue(1.0f);
+			}
+		}
+		else
+		{
+			SetThermometerValue( ((float)Money - (float)StoryMilestones[CurrentMilestone]) / ((float)StoryMilestones[CurrentMilestone+1] - (float)StoryMilestones[CurrentMilestone]) );
 		}
 	}
 	
