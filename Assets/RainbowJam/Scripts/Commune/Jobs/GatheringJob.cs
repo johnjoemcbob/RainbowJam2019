@@ -103,6 +103,7 @@ public class GatheringJob : Job
 			// If find then set duration back to 0
 			Duration = 0;
 		}
+		else
 		{
 			// If don't find one then set duration timeout, but still search every update
 			if ( Duration == 0 )

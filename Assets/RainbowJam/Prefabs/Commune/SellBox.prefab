@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec85eb5c12c0404b916a65e2a57f9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StoryMilestones: 000000003200000064000000
   MoneyText: {fileID: 6148036227399096090}
   DropZone: {fileID: 7827060981521530651}
   Money: 0
@@ -240,7 +241,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4901377291020386331}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  m_LocalRotation: {x: 0, y: 0.7071067, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

@@ -9,11 +9,17 @@ public class SellBox : MonoBehaviour
 
 	public const int Price = 5;
 
+	[Header( "Variables" )]
+	public int[] StoryMilestones;
+
+	[Header( "References" )]
 	public Text MoneyText;
 	public GameObject DropZone;
 
 	[HideInInspector]
 	public int Money = 0;
+
+	protected int CurrentMilestone = 0;
 
 	private void Awake()
 	{
@@ -30,13 +36,20 @@ public class SellBox : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
 	public void AddMoney( int add )
 	{
 		Money += add;
 		MoneyText.text = "$" + Money.ToString();
+
+		// Check for next milestone reached
+		if ( CurrentMilestone < StoryMilestones.Length - 1 && Money >= StoryMilestones[CurrentMilestone+1] )
+		{
+			House.Instance.AddStory();
+			CurrentMilestone++;
+		}
 	}
 	
 	public void SellJam( int count )
