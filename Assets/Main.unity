@@ -590,5 +590,10 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4708250878816133897, guid: cc39f2a553df0c84780eeb0f2c206a68,
+        type: 3}
+      propertyPath: TextAddFrameDelay
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc39f2a553df0c84780eeb0f2c206a68, type: 3}
