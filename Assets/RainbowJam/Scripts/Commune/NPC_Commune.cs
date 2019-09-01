@@ -62,8 +62,9 @@ public class NPC_Commune : NPC
 		JobClasses[(int) CurrentJob].Start( this );
 	}
 
-    void Update()
+    public override void Update()
     {
+		base.Update();
         // Debug Test pathfinding - If no target then choose random valid within grid
 		//if ( Path.Count <= 0 || TargetPos == CurrentPos )
 		//{
@@ -84,6 +85,7 @@ public class NPC_Commune : NPC
 
 	protected void UpdateMove()
 	{
+		IsWalking = false;
 		if ( Path.Count > 0 )
 		{
 			// Lerp to each cell on the journey
@@ -96,6 +98,7 @@ public class NPC_Commune : NPC
 				transform.LookAt( finish );
 				transform.localEulerAngles = new Vector3( 0, transform.localEulerAngles.y, 0 );
 			}
+			IsWalking = true;
 
 			// Set new current once reached grid cell
 			if ( Time.time - CurrentMoveTime >= MoveTime )

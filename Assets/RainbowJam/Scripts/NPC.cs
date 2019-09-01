@@ -19,6 +19,11 @@ public class NPC : MonoBehaviour
     [SerializeField]
     private GameObject Pin;
 
+    public bool IsWalking = false;
+
+    public GameObject IdleSprite;
+    public GameObject WalkingSprite;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -34,9 +39,9 @@ public class NPC : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        
+        UpdateAnimations();
     }
 
 	public void GenerateAppearanceFromData(PersonInfo newData)
@@ -78,6 +83,12 @@ public class NPC : MonoBehaviour
 
         Pin.transform.localScale *= Data.PinScale;
 	}
+
+    public void UpdateAnimations()
+    {
+        WalkingSprite.SetActive(IsWalking);
+        IdleSprite.SetActive(!IsWalking);
+    }
 
     public PersonInfo GetPersonInfo()
     {

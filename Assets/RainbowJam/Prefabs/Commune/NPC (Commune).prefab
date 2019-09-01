@@ -216,7 +216,11 @@ MonoBehaviour:
   Hat: {fileID: 5618852046056297854}
   Sunglasses: {fileID: 6695476749143350507}
   Pin: {fileID: 3829428082349303040}
+  IsWalking: 0
+  IdleSprite: {fileID: 4624159341273108227}
+  WalkingSprite: {fileID: 8969144028588731612}
   Berries: 0
+  HeldBerryType: 0
   Jams: 0
   MoveTime: 1
 --- !u!1 &7304177512021016901
@@ -404,9 +408,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7443354574681034041}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4624159341273108227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2837351222233989690, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
+    type: 3}
+  m_PrefabInstance: {fileID: 7443354574681034041}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8969144028588731612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1960428638050230757, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
+    type: 3}
+  m_PrefabInstance: {fileID: 7443354574681034041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9218735856324096347 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1775435196405840994, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
+    type: 3}
+  m_PrefabInstance: {fileID: 7443354574681034041}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5618852046056297854 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3077708585410353223, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
     type: 3}
   m_PrefabInstance: {fileID: 7443354574681034041}
   m_PrefabAsset: {fileID: 0}
@@ -419,12 +441,6 @@ GameObject:
 --- !u!1 &3829428082349303040 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5938214918690023481, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
-    type: 3}
-  m_PrefabInstance: {fileID: 7443354574681034041}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5618852046056297854 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3077708585410353223, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
     type: 3}
   m_PrefabInstance: {fileID: 7443354574681034041}
   m_PrefabAsset: {fileID: 0}
