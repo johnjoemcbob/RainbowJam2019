@@ -22,6 +22,10 @@ public class NPC_Commune : NPC
 	// TODO could be better, more modular carrying code
 	[HideInInspector]
 	public int Berries = 0;
+
+	[HideInInspector]
+	public Berry.BerryType HeldBerryType;
+
 	[HideInInspector]
 	public int Jams = 0;
 
