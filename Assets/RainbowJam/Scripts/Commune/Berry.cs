@@ -24,8 +24,11 @@ public class Berry : MonoBehaviour
 
 	public static Dictionary<BerryType, Color> BerryTypeToColourMap;
 
+	public BerryType CurrentType;
+
 	public void InitWithType(BerryType type)
 	{
+		CurrentType = type;
 		if(BerryTypeToColourMap == null)
 		{
 			// Init berry type-colour mapping on first berry spawned.
@@ -50,14 +53,17 @@ public class Berry : MonoBehaviour
 				BerryTypeToColourMap.Add((BerryType)i, berryColour);
 				candidateColours.Remove(berryColour);
 			}
-				
-			
-			
 		}
 
 		// Then just set up the colour with the breed type.
 		BerrySpriteRenderer.sprite = BerrySprites[(int)type];
 		BerrySpriteRenderer.material.color = BerryTypeToColourMap[type];
+	}
+
+	public void UpdateColourWithGrowthFactor(float growthProgress)
+	{
+		growthProgress = Mathf.Clamp(growthProgress, 0.0f, 1.0f);
+		BerrySpriteRenderer.material.color = Color.Lerp(Color.white, BerryTypeToColourMap[CurrentType], growthProgress );
 	}
 
 	
