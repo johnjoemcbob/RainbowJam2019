@@ -98,7 +98,25 @@ public class NPC_Commune : NPC
 				transform.LookAt( finish );
 				transform.localEulerAngles = new Vector3( 0, transform.localEulerAngles.y, 0 );
 			}
+
+			Vector3 travelDir = (finish - start);
+			travelDir.Normalize();
+
+			float angBetween = Vector3.Dot(travelDir, transform.right);
+			Debug.Log(angBetween);
+
+			if(angBetween > 0)
+			{
+				WalkingSprite.transform.localEulerAngles = new Vector3(0, 0, 0);
+			}
+			else
+			{
+				WalkingSprite.transform.localEulerAngles = new Vector3(0, 180, 0);
+			}
+			
 			IsWalking = true;
+
+
 
 			// Set new current once reached grid cell
 			if ( Time.time - CurrentMoveTime >= MoveTime )
