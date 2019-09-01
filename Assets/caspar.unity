@@ -167,8 +167,8 @@ MonoBehaviour:
     type: 3}
   blankNPCPrefab: {fileID: 834985754813758327, guid: 95a4b4d41c0d8e743815d32fd8f6cebe,
     type: 3}
-  friendPoolSize: 5
-  totalCrowdSize: 100
+  friendPoolSize: 10
+  totalCrowdSize: 200
 --- !u!108 &705507994 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 705507994, guid: 035b4bae8e42e5241966dadf65d0563a,
