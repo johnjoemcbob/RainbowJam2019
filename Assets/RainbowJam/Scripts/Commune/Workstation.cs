@@ -21,6 +21,7 @@ public class Workstation : MonoBehaviour
 	public GameObject DropZone;
 	public GameObject CookZone;
 	public GameObject PickupZone;
+	public ParticleSystem DoneWorkingEffect;
 
 	[HideInInspector]
 	public NPC_Commune AssignedNPC;
@@ -82,6 +83,8 @@ public class Workstation : MonoBehaviour
 
 			CookStartTime = 0;
 			Debug.Log( "Stop cook" );
+
+			DoneWorkingEffect.Play();
 
 			return true; // Just cooked
 		}
