@@ -60,6 +60,7 @@ public class SoilBush : MonoBehaviour
 				foreach ( var berry in Berries )
 				{
 					berry.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f) * progress;
+					berry.UpdateColourWithGrowthFactor(progress);
 				}
 				if ( Time.time - StageTime >= GrowTime )
 				{
