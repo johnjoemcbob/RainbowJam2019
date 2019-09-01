@@ -26,6 +26,8 @@ public class SoilBush : MonoBehaviour
 	protected float StageTime = 0;
 	protected float GrowTime = 0;
 
+	public Berry.BerryType GrowBerryType;
+
     void Start()
 	{
 		transform.GetChild( 0 ).localScale *= BuildableArea.Instance.CellSize;
@@ -33,6 +35,8 @@ public class SoilBush : MonoBehaviour
 		// Ensure data grid is filled properly (in case added in editor)
 		var cell = BuildableArea.GetCellFromPosition( gameObject );
 		BuildableArea.Instance.Grid.nodes[cell.x, cell.y].Type = NesScripts.Controls.PathFind.NodeContent.TilledSoil;
+
+		GrowBerryType = (Berry.BerryType)Random.Range(0,9);
 	}
 
     void Update()
@@ -86,6 +90,11 @@ public class SoilBush : MonoBehaviour
 		CurrentStage = Stage.Grown;
 		StageTime = Time.time;
 		GrowTime = Random.Range( BerryGrowthTime.x, BerryGrowthTime.y );
+
+		foreach(var berry in Berries)
+		{
+			berry.InitWithType(GrowBerryType);
+		}
 
 		// TODO Define positions for berries to appear?
 	}

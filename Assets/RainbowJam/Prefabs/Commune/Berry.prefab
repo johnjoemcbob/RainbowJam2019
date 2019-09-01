@@ -106,7 +106,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5596280439788792837}
-  m_LocalRotation: {x: 0, y: 0.45664728, z: 0, w: 0.88964784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -141,6 +141,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172fca0df6ff85d4ba494203dee884b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BerrySpriteRenderer: {fileID: 3693726433963474388}
+  BerrySprites:
+  - {fileID: 9193914871621588738, guid: 3a60f9bff72084803aa87c6e16867acc, type: 3}
+  - {fileID: 2673392570070927570, guid: 3a60f9bff72084803aa87c6e16867acc, type: 3}
+  - {fileID: 6743909575256459111, guid: 3a60f9bff72084803aa87c6e16867acc, type: 3}
+  - {fileID: -6341550269485014352, guid: 3a60f9bff72084803aa87c6e16867acc, type: 3}
+  - {fileID: 3153866578586485569, guid: 3a60f9bff72084803aa87c6e16867acc, type: 3}
+  - {fileID: -3068972571091660505, guid: 3a60f9bff72084803aa87c6e16867acc, type: 3}
+  - {fileID: -2889058391472903991, guid: 3a60f9bff72084803aa87c6e16867acc, type: 3}
+  - {fileID: -8197165008035233640, guid: 3a60f9bff72084803aa87c6e16867acc, type: 3}
+  - {fileID: 3507740612238109835, guid: 3a60f9bff72084803aa87c6e16867acc, type: 3}
 --- !u!1 &6714457483704572017
 GameObject:
   m_ObjectHideFlags: 0

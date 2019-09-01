@@ -24,6 +24,7 @@ public class Workstation : MonoBehaviour
 
 	[HideInInspector]
 	public NPC_Commune AssignedNPC;
+	private Berry.BerryType MostRecentBerryType;
 
 	protected float CookStartTime = 0;
 
@@ -45,8 +46,9 @@ public class Workstation : MonoBehaviour
 	}
 
 	// Return any that could not be accepted
-	public int AddBerry( int count )
+	public int AddBerry( int count, Berry.BerryType type )
 	{
+		MostRecentBerryType = type;
 		int add = Mathf.Min( count, MAX_BERRIES - Berries );
 		Berries += add;
 		UpdateResources();
@@ -96,6 +98,13 @@ public class Workstation : MonoBehaviour
 	{
 		foreach ( Transform child in BerriesParent )
 		{
+			// Quick hack to make new berries on the table look like the last ones the NPC delivered.
+			bool showingNewBerry = child.GetSiblingIndex() < Berries && !child.gameObject.activeInHierarchy;
+			if(showingNewBerry)
+			{
+				child.gameObject.GetComponent<Berry>().InitWithType(MostRecentBerryType);
+			}
+
 			child.gameObject.SetActive( child.GetSiblingIndex() < Berries );
 		}
 		foreach ( Transform child in JamsParent )

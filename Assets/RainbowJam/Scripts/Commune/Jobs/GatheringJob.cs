@@ -46,6 +46,7 @@ public class GatheringJob : Job
 			if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( Bush.gameObject ) )
 			{
 				NPC.Berries = Bush.Harvest();
+				NPC.HeldBerryType = Bush.GrowBerryType;
 				Bush.AssignedNPC = null;
 			}
 		}
@@ -61,7 +62,7 @@ public class GatheringJob : Job
 				if ( NPC.CurrentPos == BuildableArea.GetCellFromPosition( DropOff.DropZone ) )
 				{
 					// Remove number of berries accepted and repeat until hands empty
-					NPC.Berries = DropOff.AddBerry( NPC.Berries );
+					NPC.Berries = DropOff.AddBerry( NPC.Berries, NPC.HeldBerryType );
 					if ( NPC.Berries != 0 )
 					{
 						DropOff = null;
