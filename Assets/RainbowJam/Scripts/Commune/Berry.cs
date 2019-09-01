@@ -31,7 +31,7 @@ public class Berry : MonoBehaviour
 			// Init berry type-colour mapping on first berry spawned.
 			List<Color> candidateColours = new List<Color> {
 				new Color(1.0f, 0.10f, 0.0f, 1.0f), // rich red
-				new Color(0.75f, 0.25f, 0.0f, 1.0f), // orange
+				new Color(1.0f, 0.5f, 0.0f, 1.0f), // orange
 				new Color(1.0f, 1.0f, 0.0f, 1.0f), // yellow
 				new Color(0.25f, 1.0f, 0.05f, 1.0f), // lime green
 				new Color(0.1f, 0.9f, 1.0f, 1.0f), // cyan
