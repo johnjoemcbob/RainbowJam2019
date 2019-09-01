@@ -34,7 +34,7 @@ public class Berry : MonoBehaviour
 				new Color(0.75f, 0.25f, 0.0f, 1.0f), // orange
 				new Color(1.0f, 1.0f, 0.0f, 1.0f), // yellow
 				new Color(0.25f, 1.0f, 0.05f, 1.0f), // lime green
-				new Color(0.1f, 0.5f, 1.0f, 1.0f), // light blue
+				new Color(0.1f, 0.9f, 1.0f, 1.0f), // cyan
 				new Color(0.10f, 0.0f, 1.0f), // dark blue
 				new Color(0.6f, 0.0f, 1.0f, 1.0f), // purple
 				new Color(0.05f, 0.05f, 0.05f, 1.0f), // black (slightly lighter than berry outlines)
