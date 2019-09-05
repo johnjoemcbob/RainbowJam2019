@@ -6,6 +6,8 @@ using NesScripts.Controls.PathFind;
 
 public class NPC_Commune : NPC
 {
+	public static bool DebugDisplay = false;
+
 	public enum JobType
 	{
 		Relax,
@@ -65,22 +67,28 @@ public class NPC_Commune : NPC
     public override void Update()
     {
 		base.Update();
-        // Debug Test pathfinding - If no target then choose random valid within grid
-		//if ( Path.Count <= 0 || TargetPos == CurrentPos )
-		//{
-		//	SetTargetCell( new Point( Random.Range( 0, BuildableArea.Instance.GridSquares ), Random.Range( 0, BuildableArea.Instance.GridSquares ) ) );
-		//	CurrentMoveTime = Time.time;
-		//}
+
+		UpdateDebug();
+		UpdateMove();
+		JobClasses[(int) CurrentJob].Update();
+	}
+
+	protected void UpdateDebug()
+	{
+		if ( Input.GetKeyDown( KeyCode.B ) )
+		{
+			DebugDisplay = !DebugDisplay;
+		}
+
 		// Debug UI
-		GetComponentInChildren<Text>().text = @"
+		var text = GetComponentInChildren<Text>( true );
+		text.transform.parent.gameObject.SetActive( DebugDisplay );
+		text.text = @"
 		" + CurrentJob + " - Duration: " + JobClasses[(int) CurrentJob].GetTimeRemaining().ToString( "0.00" ) + "/" + JobClasses[(int) CurrentJob].Duration.ToString( "0.00" ) + @"
 		" + CurrentPos.x + ", " + CurrentPos.y + " to " + TargetPos.x + ", " + TargetPos.y + @"
 		Berries: " + Berries + @"
 		RelaxPoints: " + RelaxPoints + @"
 		";
-
-		UpdateMove();
-		JobClasses[(int) CurrentJob].Update();
 	}
 
 	protected void UpdateMove()
@@ -99,12 +107,12 @@ public class NPC_Commune : NPC
 				transform.localEulerAngles = new Vector3( 0, transform.localEulerAngles.y, 0 );
 			}
 
+			// Calculate facing direction (Melon)
 			Vector3 travelDir = (finish - start);
 			travelDir.Normalize();
 
 			float angBetween = Vector3.Dot(travelDir, transform.right);
-			Debug.Log(angBetween);
-
+			//Debug.Log(angBetween);
 			if(angBetween > 0)
 			{
 				WalkingSprite.transform.localEulerAngles = new Vector3(0, 0, 0);
@@ -113,10 +121,7 @@ public class NPC_Commune : NPC
 			{
 				WalkingSprite.transform.localEulerAngles = new Vector3(0, 180, 0);
 			}
-			
 			IsWalking = true;
-
-
 
 			// Set new current once reached grid cell
 			if ( Time.time - CurrentMoveTime >= MoveTime )
