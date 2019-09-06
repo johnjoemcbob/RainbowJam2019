@@ -7,38 +7,28 @@ public class NPC : MonoBehaviour
 {
 	PersonInfo Data;
 
-    [SerializeField]
-    private GameObject Shirt;
-
-    [SerializeField]
-    private GameObject Hat;
-
-    [SerializeField]
-    private GameObject Sunglasses;
-
-    [SerializeField]
-    private GameObject Pin;
-
     public bool IsWalking = false;
 
     public GameObject IdleSprite;
     public GameObject WalkingSprite;
 
-    // Start is called before the first frame update
-    public virtual void Start()
-    {
-        if(Shirt == null || Hat == null || Sunglasses == null || Pin == null)
-        {
-            Debug.LogError("Something's wrong with your NPC prefab! Make sure the Shirt, Hat, Sunglasses and Pin objects exist.");
-        }
-        else
-        {
-            // TODO: Remove this. Data should be supplied from the overall crowd/city scene manager when spawning new NPCs.
-            //GenerateAppearanceFromData(PersonInfo.GenerateRandom("DEBUG"));
-        }
-    }
+	// Found using tags
+	private List<GameObject> Hat;
+	private List<GameObject> Sunglasses;
+	private List<GameObject> Shirt;
+	private List<GameObject> Pin;
 
-    // Update is called once per frame
+	public virtual void Start()
+    {
+		Hat = transform.FindObjectsWithTag( "Hat" );
+		Sunglasses = transform.FindObjectsWithTag( "Sunglasses" );
+		Shirt = transform.FindObjectsWithTag( "Shirt" );
+		Pin = transform.FindObjectsWithTag( "Pin" );
+
+		// TODO TEMP REMOVE
+		GenerateAppearanceFromData( PersonInfo.GenerateRandom( "DEBUG_FRIEND" ) );
+	}
+
     public virtual void Update()
     {
         UpdateAnimations();
@@ -48,47 +38,60 @@ public class NPC : MonoBehaviour
 	{
         Data = newData;
 
-        Shirt.SetActive(Data.HasShirt);
-        Hat.SetActive(Data.HasHat);
-        Sunglasses.SetActive(Data.HasSunglasses);
-        Pin.SetActive(Data.HasPin);
+		foreach ( var obj in Hat )
+		{
+			obj.SetActive( Data.HasHat );
 
-        var shirtRenderer = Shirt.GetComponentInChildren<MeshRenderer>();
-        if(shirtRenderer != null)
-        {
-            shirtRenderer.material.color = Data.ShirtColour;
-        }
+			var hatRenderer = obj.GetComponentInChildren<SpriteRenderer>();
+			if ( hatRenderer != null )
+			{
+				hatRenderer.material.color = Data.HatColour;
+			}
 
-        var hatRenderer = Hat.GetComponentInChildren<MeshRenderer>();
-        if(hatRenderer != null)
-        {
-            hatRenderer.material.color = Data.HatColour;
-        }
+			obj.transform.localScale *= Data.HatScale;
+		}
+		foreach ( var obj in Sunglasses )
+		{
+			obj.SetActive( Data.HasSunglasses );
 
-        Hat.transform.localScale *= Data.HatScale;
+			var sunglassesRenderer = obj.GetComponentInChildren<SpriteRenderer>();
+			if ( sunglassesRenderer != null )
+			{
+				sunglassesRenderer.material.color = Data.SunglassesColour;
+			}
 
-        var sunglassesRenderer = Sunglasses.GetComponentInChildren<MeshRenderer>();
-        if(sunglassesRenderer != null)
-        {
-            sunglassesRenderer.material.color = Data.SunglassesColour;
-        }
+			obj.transform.localScale *= Data.SunglassesScale;
+		}
+		foreach ( var obj in Shirt )
+		{
+			obj.SetActive( Data.HasShirt );
 
-        Sunglasses.transform.localScale *= Data.SunglassesScale;
+			var shirtRenderer = obj.GetComponentInChildren<SpriteRenderer>();
+			if ( shirtRenderer != null )
+			{
+				shirtRenderer.material.color = Data.ShirtColour;
+			}
+		}
+		foreach ( var obj in Pin )
+		{
+			obj.SetActive( Data.HasPin );
 
-        var pinRenderer = Pin.GetComponentInChildren<MeshRenderer>();
-        if(pinRenderer != null)
-        {
-            pinRenderer.material.color = Data.PinColour;
-        }
+			var pinRenderer = obj.GetComponentInChildren<SpriteRenderer>();
+			if ( pinRenderer != null )
+			{
+				pinRenderer.material.color = Data.PinColour;
+			}
 
-        Pin.transform.localScale *= Data.PinScale;
+			obj.transform.localScale *= Data.PinScale;
+		}
 	}
 
     public void UpdateAnimations()
     {
-        WalkingSprite.SetActive(IsWalking);
-        IdleSprite.SetActive(!IsWalking);
-    }
+		// TODO turn in to state system to better support transitions and new animations
+		WalkingSprite.SetActive( IsWalking );
+		IdleSprite.SetActive( !IsWalking );
+	}
 
     public PersonInfo GetPersonInfo()
     {

@@ -107,21 +107,7 @@ public class NPC_Commune : NPC
 				transform.localEulerAngles = new Vector3( 0, transform.localEulerAngles.y, 0 );
 			}
 
-			// Calculate facing direction (Melon)
-			Vector3 travelDir = (finish - start);
-			travelDir.Normalize();
-
-			float angBetween = Vector3.Dot(travelDir, transform.right);
-			//Debug.Log(angBetween);
-			if(angBetween > 0)
-			{
-				WalkingSprite.transform.localEulerAngles = new Vector3(0, 0, 0);
-			}
-			else
-			{
-				WalkingSprite.transform.localEulerAngles = new Vector3(0, 180, 0);
-			}
-			IsWalking = true;
+			UpdateFacing( start, finish );
 
 			// Set new current once reached grid cell
 			if ( Time.time - CurrentMoveTime >= MoveTime )
@@ -139,6 +125,35 @@ public class NPC_Commune : NPC
 			// Try to find new path if they still have a target unreached
 			SetTargetCell( TargetPos );
 		}
+	}
+
+	// Calculate facing direction (Melon)
+	protected void UpdateFacing( Vector3 start, Vector3 finish )
+	{
+		Vector3 travelDir = (finish - start);
+		travelDir.Normalize();
+
+		float angBetween = Vector3.Dot(travelDir, transform.right);
+		//Debug.Log(angBetween);
+		if ( angBetween > 0 )
+		{
+			WalkingSprite.transform.localEulerAngles = new Vector3( 0, 0, 0 );
+			// Update z offset of all children to be in front of animation
+			foreach ( Transform child in WalkingSprite.transform )
+			{
+				child.localPosition = new Vector3( child.localPosition.x, child.localPosition.y, Mathf.Abs( child.localPosition.z ) );
+			}
+		}
+		else
+		{
+			WalkingSprite.transform.localEulerAngles = new Vector3( 0, 180, 0 );
+			// Update z offset of all children to be in front of animation
+			foreach ( Transform child in WalkingSprite.transform )
+			{
+				child.localPosition = new Vector3( child.localPosition.x, child.localPosition.y, -Mathf.Abs( child.localPosition.z ) );
+			}
+		}
+		IsWalking = true;
 	}
 
 	public void FindJob()

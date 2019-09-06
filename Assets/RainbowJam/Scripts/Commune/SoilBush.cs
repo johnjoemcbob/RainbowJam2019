@@ -81,9 +81,6 @@ public class SoilBush : MonoBehaviour
 		Bush.SetActive( true );
 		Bush.transform.localScale = Vector3.zero;
 		StageTime = Time.time;
-
-		// temp testing
-		Bush.transform.localScale = Vector3.one;
 	}
 
 	public void StartBerries()
