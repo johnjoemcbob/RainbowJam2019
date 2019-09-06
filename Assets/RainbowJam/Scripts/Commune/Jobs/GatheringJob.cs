@@ -47,6 +47,7 @@ public class GatheringJob : Job
 			{
 				NPC.Berries = Bush.Harvest();
 				NPC.HeldBerryType = Bush.GrowBerryType;
+				NPC.PickupItem( Bush.Berries[0].gameObject );
 				Bush.AssignedNPC = null;
 			}
 		}
@@ -71,6 +72,7 @@ public class GatheringJob : Job
 					{
 						Finish();
 
+						NPC.DropItem();
 						NPC.TaskComplete();
 					}
 				}

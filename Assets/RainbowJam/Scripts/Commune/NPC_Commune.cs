@@ -48,6 +48,7 @@ public class NPC_Commune : NPC
 		new FinishMovingJob(),
 		new Job(), // Count
 	};
+	protected GameObject CurrentlyHeld;
 
 	// Pathing
 	protected Point TargetPos;
@@ -217,6 +218,33 @@ public class NPC_Commune : NPC
 		{
 			TargetPos = cell;
 			Path = Pathfinding.FindPath( BuildableArea.Instance.GridWithMovables, CurrentPos, TargetPos );
+		}
+	}
+
+	public void PickupItem( GameObject item )
+	{
+		// Make a copy of the item and store it on NPC
+		// Choose hand pivot and make that the parent
+		// TODO reassign hand pivot when switching animation
+		GameObject held = Instantiate( item, WalkingSprite.transform.Find( "Held Left (Pivot)" ) );
+		held.transform.localPosition = Vector3.zero;
+		held.transform.localEulerAngles = Vector3.zero;
+		held.transform.localScale = Vector3.one * 50;
+		CurrentlyHeld = held;
+
+		var copy = held.GetComponent<Copyable>();
+		if ( copy != null )
+		{
+			copy.OnCopy();
+		}
+	}
+
+	public void DropItem()
+	{
+		if ( CurrentlyHeld != null )
+		{
+			Destroy( CurrentlyHeld );
+			CurrentlyHeld = null;
 		}
 	}
 

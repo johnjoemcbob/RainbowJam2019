@@ -46,6 +46,7 @@ public class SellingJob : Job
 				NPC.SetTargetCell( BuildableArea.GetCellFromPosition( SellBox.Instance.DropZone ) );
 
 				NPC.Jams = 1;
+				NPC.PickupItem( Workstation.JamsParent.GetChild( 0 ).gameObject );
 				Workstation.AddJam( -1 );
 			}
 		}
@@ -55,6 +56,7 @@ public class SellingJob : Job
 			{
 				SellBox.Instance.SellJam( NPC.Jams );
 				NPC.Jams = 0;
+				NPC.DropItem();
 				NPC.TaskComplete();
 
 				Finish();
