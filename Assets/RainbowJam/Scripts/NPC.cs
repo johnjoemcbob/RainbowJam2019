@@ -5,18 +5,18 @@ using UnityEngine;
 // Base class for shared aspects such as appearance
 public class NPC : MonoBehaviour
 {
-	PersonInfo Data;
-
     public bool IsWalking = false;
 
     public GameObject IdleSprite;
     public GameObject WalkingSprite;
 
+	protected PersonInfo Data;
+
 	// Found using tags
-	private List<GameObject> Hat;
-	private List<GameObject> Sunglasses;
-	private List<GameObject> Shirt;
-	private List<GameObject> Pin;
+	protected List<GameObject> Hat;
+	protected List<GameObject> Sunglasses;
+	protected List<GameObject> Shirt;
+	protected List<GameObject> Pin;
 
 	public virtual void Start()
     {

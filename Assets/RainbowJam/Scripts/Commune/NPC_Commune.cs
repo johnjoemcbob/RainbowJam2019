@@ -89,6 +89,7 @@ public class NPC_Commune : NPC
 		" + CurrentPos.x + ", " + CurrentPos.y + " to " + TargetPos.x + ", " + TargetPos.y + @"
 		Berries: " + Berries + @"
 		RelaxPoints: " + RelaxPoints + @"
+		LeftHanded: " + Data.LeftHanded + @"
 		";
 	}
 
@@ -109,6 +110,7 @@ public class NPC_Commune : NPC
 			}
 
 			UpdateFacing( start, finish );
+			UpdateParentItemToCurrentHand();
 
 			// Set new current once reached grid cell
 			if ( Time.time - CurrentMoveTime >= MoveTime )
@@ -224,15 +226,9 @@ public class NPC_Commune : NPC
 	public void PickupItem( GameObject item )
 	{
 		// Make a copy of the item and store it on NPC
-		// Choose hand pivot and make that the parent
-		// TODO reassign hand pivot when switching animation
-		GameObject held = Instantiate( item, WalkingSprite.transform.Find( "Held Left (Pivot)" ) );
-		held.transform.localPosition = Vector3.zero;
-		held.transform.localEulerAngles = Vector3.zero;
-		held.transform.localScale = Vector3.one * 50;
-		CurrentlyHeld = held;
-
-		var copy = held.GetComponent<Copyable>();
+		CurrentlyHeld = Instantiate( item );
+		UpdateParentItemToCurrentHand();
+		var copy = CurrentlyHeld.GetComponent<Copyable>();
 		if ( copy != null )
 		{
 			copy.OnCopy();
@@ -246,6 +242,27 @@ public class NPC_Commune : NPC
 			Destroy( CurrentlyHeld );
 			CurrentlyHeld = null;
 		}
+	}
+
+	protected void UpdateParentItemToCurrentHand()
+	{
+		if ( CurrentlyHeld == null ) return;
+
+		Transform parent = IdleSprite.transform;
+		if ( WalkingSprite.activeSelf )
+		{
+			parent = WalkingSprite.transform;
+		}
+		bool lefthanded = Data.LeftHanded;
+		if ( WalkingSprite.transform.localEulerAngles.y == 180 )
+		{
+			lefthanded = !lefthanded;
+		}
+		string hand = lefthanded ? "Left" : "Right";
+		CurrentlyHeld.transform.parent = parent.Find( "Held " + hand + " (Pivot)" );
+		CurrentlyHeld.transform.localPosition = Vector3.zero;
+		CurrentlyHeld.transform.localEulerAngles = Vector3.zero;
+		CurrentlyHeld.transform.localScale = Vector3.one * 50;
 	}
 
 	public void TaskComplete()
