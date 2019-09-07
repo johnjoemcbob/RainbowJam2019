@@ -1,0 +1,389 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1122494794538086728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1122494794538086729}
+  m_Layer: 0
+  m_Name: CommuneTutorials
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1122494794538086729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122494794538086728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5290491495690751864}
+  - {fileID: 5290491496143009382}
+  - {fileID: 5290491495868535128}
+  - {fileID: 5290491496359566640}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1122494795203558087
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1122494794538086729}
+    m_Modifications:
+    - target: {fileID: 2778633461992267317, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_Name
+      value: HouseTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.058534
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.788874
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.data[1]
+      value: By making jam with your friends, you can increase the size of the house!
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.data[0]
+      value: This is the farm's house! It is where your friends can stay while they
+        are here with you.
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4929f6223e91c1446a3dd0f84e89922b, type: 3}
+--- !u!4 &5290491495690751864 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1122494795203558087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1122494795566179559
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1122494794538086729}
+    m_Modifications:
+    - target: {fileID: 2778633461992267317, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_Name
+      value: SellboxTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.data[0]
+      value: This is the donation counter! When your friends sell jam, they may donate
+        some money to increase the size of the house!
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4929f6223e91c1446a3dd0f84e89922b, type: 3}
+--- !u!4 &5290491495868535128 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1122494795566179559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1122494795824907225
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1122494794538086729}
+    m_Modifications:
+    - target: {fileID: 2778633461992267317, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_Name
+      value: TableTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.880449
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.482
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.646096
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.data[0]
+      value: This is where your friends can turn berries into jam.
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4929f6223e91c1446a3dd0f84e89922b, type: 3}
+--- !u!4 &5290491496143009382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1122494795824907225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1122494795872659599
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1122494794538086729}
+    m_Modifications:
+    - target: {fileID: 2778633461992267317, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_Name
+      value: SoilTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.463
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.583
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.5122299
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.data[0]
+      value: This is tilled soil, where your friends can plant berry bushes.
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.data[1]
+      value: By clicking on empty patches of grass, you can make your own areas of
+        tilled soil.
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4929f6223e91c1446a3dd0f84e89922b, type: 3}
+--- !u!4 &5290491496359566640 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1122494795872659599}
+  m_PrefabAsset: {fileID: 0}

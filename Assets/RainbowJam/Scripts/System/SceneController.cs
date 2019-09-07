@@ -18,12 +18,15 @@ public class SceneController : MonoBehaviour
     [SerializeField]
     private GameObject DialogueBubblePrefab;
 
+    public static SceneController Instance;
+
 
     private GameStates CurrentState = GameStates.INVALID;
 
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         if(CityScene == null || CommuneScene == null)
         {
             Debug.LogError("ERROR: City Scene Prefab or Commune Scene Prefab have not been set!");
@@ -80,6 +83,11 @@ public class SceneController : MonoBehaviour
                     if(!isFirstTime)
                     {
                         SummonDialogueBubble("Returning home...");
+                    }
+                    else
+                    {
+                        SummonDialogueBubble("Welcome to the communal jam farm! Click to advance text.");
+                        SummonDialogueBubble("Press the W, S, A, D keys to move around.");
                     }
 
                     // Enable commune scene.

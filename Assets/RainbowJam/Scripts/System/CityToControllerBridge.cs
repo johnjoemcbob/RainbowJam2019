@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CityToControllerBridge : MonoBehaviour
 {
-    private List<PersonInfo> friends;
+    private List<PersonInfo> friends = new List<PersonInfo>();
 
     public SceneController sceneController;
 

@@ -32,10 +32,12 @@ public class DialogueBubble : MonoBehaviour
     public bool Closing = false;
     
 
-    // Helper function.
+    // Helper function & variables.
+    public static List<DialogueBubble> QueuedDialogues = new List<DialogueBubble>();
     
-    public static DialogueBubble SummonDialogueBubble(string targetText, GameObject dialogueBubblePrefab, Transform canvas, Vector2 offsetMin, Vector2 offsetMax)
+    public static void SummonDialogueBubble(string targetText, GameObject dialogueBubblePrefab, Transform canvas, Vector2 offsetMin, Vector2 offsetMax)
     {
+        // Create and queue a dialogue bubble.
         var newBubble = GameObject.Instantiate(dialogueBubblePrefab);
         newBubble.transform.SetParent(canvas);
 
@@ -43,7 +45,12 @@ public class DialogueBubble : MonoBehaviour
         bubbleScript.TargetString = targetText;
         bubbleScript.InitialisePositioning(offsetMin, offsetMax);
 
-        return bubbleScript;
+        QueuedDialogues.Add(bubbleScript);
+
+        if(QueuedDialogues.Count > 1)
+        {
+            newBubble.SetActive(false);
+        }
     }
 
     // Start is called before the first frame update
@@ -98,6 +105,17 @@ public class DialogueBubble : MonoBehaviour
             if(BubbleScale <= 0.0f)
             {
                 Closing = false;
+
+                // Remove from queue, and advance the queue if there is more to show.
+                if(QueuedDialogues.Contains(this))
+                {
+                    QueuedDialogues.Remove(this);
+
+                    if(QueuedDialogues.Count > 0)
+                    {
+                        QueuedDialogues[0].gameObject.SetActive(true);
+                    }
+                }
 
                 // Die, bubble!
                 GameObject.Destroy(gameObject);
