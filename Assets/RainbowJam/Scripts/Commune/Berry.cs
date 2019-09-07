@@ -32,16 +32,17 @@ public class Berry : Copyable
 		{
 			// Init berry type-colour mapping on first berry spawned.
 			List<Color> candidateColours = new List<Color> {
-				new Color(1.0f, 0.10f, 0.0f, 1.0f), // rich red
-				new Color(1.0f, 0.5f, 0.0f, 1.0f), // orange
-				new Color(1.0f, 1.0f, 0.0f, 1.0f), // yellow
-				new Color(0.25f, 1.0f, 0.05f, 1.0f), // lime green
-				new Color(0.1f, 0.9f, 1.0f, 1.0f), // cyan
-				new Color(0.10f, 0.0f, 1.0f), // dark blue
-				new Color(0.6f, 0.0f, 1.0f, 1.0f), // purple
-				new Color(0.05f, 0.05f, 0.05f, 1.0f), // black (slightly lighter than berry outlines)
-				new Color(0.65f, 0.15f, 0.0f, 1.0f) // brown
+				SidneyPalette.black,
+				SidneyPalette.brown,
+				SidneyPalette.red, 
+				SidneyPalette.orange,
+				SidneyPalette.yellow,
+				SidneyPalette.green,
+				SidneyPalette.cyan,
+				SidneyPalette.blue,
+				SidneyPalette.purple
 			};
+
 
 			BerryTypeToColourMap = new Dictionary<BerryType, Color>();
 

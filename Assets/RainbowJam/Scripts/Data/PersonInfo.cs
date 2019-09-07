@@ -44,10 +44,10 @@ public class PersonInfo
 		newPerson.HasPin = ( Random.Range( 0.0f, 1.0f ) > 0.5f );
 		newPerson.HasSunglasses = ( Random.Range( 0.0f, 1.0f ) > 0.5f );
 
-		newPerson.ShirtColour = Random.ColorHSV( 0.0f, 1.0f, 0.8f, 1.0f, 0.8f, 1.0f );
-		newPerson.HatColour = Random.ColorHSV( 0.0f, 1.0f, 0.8f, 1.0f, 0.8f, 1.0f );
-		newPerson.SunglassesColour = Random.ColorHSV( 0.0f, 1.0f, 0.8f, 1.0f, 0.8f, 1.0f );
-		newPerson.PinColour = Random.ColorHSV( 0.0f, 1.0f, 0.8f, 1.0f, 0.8f, 1.0f );
+		newPerson.ShirtColour = SidneyPalette.ChooseRandom();
+		newPerson.HatColour = SidneyPalette.ChooseRandom();
+		newPerson.SunglassesColour = SidneyPalette.ChooseRandom();
+		newPerson.PinColour = SidneyPalette.ChooseRandom();
 
 		newPerson.HatScale = Random.Range( 0.95f, 1.10f );
 		newPerson.PinScale = Random.Range( 0.85f, 1.45f );

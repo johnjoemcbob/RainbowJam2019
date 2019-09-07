@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SceneController : MonoBehaviour
@@ -18,7 +19,15 @@ public class SceneController : MonoBehaviour
     [SerializeField]
     private GameObject DialogueBubblePrefab;
 
+    [SerializeField]
+    private UnityEngine.UI.Image ScreenFader;
+    private float FadeDir = 1;
+    private float FadeAmt = 1.0f;
+    private bool Fading = false;
+
     public static SceneController Instance;
+    private bool FirstTime = false;
+    private Action OnFadeReachedPeak;
 
 
     private GameStates CurrentState = GameStates.INVALID;
@@ -46,60 +55,78 @@ public class SceneController : MonoBehaviour
         }
     }
 
+    private void SwitchToCity()
+    {
+        // Going to the city. 
+        Debug.Log("Switching to City scene!");
+        
+        // Disable other scenes.
+        CommuneScene.SetActive(false);
+
+        SummonDialogueBubble("Travelling to the city...");
+        
+
+        // Enable city scene.   
+        CityScene.SetActive(true);
+
+        // Contact the city controller, and get it to set things up.
+        CityBridge.PlayerEnteredCity();
+
+        OnFadeReachedPeak -= SwitchToCity;
+    }
+
+    private void SwitchToCommune()
+    {
+        // Going to the commune. 
+        Debug.Log("Switching to Commune scene!");
+        
+        // Disable other scenes.
+        CityScene.SetActive(false);
+
+        if(!FirstTime)
+        {
+            SummonDialogueBubble("Returning home...");
+        }
+        else
+        {
+            SummonDialogueBubble("Welcome to the communal jam farm! Click to advance text.");
+            SummonDialogueBubble("Press the W, S, A, D keys to move around.");
+        }
+
+        // Enable commune scene.
+        CommuneScene.SetActive(true);
+        
+        // Reset Player Pos in Commune (so that they don't immediately re-enter the city.)
+        CommuneBridge.ResetPlayerPosition();
+
+        // Fetch gathered friends from city!
+        CommuneBridge.SpawnNewFriends(CityBridge.GetFriends());
+
+        FirstTime = false;
+
+        OnFadeReachedPeak -= SwitchToCommune;
+    }
+
     public void RequestStateChange(GameStates newState, bool isFirstTime)
     {
+        FirstTime = isFirstTime;
+
         if(newState != CurrentState)
         {
+            Fading = true;
+
             switch(newState)
             {
                 case GameStates.CITY:
 
-                    // Going to the city. 
-                    Debug.Log("Switching to City scene!");
-                    
-                    // Disable other scenes.
-                    CommuneScene.SetActive(false);
-
-                    SummonDialogueBubble("Travelling to the city...");
-                    
-
-                    // Enable city scene.   
-                    CityScene.SetActive(true);
-
-                    // Contact the city controller, and get it to set things up.
-                    CityBridge.PlayerEnteredCity();
-
+                    OnFadeReachedPeak += SwitchToCity;                    
 
                     break;
 
                 case GameStates.COMMUNE:
 
-                    // Going to the commune. 
-                    Debug.Log("Switching to Commune scene!");
+                    OnFadeReachedPeak += SwitchToCommune;
                     
-                    // Disable other scenes.
-                    CityScene.SetActive(false);
-
-                    if(!isFirstTime)
-                    {
-                        SummonDialogueBubble("Returning home...");
-                    }
-                    else
-                    {
-                        SummonDialogueBubble("Welcome to the communal jam farm! Click to advance text.");
-                        SummonDialogueBubble("Press the W, S, A, D keys to move around.");
-                    }
-
-                    // Enable commune scene.
-                    CommuneScene.SetActive(true);
-                    
-                    // Reset Player Pos in Commune (so that they don't immediately re-enter the city.)
-                    CommuneBridge.ResetPlayerPosition();
-
-                    // Fetch gathered friends from city!
-                    CommuneBridge.SpawnNewFriends(CityBridge.GetFriends());
-                    
-
                     break;
                     
                 default:
@@ -116,7 +143,28 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Fading)
+        {
+            FadeAmt += 0.025f * FadeDir;
+
+            if(FadeAmt >= 1.0f && FadeDir == 1)
+            {
+                FadeDir = -1.0f;
+
+                if(OnFadeReachedPeak != null)
+                {
+                    OnFadeReachedPeak();
+                }
+            }
+
+            if(FadeAmt <= 0.0f && FadeDir == -1)
+            {
+                Fading = false;
+                FadeDir = 1.0f;
+            }
+
+            ScreenFader.color = new Color(0, 0, 0, FadeAmt);
+        }
     }
 
     // Quick and fast way for other scripts to yell at the player?
