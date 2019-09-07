@@ -28,6 +28,9 @@ public class NPC : MonoBehaviour
 
 		// TODO TEMP REMOVE
 		GenerateAppearanceFromData( PersonInfo.GenerateRandom( "DEBUG_FRIEND" ) );
+
+        //Personal Story
+        storyData = PersonalStory.GenerateRandom();
 	}
 
     public virtual void Update()

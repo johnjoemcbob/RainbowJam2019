@@ -11,13 +11,23 @@ namespace Assets.RainbowJam.Scripts.Commune
     {
         //This is going to accumulate EXP whilst the NPCs are doing things in the commune, somehow
 
-        private void Start()
+        void Start()
         {
 
         }
 
         void Update()
         {
+            var npcScript = gameObject.GetComponent<NPC>();
+
+            if (npcScript == null)
+                return;
+
+            if (npcScript.GetPersonalStory() == null)
+                return;
+
+            npcScript.GetPersonalStory().AddEXP(1.0f);
+
             //Debug.Log("GAINING EXP");
         }
 

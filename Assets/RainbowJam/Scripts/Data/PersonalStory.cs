@@ -13,29 +13,95 @@ public class PersonalStory
         PART_3 = 100,   //leaving commune
         PART_4 = 101    //return for party
     }
-    PersonalGoals currentStage = PersonalGoals.PART_0;
+    PersonalGoals currentGoal = PersonalGoals.PART_0;
 
-    int personalEXP = 0;
+    float personalEXP = -1.0f;
     float expGainRate = 1.0f; //Do people gain exp at diff rates?
     public int storyID = -1; //Get from json
 
 
-    void Start()
+    public static PersonalStory GenerateRandom()
     {
+        var newStory = new PersonalStory();
+
         //[TODO] ---> Get json story
 
-        expGainRate = Random.Range(0.75f, 1.00f);
+        newStory.personalEXP = -1; //Just in case
+        newStory.currentGoal = PersonalGoals.PART_0;
+        newStory.expGainRate = Random.Range(0.75f, 1.10f);
+
+        return newStory;
     }
 
 
 
-    //Some quick getters
-    public int GetCurrentEXP()
+
+    // THIS MAKES MY LIFE EASIER -----------------------------------------
+    PersonalGoals GetNextGoal(PersonalGoals current)
+    {
+        switch (current)
+        {
+            case (PersonalGoals.PART_0):
+                {
+                    return PersonalGoals.PART_1;
+                }
+            case (PersonalGoals.PART_1):
+                {
+                    return PersonalGoals.PART_2;
+                }
+            case (PersonalGoals.PART_2):
+                {
+                    return PersonalGoals.PART_3;
+                }
+            case (PersonalGoals.PART_3):
+                {
+                    return PersonalGoals.PART_4;
+                }
+            default:
+                {
+                    break;
+                }
+        }
+
+        return current;
+    }
+
+
+
+    // SETTERS -----------------------------------------
+    public void AddEXP(float amount)
+    {
+        //Add exp
+        float actualAmount = amount * expGainRate * Time.deltaTime;
+
+        personalEXP += actualAmount;
+
+        //Check against goal thresholds
+        if (currentGoal != PersonalGoals.PART_4)
+        {
+            PersonalGoals nextGoal = GetNextGoal(currentGoal);
+
+            if (personalEXP >= (float)nextGoal)
+            {
+                SetNewGoal(nextGoal);
+            }
+        }
+    }
+
+    void SetNewGoal(PersonalGoals goal)
+    {
+        currentGoal = goal;
+        Debug.Log("MY STORY HAS UPDATED:  " + currentGoal.ToString());
+    }
+
+
+
+    // GETTERS -----------------------------------------
+    public float GetCurrentEXP()
     {
         return personalEXP;
     }
 
-    //Some quick getters
     public float GetEXPGainRate()
     {
         return expGainRate;
@@ -43,7 +109,7 @@ public class PersonalStory
 
     public PersonalGoals GetCurrentStage()
     {
-        return currentStage;
+        return currentGoal;
     }
 
 }
