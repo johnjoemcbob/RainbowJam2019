@@ -17,14 +17,22 @@ public class PersonalStory
 
     float personalEXP = -1.0f;
     float expGainRate = 1.0f; //Do people gain exp at diff rates?
+
+
+    //JSON
     public int storyID = -1; //Get from json
+
 
 
     public static PersonalStory GenerateRandom()
     {
         var newStory = new PersonalStory();
 
+
+
         //[TODO] ---> Get json story
+
+
 
         newStory.personalEXP = -1; //Just in case
         newStory.currentGoal = PersonalGoals.PART_0;

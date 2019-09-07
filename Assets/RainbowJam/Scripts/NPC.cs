@@ -6,6 +6,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public bool IsWalking = false;
+    bool isInitialised = false;
 
     public GameObject IdleSprite;
     public GameObject WalkingSprite;
@@ -27,26 +28,36 @@ public class NPC : MonoBehaviour
 	protected List<GameObject> Hoodie;
 	protected List<GameObject> Vest;
 
-	public virtual void Start()
-    {
-		Hat = transform.FindObjectsWithTag( "Hat" );
-		Shirt = transform.FindObjectsWithTag( "Shirt" );
-		Hair1 = transform.FindObjectsWithTag( "Hair1" );
-		Hair2 = transform.FindObjectsWithTag( "Hair2" );
-		Hair3 = transform.FindObjectsWithTag( "Hair3" );
-		Flag_Pin = transform.FindObjectsWithTag( "Flag_Pin" );
-		Flag_Neckerchief = transform.FindObjectsWithTag( "Flag_Neckerchief" );
-		Flag_Patch = transform.FindObjectsWithTag( "Flag_Patch" );
-		Flag_Backpatch = transform.FindObjectsWithTag( "Flag_Backpatch" );
-		Flag_Hanky = transform.FindObjectsWithTag( "Flag_Hanky" );
-		Hoodie = transform.FindObjectsWithTag( "Hoodie" );
-		Vest = transform.FindObjectsWithTag( "Vest" );
 
-		// TODO TEMP REMOVE
-		GenerateAppearanceFromData( PersonInfo.GenerateRandom( "DEBUG_FRIEND" ) );
+    public virtual void Init(bool flagged = false)
+    {
+        Hat = transform.FindObjectsWithTag("Hat");
+        Shirt = transform.FindObjectsWithTag("Shirt");
+        Hair1 = transform.FindObjectsWithTag("Hair1");
+        Hair2 = transform.FindObjectsWithTag("Hair2");
+        Hair3 = transform.FindObjectsWithTag("Hair3");
+        Flag_Pin = transform.FindObjectsWithTag("Flag_Pin");
+        Flag_Neckerchief = transform.FindObjectsWithTag("Flag_Neckerchief");
+        Flag_Patch = transform.FindObjectsWithTag("Flag_Patch");
+        Flag_Backpatch = transform.FindObjectsWithTag("Flag_Backpatch");
+        Flag_Hanky = transform.FindObjectsWithTag("Flag_Hanky");
+        Hoodie = transform.FindObjectsWithTag("Hoodie");
+        Vest = transform.FindObjectsWithTag("Vest");
+
+        // TODO TEMP REMOVE
+        GenerateAppearanceFromData(PersonInfo.GenerateRandom("DEBUG_FRIEND", flagged));
 
         //Personal Story
         storyData = PersonalStory.GenerateRandom();
+
+        isInitialised = true;
+    }
+
+
+	public virtual void Start()
+    {
+        if (!isInitialised)
+            Init();
 	}
 
     public virtual void Update()
