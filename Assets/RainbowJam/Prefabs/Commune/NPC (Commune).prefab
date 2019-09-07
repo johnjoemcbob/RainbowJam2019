@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 4051550088034769656}
   - component: {fileID: 4051550088034769636}
   - component: {fileID: 4051550088034769639}
+  - component: {fileID: 1451556717713464365}
   m_Layer: 0
   m_Name: NPC (Commune)
   m_TagString: Untagged
@@ -179,7 +180,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4051550088034769657}
-  m_LocalRotation: {x: 0, y: 0.7071067, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.000000087422784, z: 0, w: 1}
   m_LocalPosition: {x: 2.637, y: 0, z: 0.979}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -219,6 +220,18 @@ MonoBehaviour:
   HeldBerryType: 0
   Jams: 0
   MoveTime: 1
+--- !u!114 &1451556717713464365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4051550088034769657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba28e9383f0e5048a9e1e097aa40b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7304177512021016901
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,11 +339,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4051550088034769656}
     m_Modifications:
-    - target: {fileID: 4051550088034769657, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
-        type: 3}
-      propertyPath: m_Name
-      value: BaseCharacter
-      objectReference: {fileID: 0}
     - target: {fileID: 4051550088034769656, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -354,7 +362,7 @@ PrefabInstance:
     - target: {fileID: 4051550088034769656, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -7.282199e-15
       objectReference: {fileID: 0}
     - target: {fileID: 4051550088034769656, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
         type: 3}
@@ -395,6 +403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051550088034769657, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
+        type: 3}
+      propertyPath: m_Name
+      value: BaseCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 2973846256654826790, guid: 0feac9899d45fcd4aa92736e0bdd1f30,
         type: 3}
