@@ -122,7 +122,7 @@ public class SceneController : MonoBehaviour
     // Quick and fast way for other scripts to yell at the player?
     public void SummonDialogueBubble(string bubbleText)
     {
-        DialogueBubble.SummonDialogueBubble(bubbleText, DialogueBubblePrefab, DialogueBubbleCanvas.transform, new Vector2(Screen.width/6, 0.0f), new Vector2((-Screen.width/6), -Screen.height/4));
+        DialogueBubble.SummonDialogueBubble(bubbleText, DialogueBubblePrefab, DialogueBubbleCanvas.transform, new Vector2(Screen.width/4, 0.0f), new Vector2((-Screen.width/4), -Screen.height/2));
     }
 
   
