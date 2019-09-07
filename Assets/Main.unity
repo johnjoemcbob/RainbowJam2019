@@ -568,6 +568,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: City (Scene)
       objectReference: {fileID: 0}
+    - target: {fileID: 6433293312015619194, guid: 035b4bae8e42e5241966dadf65d0563a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6433293312015619193, guid: 035b4bae8e42e5241966dadf65d0563a,
         type: 3}
       propertyPath: m_LocalPosition.x
