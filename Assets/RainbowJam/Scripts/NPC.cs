@@ -11,6 +11,7 @@ public class NPC : MonoBehaviour
     public GameObject WalkingSprite;
 
 	protected PersonInfo Data;
+    protected PersonalStory storyData;
 
 	// Found using tags
 	protected List<GameObject> Hat;
@@ -38,7 +39,10 @@ public class NPC : MonoBehaviour
 		Flag_Hanky = transform.FindObjectsWithTag( "Flag_Hanky");
 
 		// TODO TEMP REMOVE
-		GenerateAppearanceFromData( PersonInfo.GenerateRandom( "DEBUG_FRIEND", true ) );
+		GenerateAppearanceFromData( PersonInfo.GenerateRandom( "DEBUG_FRIEND" ) );
+
+        //Personal Story
+        storyData = PersonalStory.GenerateRandom();
 	}
 
     public virtual void Update()
@@ -134,5 +138,10 @@ public class NPC : MonoBehaviour
     public PersonInfo GetPersonInfo()
     {
         return Data;
+    }
+
+    public PersonalStory GetPersonalStory()
+    {
+        return storyData;
     }
 }
