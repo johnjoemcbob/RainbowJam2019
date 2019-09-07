@@ -52,7 +52,7 @@ public class CrowdManager : MonoBehaviour
             {
                 GameObject friendObject = GameObject.Instantiate(friendNPCPrefab);
                 var npcScript = friendObject.GetComponent<NPC>();
-                npcScript.GenerateAppearanceFromData(PersonInfo.GenerateRandom("DEBUG_FRIEND"));
+                //npcScript.GenerateAppearanceFromData(PersonInfo.GenerateRandom("DEBUG_FRIEND"));
 
                 friendObject.transform.SetParent(transform);
 
