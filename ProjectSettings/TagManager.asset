@@ -8,6 +8,14 @@ TagManager:
   - Sunglasses
   - Shirt
   - Pin
+  - Hair1
+  - Hair2
+  - Hair3
+  - Flag_Pin
+  - Flag_Patch
+  - Flag_Backpatch
+  - Flag_Neckerchief
+  - Flag_Hanky
   layers:
   - Default
   - TransparentFX

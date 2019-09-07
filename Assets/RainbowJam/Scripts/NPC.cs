@@ -15,16 +15,28 @@ public class NPC : MonoBehaviour
 
 	// Found using tags
 	protected List<GameObject> Hat;
-	protected List<GameObject> Sunglasses;
 	protected List<GameObject> Shirt;
-	protected List<GameObject> Pin;
+	protected List<GameObject> Hair1;
+	protected List<GameObject> Hair2;
+	protected List<GameObject> Hair3;
+	protected List<GameObject> Flag_Pin;
+	protected List<GameObject> Flag_Hanky;
+	protected List<GameObject> Flag_Neckerchief;
+	protected List<GameObject> Flag_Patch;
+	protected List<GameObject> Flag_Backpatch;
 
 	public virtual void Start()
     {
 		Hat = transform.FindObjectsWithTag( "Hat" );
-		Sunglasses = transform.FindObjectsWithTag( "Sunglasses" );
 		Shirt = transform.FindObjectsWithTag( "Shirt" );
-		Pin = transform.FindObjectsWithTag( "Pin" );
+		Hair1 = transform.FindObjectsWithTag( "Hair1");
+		Hair2 = transform.FindObjectsWithTag( "Hair2");
+		Hair3 = transform.FindObjectsWithTag( "Hair3");
+		Flag_Pin = transform.FindObjectsWithTag( "Flag_Pin");
+		Flag_Neckerchief = transform.FindObjectsWithTag( "Flag_Neckerchief");
+		Flag_Patch = transform.FindObjectsWithTag( "Flag_Patch");
+		Flag_Backpatch = transform.FindObjectsWithTag( "Flag_Backpatch");
+		Flag_Hanky = transform.FindObjectsWithTag( "Flag_Hanky");
 
 		// TODO TEMP REMOVE
 		GenerateAppearanceFromData( PersonInfo.GenerateRandom( "DEBUG_FRIEND" ) );
@@ -54,18 +66,6 @@ public class NPC : MonoBehaviour
 
 			obj.transform.localScale *= Data.HatScale;
 		}
-		foreach ( var obj in Sunglasses )
-		{
-			obj.SetActive( Data.HasSunglasses );
-
-			var sunglassesRenderer = obj.GetComponentInChildren<SpriteRenderer>();
-			if ( sunglassesRenderer != null )
-			{
-				sunglassesRenderer.material.color = Data.SunglassesColour;
-			}
-
-			obj.transform.localScale *= Data.SunglassesScale;
-		}
 		foreach ( var obj in Shirt )
 		{
 			obj.SetActive( Data.HasShirt );
@@ -76,17 +76,55 @@ public class NPC : MonoBehaviour
 				shirtRenderer.material.color = Data.ShirtColour;
 			}
 		}
-		foreach ( var obj in Pin )
+		foreach ( var obj in Hair1 )
 		{
-			obj.SetActive( Data.HasPin );
+			obj.SetActive( Data.HasHair1 );
 
-			var pinRenderer = obj.GetComponentInChildren<SpriteRenderer>();
-			if ( pinRenderer != null )
+			var hair1Renderer = obj.GetComponentInChildren<SpriteRenderer>();
+			if ( hair1Renderer != null )
 			{
-				pinRenderer.material.color = Data.PinColour;
+				hair1Renderer.material.color = Data.Hair1Color;
 			}
+		}
+		foreach ( var obj in Hair2 )
+		{
+			obj.SetActive( Data.HasHair2 );
 
-			obj.transform.localScale *= Data.PinScale;
+			var hair2Renderer = obj.GetComponentInChildren<SpriteRenderer>();
+			if ( hair2Renderer != null )
+			{
+				hair2Renderer.material.color = Data.Hair2Color;
+			}
+		}
+		foreach ( var obj in Hair3 )
+		{
+			obj.SetActive( Data.HasHair3 );
+
+			var hair3Renderer = obj.GetComponentInChildren<SpriteRenderer>();
+			if ( hair3Renderer != null )
+			{
+				hair3Renderer.material.color = Data.Hair3Color;
+			}
+		}
+		foreach ( var obj in Flag_Pin )
+		{
+			obj.SetActive( Data.HasFlagPin );
+		}
+		foreach ( var obj in Flag_Backpatch )
+		{
+			obj.SetActive( Data.HasFlagBackpatch );
+		}
+		foreach ( var obj in Flag_Hanky )
+		{
+			obj.SetActive( Data.HasFlagHanky );
+		}
+		foreach ( var obj in Flag_Neckerchief )
+		{
+			obj.SetActive( Data.HasFlagNeckerchief );
+		}
+		foreach ( var obj in Flag_Patch )
+		{
+			obj.SetActive( Data.HasFlagPatch );
 		}
 	}
 

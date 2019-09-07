@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8786632190335412072}
   m_Layer: 0
   m_Name: Hair1
-  m_TagString: Hat
+  m_TagString: Hair1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 8259562938099579471}
   m_Layer: 0
   m_Name: Hair3
-  m_TagString: Hat
+  m_TagString: Hair3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 5793983157013423780}
   m_Layer: 0
   m_Name: Flag_Neckerchief
-  m_TagString: Hat
+  m_TagString: Flag_Neckerchief
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 5894256406689966162}
   m_Layer: 0
   m_Name: Hair2
-  m_TagString: Hat
+  m_TagString: Hair2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 3449085394055228436}
   m_Layer: 0
   m_Name: Flag_Patch
-  m_TagString: Hat
+  m_TagString: Flag_Patch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 132077627414512618}
   m_Layer: 0
   m_Name: Flag_Pin
-  m_TagString: Hat
+  m_TagString: Flag_Pin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

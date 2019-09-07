@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1237644454821829907}
   m_Layer: 0
   m_Name: Hair3
-  m_TagString: Hat
+  m_TagString: Hair3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5478214602681106509}
   m_Layer: 0
   m_Name: Hair2
-  m_TagString: Hat
+  m_TagString: Hair2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 2652092547612280691}
   m_Layer: 0
   m_Name: Flag_Patch
-  m_TagString: Hat
+  m_TagString: Flag_Patch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 8325827833974646080}
   m_Layer: 0
   m_Name: Flag_Backpatch
-  m_TagString: Hat
+  m_TagString: Flag_Backpatch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 583730965602594674}
   m_Layer: 0
   m_Name: Flag_Pin
-  m_TagString: Hat
+  m_TagString: Flag_Pin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 4709945403530118280}
   m_Layer: 0
   m_Name: Hair1
-  m_TagString: Hat
+  m_TagString: Hair1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 2444008127045751210}
   m_Layer: 0
   m_Name: Flag_Hanky
-  m_TagString: Hat
+  m_TagString: Flag_Hanky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -823,7 +823,7 @@ GameObject:
   - component: {fileID: 7828013139327751428}
   m_Layer: 0
   m_Name: Flag_Neckerchief
-  m_TagString: Hat
+  m_TagString: Flag_Neckerchief
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
