@@ -24,19 +24,21 @@ public class NPC : MonoBehaviour
 	protected List<GameObject> Flag_Neckerchief;
 	protected List<GameObject> Flag_Patch;
 	protected List<GameObject> Flag_Backpatch;
+	protected List<GameObject> Hoodie;
 
 	public virtual void Start()
     {
 		Hat = transform.FindObjectsWithTag( "Hat" );
 		Shirt = transform.FindObjectsWithTag( "Shirt" );
-		Hair1 = transform.FindObjectsWithTag( "Hair1");
-		Hair2 = transform.FindObjectsWithTag( "Hair2");
-		Hair3 = transform.FindObjectsWithTag( "Hair3");
-		Flag_Pin = transform.FindObjectsWithTag( "Flag_Pin");
-		Flag_Neckerchief = transform.FindObjectsWithTag( "Flag_Neckerchief");
-		Flag_Patch = transform.FindObjectsWithTag( "Flag_Patch");
-		Flag_Backpatch = transform.FindObjectsWithTag( "Flag_Backpatch");
-		Flag_Hanky = transform.FindObjectsWithTag( "Flag_Hanky");
+		Hair1 = transform.FindObjectsWithTag( "Hair1" );
+		Hair2 = transform.FindObjectsWithTag( "Hair2" );
+		Hair3 = transform.FindObjectsWithTag( "Hair3" );
+		Flag_Pin = transform.FindObjectsWithTag( "Flag_Pin" );
+		Flag_Neckerchief = transform.FindObjectsWithTag( "Flag_Neckerchief" );
+		Flag_Patch = transform.FindObjectsWithTag( "Flag_Patch" );
+		Flag_Backpatch = transform.FindObjectsWithTag( "Flag_Backpatch" );
+		Flag_Hanky = transform.FindObjectsWithTag( "Flag_Hanky" );
+		Hoodie = transform.FindObjectsWithTag( "Hoodie" );
 
 		// TODO TEMP REMOVE
 		GenerateAppearanceFromData( PersonInfo.GenerateRandom( "DEBUG_FRIEND" ) );
@@ -104,6 +106,16 @@ public class NPC : MonoBehaviour
 			if ( hair3Renderer != null )
 			{
 				hair3Renderer.material.color = Data.Hair3Color;
+			}
+		}
+		foreach ( var obj in Hoodie )
+		{
+			obj.SetActive( Data.HasHoodie );
+
+			var hoodieRenderer = obj.GetComponentInChildren<SpriteRenderer>();
+			if ( hoodieRenderer != null )
+			{
+				hoodieRenderer.material.color = Data.HoodieColor;
 			}
 		}
 		foreach ( var obj in Flag_Pin )
