@@ -11,6 +11,7 @@ public class NPC : MonoBehaviour
     public GameObject WalkingSprite;
 
 	protected PersonInfo Data;
+    protected PersonalStory storyData;
 
 	// Found using tags
 	protected List<GameObject> Hat;
@@ -96,5 +97,10 @@ public class NPC : MonoBehaviour
     public PersonInfo GetPersonInfo()
     {
         return Data;
+    }
+
+    public PersonalStory GetPersonalStory()
+    {
+        return storyData;
     }
 }
