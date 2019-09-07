@@ -34,13 +34,14 @@ public class DialogueBubble : MonoBehaviour
 
     // Helper function.
     
-    public static DialogueBubble SummonDialogueBubble(string targetText, GameObject dialogueBubblePrefab, Transform canvas)
+    public static DialogueBubble SummonDialogueBubble(string targetText, GameObject dialogueBubblePrefab, Transform canvas, Vector2 offsetMin, Vector2 offsetMax)
     {
         var newBubble = GameObject.Instantiate(dialogueBubblePrefab);
         newBubble.transform.SetParent(canvas);
 
         var bubbleScript = newBubble.GetComponent<DialogueBubble>();
         bubbleScript.TargetString = targetText;
+        bubbleScript.InitialisePositioning(offsetMin, offsetMax);
 
         return bubbleScript;
     }
@@ -54,11 +55,19 @@ public class DialogueBubble : MonoBehaviour
         }
         else
         {
-            TextElement.SetText("");
-            BubbleMax = BackdropElement.offsetMax;
-            BubbleMin = BackdropElement.offsetMin;
-            BubbleScale = 0.0f; // scale bubble up?
+            
         }
+    }
+
+    void InitialisePositioning(Vector2 offsetMin, Vector2 offsetMax)
+    {
+        BackdropElement.offsetMax = offsetMax;
+        BackdropElement.offsetMin = offsetMin;
+
+        TextElement.SetText("");
+        BubbleMax = BackdropElement.offsetMax;
+        BubbleMin = BackdropElement.offsetMin;
+        BubbleScale = 0.0f; // scale bubble up?
     }
 
     // Update is called once per frame

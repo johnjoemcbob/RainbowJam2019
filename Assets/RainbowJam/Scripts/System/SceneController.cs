@@ -7,10 +7,16 @@ public class SceneController : MonoBehaviour
 
     [SerializeField]
     private GameObject CityScene;
+    private CityToControllerBridge CityBridge;
 
     [SerializeField]
     private GameObject CommuneScene;
+    private CommuneToControllerBridge CommuneBridge;
 
+    [SerializeField]
+    private Canvas DialogueBubbleCanvas;
+    [SerializeField]
+    private GameObject DialogueBubblePrefab;
 
 
     private GameStates CurrentState = GameStates.INVALID;
@@ -24,11 +30,20 @@ public class SceneController : MonoBehaviour
         }
         else
         {
-            RequestStateChange(GameStates.COMMUNE);
+            CityBridge = CityScene.GetComponentInChildren<CityToControllerBridge>();
+            CommuneBridge = CommuneScene.GetComponentInChildren<CommuneToControllerBridge>();
+            CityBridge.RegisterSceneController(this);
+            CommuneBridge.RegisterSceneController(this);
+            RequestStateChange(GameStates.COMMUNE, true);
+        }
+
+        if(DialogueBubbleCanvas == null || DialogueBubblePrefab == null)
+        {
+            Debug.LogError("Dialogue bubble setup in main scene not correct. Please fix.");
         }
     }
 
-    public void RequestStateChange(GameStates newState)
+    public void RequestStateChange(GameStates newState, bool isFirstTime)
     {
         if(newState != CurrentState)
         {
@@ -41,15 +56,15 @@ public class SceneController : MonoBehaviour
                     
                     // Disable other scenes.
                     CommuneScene.SetActive(false);
-                    
-                    // Contact the city controller, and get it to set things up.
-                    //var cityController = CityScenePrefab.GetComponent<CityController>();
-                    // cityController.PlayerEnteredCity();
-                    // cityController.ShuffleCrowd etc etc ?
+
+                    SummonDialogueBubble("Travelling to the city...");
                     
 
                     // Enable city scene.   
                     CityScene.SetActive(true);
+
+                    // Contact the city controller, and get it to set things up.
+                    CityBridge.PlayerEnteredCity();
 
 
                     break;
@@ -62,17 +77,20 @@ public class SceneController : MonoBehaviour
                     // Disable other scenes.
                     CityScene.SetActive(false);
 
+                    if(!isFirstTime)
+                    {
+                        SummonDialogueBubble("Returning home...");
+                    }
+
                     // Enable commune scene.
                     CommuneScene.SetActive(true);
                     
-                    // Fetch gathered friends from city!
-                    var cityBridge = CityScene.GetComponentInChildren<CityToControllerBridge>();
-                    var communeBridge = CommuneScene.GetComponentInChildren<CommuneToControllerBridge>();
+                    // Reset Player Pos in Commune (so that they don't immediately re-enter the city.)
+                    CommuneBridge.ResetPlayerPosition();
 
-                    if(cityBridge != null && communeBridge != null)
-                    {
-                        communeBridge.SpawnNewFriends(cityBridge.GetFriends());
-                    }
+                    // Fetch gathered friends from city!
+                    CommuneBridge.SpawnNewFriends(CityBridge.GetFriends());
+                    
 
                     break;
                     
@@ -91,6 +109,12 @@ public class SceneController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    // Quick and fast way for other scripts to yell at the player?
+    public void SummonDialogueBubble(string bubbleText)
+    {
+        DialogueBubble.SummonDialogueBubble(bubbleText, DialogueBubblePrefab, DialogueBubbleCanvas.transform, new Vector2(Screen.width/6, 0.0f), new Vector2((-Screen.width/6), -Screen.height/4));
     }
 
   

@@ -28,5 +28,14 @@ public class House : MonoBehaviour
 		story++;
 		Stories[story].SetActive( true );
 		Roof.transform.position = Stories[story].transform.position + new Vector3( 0, 2.0625f, 0 );
+
+		if(story > 0)
+		{
+			CommuneToControllerBridge bridgeScript = GetComponentInParent<CommuneToControllerBridge>();
+			if(bridgeScript != null)
+			{
+				bridgeScript.SummonDialogueBubble("Everyone's hard work has made the house bigger!");
+			}
+		}
 	}
 }

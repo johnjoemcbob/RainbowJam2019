@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 22, y: -149.15}
-  m_SizeDelta: {x: -608.3, y: -298.3}
+  m_AnchoredPosition: {x: 9.699997, y: -62.699997}
+  m_SizeDelta: {x: -300.9, y: -125.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2519861647585766370
 CanvasRenderer:
@@ -95,6 +95,8 @@ MonoBehaviour:
   FinishedDisplaying: 0
   TextElement: {fileID: 4232562269268070362}
   BackdropElement: {fileID: 2519861647585766380}
+  Opening: 1
+  Closing: 0
 --- !u!1 &6416436666342826940
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +236,7 @@ MonoBehaviour:
     spaceCount: 3
     wordCount: 4
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
