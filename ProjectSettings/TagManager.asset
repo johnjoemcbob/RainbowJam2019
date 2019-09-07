@@ -16,6 +16,8 @@ TagManager:
   - Flag_Backpatch
   - Flag_Neckerchief
   - Flag_Hanky
+  - Hoodie
+  - Vest
   layers:
   - Default
   - TransparentFX
