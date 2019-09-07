@@ -81,6 +81,10 @@ public class Workstation : MonoBehaviour
 			Jams++;
 			UpdateResources();
 
+			// Last jam gets updated to this colour
+			var berry = BerriesParent.GetChild( Berries ).GetComponentInChildren<SpriteRenderer>().material.color;
+			JamsParent.GetChild( Jams - 1 ).GetComponentInChildren<SpriteRenderer>().color = berry;
+
 			CookStartTime = 0;
 			Debug.Log( "Stop cook" );
 
