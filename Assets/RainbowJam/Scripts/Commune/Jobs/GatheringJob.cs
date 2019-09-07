@@ -84,6 +84,8 @@ public class GatheringJob : Job
 	{
 		base.Finish();
 
+		// In case gave up, ensure dropped
+		NPC.DropItem();
 		NPC.Berries = 0;
 	}
 
