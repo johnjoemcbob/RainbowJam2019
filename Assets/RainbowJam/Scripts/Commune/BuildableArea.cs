@@ -78,7 +78,7 @@ public class BuildableArea : MonoBehaviour
 		// Raycast for player interaction
 		RaycastHit hit;
 		int layerMask = ~( 1 << 8 );
-		if ( Physics.Raycast( Camera.main.transform.position, Camera.main.transform.TransformDirection( Vector3.forward ), out hit, Mathf.Infinity, layerMask ) )
+		if ( Physics.Raycast( Camera.main.transform.position, Camera.main.transform.TransformDirection( Vector3.forward ), out hit, Player_Commune.MaxRange, layerMask ) )
 		{
 			var buildarea = hit.collider.gameObject.GetComponentInParent<BuildableArea>();
 			if ( buildarea != null )
@@ -106,6 +106,7 @@ public class BuildableArea : MonoBehaviour
 			if ( Grid.nodes[(int) gridcell.x, (int) gridcell.z].Type == NodeContent.Empty )
 			{
 				PlaceObject( gridcell.x, gridcell.z, NodeContent.TilledSoil );
+				Player_Commune.Instance.Swing( 1 );
 			}
 		}
 		if ( Input.GetMouseButtonDown( 1 ) )

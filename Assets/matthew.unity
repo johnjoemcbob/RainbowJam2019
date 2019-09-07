@@ -120,6 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &43659671 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2405504419378096006, guid: 2c3d0132cda65d64ea8561780807a821,
+    type: 3}
+  m_PrefabInstance: {fileID: 2996134050699249840}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &52050133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4397,6 +4403,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1980170423}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1982644978 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5096353681716761800, guid: 2c3d0132cda65d64ea8561780807a821,
+    type: 3}
+  m_PrefabInstance: {fileID: 2996134050699249840}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1982690758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5001,6 +5013,21 @@ PrefabInstance:
       propertyPath: MoveTime
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2996134049395315513, guid: 2c3d0132cda65d64ea8561780807a821,
+        type: 3}
+      propertyPath: Hands.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2996134049395315513, guid: 2c3d0132cda65d64ea8561780807a821,
+        type: 3}
+      propertyPath: Hands.Array.data[0]
+      value: 
+      objectReference: {fileID: 1982644978}
+    - target: {fileID: 2996134049395315513, guid: 2c3d0132cda65d64ea8561780807a821,
+        type: 3}
+      propertyPath: Hands.Array.data[1]
+      value: 
+      objectReference: {fileID: 43659671}
     - target: {fileID: 2996134049808199040, guid: 2c3d0132cda65d64ea8561780807a821,
         type: 3}
       propertyPath: MoveTime

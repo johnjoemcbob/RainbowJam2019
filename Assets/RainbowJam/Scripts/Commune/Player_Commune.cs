@@ -5,6 +5,9 @@ public class Player_Commune : MonoBehaviour
 {
 	public static Player_Commune Instance;
 
+	public const float MaxRange = 2;
+	public const float SwingSpeed = 100;
+
 	[Tooltip("How fast the player moves when walking (default move speed).")]
 	[SerializeField]
 	private float m_WalkSpeed = 6.0f;
@@ -57,6 +60,9 @@ public class Player_Commune : MonoBehaviour
 	[SerializeField]
 	private int m_AntiBunnyHopFactor = 1;
 
+	[Header( "References" )]
+	public Transform[] Hands;
+
 	private Vector3 m_MoveDirection = Vector3.zero;
 	private bool m_Grounded = false;
 	private CharacterController m_Controller;
@@ -70,6 +76,8 @@ public class Player_Commune : MonoBehaviour
 	private Vector3 m_ContactPoint;
 	private bool m_PlayerControl = false;
 	private int m_JumpTimer;
+
+	protected float[] SwingTargetAngle = new float[] { 0, 0 };
 
 	private void Awake()
 	{
@@ -97,6 +105,17 @@ public class Player_Commune : MonoBehaviour
 		if ( m_ToggleRun && m_Grounded && Input.GetButtonDown( "Run" ) )
 		{
 			m_Speed = ( m_Speed == m_WalkSpeed ? m_RunSpeed : m_WalkSpeed );
+		}
+
+		// Swing animations
+		for ( int hand = 0; hand < 2; hand++ )
+		{
+			Vector3 target = new Vector3( 0, 0, SwingTargetAngle[hand] );
+			Hands[hand].localEulerAngles = Vector3.MoveTowards( Hands[hand].localEulerAngles, target, Time.deltaTime * SwingSpeed );
+			if ( Hands[hand].localEulerAngles == target )
+			{
+				SwingTargetAngle[hand] = 0;
+			}
 		}
 	}
 
@@ -214,5 +233,11 @@ public class Player_Commune : MonoBehaviour
 	private void OnFell( float fallDistance )
 	{
 		print( "Ouch! Fell " + fallDistance + " units!" );
+	}
+
+	// 0 Left, 1 Right
+	public void Swing( int hand )
+	{
+		SwingTargetAngle[hand] = hand == 0 ? -25 : 25;
 	}
 }
