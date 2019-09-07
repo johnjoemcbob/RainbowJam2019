@@ -93,6 +93,7 @@ public class PersonalStory
     void SetNewGoal(PersonalGoals goal)
     {
         currentGoal = goal;
+        OnGoalChange();
         Debug.Log("MY STORY HAS UPDATED:  " + currentGoal.ToString());
     }
 
