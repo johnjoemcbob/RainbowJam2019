@@ -88,10 +88,45 @@ public class PersonalStory
         }
     }
 
+
+
     void SetNewGoal(PersonalGoals goal)
     {
         currentGoal = goal;
         Debug.Log("MY STORY HAS UPDATED:  " + currentGoal.ToString());
+    }
+
+
+
+    void OnGoalChange()
+    {
+        switch (currentGoal)
+        {
+            case (PersonalGoals.PART_1):
+                {
+                    //Just accepted commune invite
+                    break;
+                }
+            case (PersonalGoals.PART_2):
+                {
+                    //Mid-point, approaches player in commune to talk
+                    break;
+                }
+            case (PersonalGoals.PART_3):
+                {
+                    //End-point, approaches player in commune to talk, then leaves
+                    break;
+                }
+            case (PersonalGoals.PART_4):
+                {
+                    //Party time
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
     }
 
 
