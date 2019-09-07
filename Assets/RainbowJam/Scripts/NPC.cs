@@ -25,6 +25,7 @@ public class NPC : MonoBehaviour
 	protected List<GameObject> Flag_Patch;
 	protected List<GameObject> Flag_Backpatch;
 	protected List<GameObject> Hoodie;
+	protected List<GameObject> Vest;
 
 	public virtual void Start()
     {
@@ -39,6 +40,7 @@ public class NPC : MonoBehaviour
 		Flag_Backpatch = transform.FindObjectsWithTag( "Flag_Backpatch" );
 		Flag_Hanky = transform.FindObjectsWithTag( "Flag_Hanky" );
 		Hoodie = transform.FindObjectsWithTag( "Hoodie" );
+		Vest = transform.FindObjectsWithTag( "Vest" );
 
 		// TODO TEMP REMOVE
 		GenerateAppearanceFromData( PersonInfo.GenerateRandom( "DEBUG_FRIEND" ) );
@@ -116,6 +118,16 @@ public class NPC : MonoBehaviour
 			if ( hoodieRenderer != null )
 			{
 				hoodieRenderer.material.color = Data.HoodieColor;
+			}
+		}
+		foreach ( var obj in Vest )
+		{
+			obj.SetActive( Data.HasVest );
+
+			var vestRenderer = obj.GetComponentInChildren<SpriteRenderer>();
+			if ( vestRenderer != null )
+			{
+				vestRenderer.material.color = Data.VestColor;
 			}
 		}
 		foreach ( var obj in Flag_Pin )

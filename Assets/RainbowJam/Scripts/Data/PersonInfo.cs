@@ -29,6 +29,9 @@ public class PersonInfo
 	public bool HasHoodie = false;
 	public Color HoodieColor = Color.white;
 
+	public bool HasVest = false;
+	public Color VestColor = Color.white;
+
 	public bool HasShirt = false;
 	public Color ShirtColour = Color.white;
 
@@ -50,6 +53,7 @@ public class PersonInfo
 		newPerson.HasShirt = ( Random.Range( 0.0f, 1.0f ) > 0.5f );
 		newPerson.HasHat = ( Random.Range( 0.0f, 1.0f ) > 0.5f );
 		newPerson.HasHoodie = ( Random.Range( 0.0f, 1.0f ) > 0.5f );
+		newPerson.HasVest = !newPerson.HasHoodie;
 		SetRandomHair(ref newPerson);
 
 
@@ -59,6 +63,7 @@ public class PersonInfo
 		newPerson.Hair1Color = SidneyPalette.ChooseRandom();
 		newPerson.Hair2Color = SidneyPalette.ChooseRandom();
 		newPerson.Hair3Color = SidneyPalette.ChooseRandom();
+		newPerson.VestColor = SidneyPalette.ChooseRandom();
 		
 
 		if(flagged)
