@@ -31,6 +31,7 @@ Transform:
   - {fileID: 5290491496143009382}
   - {fileID: 5290491495868535128}
   - {fileID: 5290491496359566640}
+  - {fileID: 6561260729464332706}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -386,4 +387,95 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
     type: 3}
   m_PrefabInstance: {fileID: 1122494795872659599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2158975964052935709
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1122494794538086729}
+    m_Modifications:
+    - target: {fileID: 2778633461992267317, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_Name
+      value: CityTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.583
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.data[0]
+      value: If you walk to the end of this road, you can visit the city.
+      objectReference: {fileID: 0}
+    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
+        type: 3}
+      propertyPath: TutorialText.Array.data[1]
+      value: In the city, you can find members of your community! Help them escape
+        the hustle and bustle of the city for a little while.
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4929f6223e91c1446a3dd0f84e89922b, type: 3}
+--- !u!4 &6561260729464332706 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2158975964052935709}
   m_PrefabAsset: {fileID: 0}

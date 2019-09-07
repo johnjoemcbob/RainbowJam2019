@@ -145,7 +145,7 @@ public class SceneController : MonoBehaviour
     {
         if(Fading)
         {
-            FadeAmt += 0.05f * FadeDir;
+            FadeAmt += 0.025f * FadeDir;
 
             if(FadeAmt >= 1.0f && FadeDir == 1)
             {
