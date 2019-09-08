@@ -14,6 +14,7 @@ public class NPC_Commune : NPC
 		Selling,
 		Cooking, // Includes bottling
 		Story, // Find player and tell them part of their story
+		LeaveCommune,
 		FinishMoving, // Wait for NPC to stop moving before new job is assigned
 		Count
 	}
@@ -45,6 +46,7 @@ public class NPC_Commune : NPC
 		new SellingJob(),
 		new CookingJob(),
 		new StoryJob(),
+		new LeaveCommuneJob(),
 		new FinishMovingJob(),
 		new Job(), // Count
 	};

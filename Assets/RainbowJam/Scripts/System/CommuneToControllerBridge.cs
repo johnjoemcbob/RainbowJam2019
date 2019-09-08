@@ -5,6 +5,7 @@ using UnityEngine;
 public class CommuneToControllerBridge : MonoBehaviour
 {
 	public static CommuneToControllerBridge Instance;
+	public static bool IsParty = false; // Different logic for party segment
 
 	public int[] MaxPeopleBuildingUpgradeStages = new int[] { 5, 10, 15 };
 
