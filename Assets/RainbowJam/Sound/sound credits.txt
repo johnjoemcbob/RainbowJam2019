@@ -1,0 +1,21 @@
+Sounds
+
+Crowd Noise Calming Down - iamazerrad - crowd_sounds_loop.wav
+
+Picking Flower - f4ngy - pick_berry.wav
+
+Gathering, Ice, A - InspectorJ - till_soil.wav - pitched down
+
+Boiling Water - dersuperanton - cook_a.wav - pitched down
+
+Bell, Counter, A - InspectorJ - cook_b.wav
+
+Cash Register - kiddpark - sell_box.wav
+
+Pop, High, A (H1) - InspectorJ - tutorial_pop.wav
+
+34 Salir Ardillas - checholio - bubble_appear.wav
+
+Countryside - brunoboselli - commune_ambience_loop.wav
+
+spanish party noisemaker - beere - toot.wav - trimmed down
