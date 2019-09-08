@@ -133,6 +133,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 620889990689455085, guid: 035b4bae8e42e5241966dadf65d0563a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -325.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1213672935257856430, guid: 035b4bae8e42e5241966dadf65d0563a,
         type: 3}
       propertyPath: m_FontData.m_Alignment
