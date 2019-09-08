@@ -127,6 +127,24 @@ public class Player_Commune : MonoBehaviour
 		{
 			DebugDisplay = !DebugDisplay;
 		}
+
+		// Raycast for player interaction
+		if ( Input.GetKey( KeyCode.E ) )
+		{
+			RaycastHit hit;
+			int layerMask = ~( 1 << 8 );
+			if ( Physics.Raycast( Camera.main.transform.position, Camera.main.transform.TransformDirection( Vector3.forward ), out hit, Player_Commune.MaxRange, layerMask ) )
+			{
+				var npc = hit.collider.gameObject.GetComponentInParent<NPC_Commune>();
+				if ( npc != null )
+				{
+					if ( FindObjectsOfType<DialogueBubble>().Length == 0 )
+					{
+						npc.Interact();
+					}
+				}
+			}
+		}
 	}
 
 

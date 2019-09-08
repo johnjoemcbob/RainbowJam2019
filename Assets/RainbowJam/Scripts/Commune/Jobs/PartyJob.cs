@@ -18,11 +18,20 @@ public class PartyJob : Job
 		base.Start( npc );
 
 		// TODO wander around until near other people? or something?
+		NPC.SetPos( new Point( BuildableArea.Instance.GridSquares / 8 * 5 + Random.Range( 0, BuildableArea.Instance.GridSquares / 4 ), BuildableArea.Instance.GridSquares / 2 + Random.Range( 0, BuildableArea.Instance.GridSquares / 4 ) ) );
+		TargetPos = NPC.CurrentPos; // Flag to randomise next update
 	}
 
 	public override void Update()
 	{
 		base.Update();
+
+		// Just wander
+		if ( NPC.CurrentPos == TargetPos )
+		{
+			TargetPos = new Point( BuildableArea.Instance.GridSquares / 8 * 5 + Random.Range( 0, BuildableArea.Instance.GridSquares / 4 ), BuildableArea.Instance.GridSquares / 2 + Random.Range( 0, BuildableArea.Instance.GridSquares / 4 ) );
+			NPC.SetTargetCell( TargetPos );
+		}
 
 		// Path to player but stop when one square away
 		//int dist = Mathf.Abs( NPC.CurrentPos.x - TargetPos.x ) + Mathf.Abs( NPC.CurrentPos.y - TargetPos.y );

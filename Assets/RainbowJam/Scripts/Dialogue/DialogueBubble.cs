@@ -22,7 +22,8 @@ public class DialogueBubble : MonoBehaviour
     public bool FinishedDisplaying = false;
 
     [SerializeField]
-    private TextMeshProUGUI TextElement; 
+    private TextMeshProUGUI TextElement;
+	public TextMeshProUGUI TitleElement;
 
     [SerializeField]
     private RectTransform BackdropElement; 
@@ -43,7 +44,7 @@ public class DialogueBubble : MonoBehaviour
     // Helper function & variables.
     public static List<DialogueBubble> QueuedDialogues = new List<DialogueBubble>();
     
-    public static void SummonDialogueBubble(string targetText, GameObject dialogueBubblePrefab, Transform canvas, Vector2 offsetMin, Vector2 offsetMax)
+    public static void SummonDialogueBubble(string targetText, string title, GameObject dialogueBubblePrefab, Transform canvas, Vector2 offsetMin, Vector2 offsetMax)
     {
         // Create and queue a dialogue bubble.
         var newBubble = GameObject.Instantiate(dialogueBubblePrefab);
@@ -51,7 +52,9 @@ public class DialogueBubble : MonoBehaviour
 
         var bubbleScript = newBubble.GetComponent<DialogueBubble>();
         bubbleScript.TargetString = targetText;
-        bubbleScript.InitialisePositioning(offsetMin, offsetMax);
+		bubbleScript.TitleElement.enabled = ( title != "" );
+		bubbleScript.TitleElement.text = title;
+		bubbleScript.InitialisePositioning(offsetMin, offsetMax);
 
         QueuedDialogues.Add(bubbleScript);
 

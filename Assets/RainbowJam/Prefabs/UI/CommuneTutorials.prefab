@@ -109,24 +109,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
         type: 3}
-      propertyPath: TutorialText
-      value: 
+      propertyPath: TutorialText.Array.data[0]
+      value: This is the farm house! It is where your friends can stay while they
+        are here with you.
       objectReference: {fileID: 0}
     - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
         type: 3}
       propertyPath: TutorialText.Array.data[1]
       value: By making jam with your friends, you can increase the size of the house!
-      objectReference: {fileID: 0}
-    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
-        type: 3}
-      propertyPath: TutorialText.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 831285765961684239, guid: 4929f6223e91c1446a3dd0f84e89922b,
-        type: 3}
-      propertyPath: TutorialText.Array.data[0]
-      value: This is the farm's house! It is where your friends can stay while they
-        are here with you.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4929f6223e91c1446a3dd0f84e89922b, type: 3}
@@ -403,7 +393,7 @@ PrefabInstance:
     - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.83
+      value: 17.78
       objectReference: {fileID: 0}
     - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
         type: 3}
@@ -413,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.86
+      value: 9.38
       objectReference: {fileID: 0}
     - target: {fileID: 5113976935491990975, guid: 4929f6223e91c1446a3dd0f84e89922b,
         type: 3}

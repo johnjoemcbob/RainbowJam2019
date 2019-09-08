@@ -41,7 +41,15 @@ public class CommuneToControllerBridge : MonoBehaviour
 		CurrentMaxPeople = MaxPeopleBuildingUpgradeStages[0];
 	}
 
-    public void ResetPlayerPosition()
+	private void Update()
+	{
+		if ( Input.GetKey(KeyCode.F11 ) )
+		{
+			StartParty();
+		}
+	}
+
+	public void ResetPlayerPosition()
     {
 		if ( Player_Commune.Instance != null )
 		{
@@ -90,13 +98,15 @@ public class CommuneToControllerBridge : MonoBehaviour
 		transform.Find( "PartyMode" ).gameObject.SetActive( true );
 
 		// Show dialogue popup
-		SceneController.Instance.SummonDialogueBubble( "Wow! All your friends threw you a surprise party to say thank you!!" );
+		SceneController.Instance.SummonDialogueBubble( "Wow! All your friends threw you a surprise party to say thank you!! Click e on them to talk and catch up with what they've been up to!" );
 
 		// Readd all npcs
 		foreach ( var npc in transform.GetComponentsInChildren<NPC_Commune>( true ) )
 		{
 			npc.gameObject.SetActive( true );
+			npc.SetPos( BuildableArea.GetCellFromPosition( Player_Commune.Instance.transform.position ) );
 			npc.FindJob();
+			npc.SetParty();
 		}
 	}
 

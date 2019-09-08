@@ -170,6 +170,19 @@ public class NPC_Commune : NPC
 		IsWalking = true;
 	}
 
+	public void Interact()
+	{
+		if ( CommuneToControllerBridge.IsParty )
+		{
+			// Tell story
+			SceneController.Instance.SummonDialogueBubble( ParseStorySegment( JsonData.GetDialogueFromStoryID( Data.StoryData.storyID, PersonalStory.PersonalGoals.PART_4 ) ), Data.Name );
+		}
+		else
+		{
+			SceneController.Instance.SummonDialogueBubble( "Hi!", Data.Name );
+		}
+	}
+
 	public void FindJob()
 	{
 		if ( RelaxPoints >= RelaxTrigger )
@@ -218,6 +231,12 @@ public class NPC_Commune : NPC
 		JobClasses[(int) CurrentJob].Start( this );
 	}
 
+	public void SetPos( Point cell )
+	{
+		CurrentPos = cell;
+		transform.position = BuildableArea.GetPositionFromCell( cell.x, cell.y );
+	}
+
 	public void SetTargetCell( Point cell )
 	{
 		TargetPos = cell;
@@ -254,10 +273,16 @@ public class NPC_Commune : NPC
 		}
 	}
 
+	public void SetParty()
+	{
+		// Force into party stage?
+		Data.StoryData.AddEXP( 1000 );
+	}
+
 	public void TalkToPlayer()
 	{
 		// Open dialogue and fill
-		SceneController.Instance.SummonDialogueBubble( ParseStorySegment( JsonData.GetDialogueFromStoryID( Data.StoryData.storyID, Data.StoryData.GetCurrentStage() ) ) );
+		SceneController.Instance.SummonDialogueBubble( ParseStorySegment( JsonData.GetDialogueFromStoryID( Data.StoryData.storyID, Data.StoryData.GetCurrentStage() ) ), Data.Name );
 		Data.StoryData.TalkToPlayer();
 	}
 
