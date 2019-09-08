@@ -63,6 +63,9 @@ public class Player_Commune : MonoBehaviour
 	[Header( "References" )]
 	public Transform[] Hands;
 
+	[HideInInspector]
+	public NPC BeingTalkedAt = null;
+
 	private Vector3 m_MoveDirection = Vector3.zero;
 	private bool m_Grounded = false;
 	private CharacterController m_Controller;

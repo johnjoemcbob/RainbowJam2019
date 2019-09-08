@@ -18,6 +18,7 @@ public class PersonalStory
     float personalEXP = -1.0f;
     float expGainRate = 1.0f; //Do people gain exp at diff rates?
     public int storyID = -1; //Get from json
+	bool WantsToTalk = false;
 
 
 
@@ -74,6 +75,9 @@ public class PersonalStory
     // SETTERS -----------------------------------------
     public void AddEXP(float amount)
     {
+		// NO exp is gained while they are waiting for the player! HAHAEHAEHA
+		if ( WantsToTalk ) return;
+
         //Add exp
         float actualAmount = amount * expGainRate * Time.deltaTime;
 
@@ -91,7 +95,15 @@ public class PersonalStory
         }
     }
 
+	public void TalkToPlayer()
+	{
+		WantsToTalk = false;
+	}
 
+	public bool GetWantsToTalk()
+	{
+		return WantsToTalk;
+	}
 
     void SetNewGoal(PersonalGoals goal)
     {
@@ -99,8 +111,6 @@ public class PersonalStory
         OnGoalChange();
         Debug.Log("MY STORY HAS UPDATED:  " + currentGoal.ToString());
     }
-
-
 
     void OnGoalChange()
     {
@@ -113,13 +123,15 @@ public class PersonalStory
                 }
             case (PersonalGoals.PART_2):
                 {
-                    //Mid-point, approaches player in commune to talk
-                    break;
+					//Mid-point, approaches player in commune to talk
+					WantsToTalk = true;
+					break;
                 }
             case (PersonalGoals.PART_3):
                 {
-                    //End-point, approaches player in commune to talk, then leaves
-                    break;
+					//End-point, approaches player in commune to talk, then leaves
+					WantsToTalk = true;
+					break;
                 }
             case (PersonalGoals.PART_4):
                 {
