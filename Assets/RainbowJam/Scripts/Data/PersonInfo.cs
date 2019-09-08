@@ -34,6 +34,9 @@ public class PersonInfo
 	public bool HasVest = false;
 	public Color VestColor = Color.white;
 
+	public bool HasPuffyJacket = false;
+	public Color PuffyJacketColor = Color.white;
+
 	public bool HasShirt = false;
 	public Color ShirtColour = Color.white;
 
@@ -54,8 +57,7 @@ public class PersonInfo
 
 		newPerson.HasShirt = ( Random.Range( 0.0f, 1.0f ) > 0.5f );
 		newPerson.HasHat = ( Random.Range( 0.0f, 1.0f ) > 0.5f );
-		newPerson.HasHoodie = ( Random.Range( 0.0f, 1.0f ) > 0.5f );
-		newPerson.HasVest = !newPerson.HasHoodie;
+		SetRandomClothing(ref newPerson);
 		SetRandomHair(ref newPerson);
 
 
@@ -66,6 +68,7 @@ public class PersonInfo
 		newPerson.Hair2Color = SidneyPalette.ChooseRandom();
 		newPerson.Hair3Color = SidneyPalette.ChooseRandom();
 		newPerson.VestColor = SidneyPalette.ChooseRandom();
+		newPerson.PuffyJacketColor = SidneyPalette.ChooseRandom();
 		
 
 		if(flagged)
@@ -129,6 +132,29 @@ public class PersonInfo
 				info.HasHair3 = true;
 				break;
 
+		}
+	}
+
+	public static void SetRandomClothing(ref PersonInfo info)
+	{
+		int clothingType = Random.Range(0, 3);
+		switch(clothingType)
+		{
+			case 0: // hoodie
+				info.HasHoodie = true;
+				info.HasVest = false;
+				info.HasPuffyJacket = false;
+				break;
+			case 1: // vest
+				info.HasHoodie = false;
+				info.HasVest = true;
+				info.HasPuffyJacket = false;
+				break;
+			case 2: // puffy jacket
+				info.HasHoodie = false;
+				info.HasVest = false;
+				info.HasPuffyJacket = true;
+				break;
 		}
 	}
 }
