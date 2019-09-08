@@ -45,7 +45,7 @@ public class NPC : MonoBehaviour
         Vest = transform.FindObjectsWithTag("Vest");
 
         // TODO TEMP REMOVE
-        GenerateAppearanceFromData(PersonInfo.GenerateRandom("DEBUG_FRIEND", flagged));
+        GenerateAppearanceFromData(PersonInfo.GenerateRandom(JsonData.GetRandomName(), flagged));
 
         //Personal Story
         storyData = PersonalStory.GenerateRandom();

@@ -17,9 +17,6 @@ public class PersonalStory
 
     float personalEXP = -1.0f;
     float expGainRate = 1.0f; //Do people gain exp at diff rates?
-
-
-    //JSON
     public int storyID = -1; //Get from json
 
 
@@ -28,15 +25,13 @@ public class PersonalStory
     {
         var newStory = new PersonalStory();
 
-
-
-        //[TODO] ---> Get json story
-
-
-
         newStory.personalEXP = -1; //Just in case
         newStory.currentGoal = PersonalGoals.PART_0;
         newStory.expGainRate = Random.Range(0.75f, 1.10f);
+        newStory.storyID = JsonData.GetRandomStoryID();
+
+        //Example of how to get the data.
+        //Debug.Log(JsonData.GetDialogueFromStoryID(newStory.storyID, PersonalGoals.PART_1));
 
         return newStory;
     }

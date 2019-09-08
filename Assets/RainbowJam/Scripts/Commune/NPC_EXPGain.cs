@@ -9,7 +9,7 @@ namespace Assets.RainbowJam.Scripts.Commune
 {
     class NPC_EXPGain : MonoBehaviour
     {
-        //This is going to accumulate EXP whilst the NPCs are doing things in the commune, somehow
+        //At the moment this just accumulates over time, but could be used to add EXP for doing tasks
 
         void Start()
         {

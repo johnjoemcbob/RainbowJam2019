@@ -1,12 +1,19 @@
 {
-storyList : [
+"storyList" : [
+
 	{
-		"PART_1" : "TESTING TESTING"
+		"PART_1" : "Invitation accepted",
+		"PART_2" : "Character development...",
+		"PART_3" : "Moving on",
+		"PART_4" : "What's up it's party time"
 	},
 	
 	{
-		"PART_1" : "THIS IS ANOTHER TEST"
+		"PART_1" : "I'll join!",
+		"PART_2" : "Thinking about Jam",
+		"PART_3" : "Thanks but I gtg",
+		"PART_4" : "Party."
 	}
-
+	
 	]
 }
