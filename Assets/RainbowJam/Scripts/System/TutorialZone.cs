@@ -12,6 +12,9 @@ public class TutorialZone : MonoBehaviour
     [SerializeField]
     private BoxCollider zoneCollider;
 
+    [SerializeField]
+    private AudioSource PopSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,10 @@ public class TutorialZone : MonoBehaviour
 
     void OnPlayerCollided()
     {
+        // quick hack to stop pop sounds from not playing because the tutorializer disappeared lmao
+        PopSound.transform.SetParent(transform.parent);
+        PopSound.Play();        
+
         for(int i = 0; i < TutorialText.Length; i++)
         {
             SceneController.Instance.SummonDialogueBubble(TutorialText[i]);
