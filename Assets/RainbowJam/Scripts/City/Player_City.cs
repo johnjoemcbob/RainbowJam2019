@@ -64,7 +64,7 @@ public class Player_City : MonoBehaviour
 		}
 
 		// If clicked then activate their story dialogue
-		if ( Input.GetKeyDown( KeyCode.E ) )
+		if ( interactable != null && Input.GetKeyDown( KeyCode.E ) )
 		{
 			interactable.GetComponent<NPC>().Invite();
 		}

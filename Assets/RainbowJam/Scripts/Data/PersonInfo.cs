@@ -12,6 +12,8 @@ public class PersonInfo
 {
 	public string Name = "Unnamed Friend"; // Might not need names, but still handy as an ID field.
 
+	public PersonalStory StoryData;
+
 	// A bunch of fields for their accessories info?
 	public bool HasFlagPin = false;
 	public bool HasFlagBackpatch = false;

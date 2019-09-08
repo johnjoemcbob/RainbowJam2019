@@ -29,7 +29,7 @@ public class JsonData : MonoBehaviour
     public static StoryListContainer storyDatabase;
     public static string[] nameDatabase;
 
-    void Start()
+    void Awake()
     {
         Debug.Log("LOADING DATA!");
 

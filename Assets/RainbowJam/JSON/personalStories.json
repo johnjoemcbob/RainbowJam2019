@@ -13,6 +13,13 @@
 		"PART_2" : "Thinking about Jam",
 		"PART_3" : "Thanks but I gtg",
 		"PART_4" : "Party."
+	},
+	
+	{
+		"PART_1" : "Hello! I'm [name]! I just quit my job",
+		"PART_2" : "Have you spoken to [otherfriend]? They are really cool! We've been bonding over our shared experiences",
+		"PART_3" : "This was amazing! I'll never forget the friends I made here. I'm off to travel the world!",
+		"PART_4" : "Hoi! Bonjour! Olá! I learned so much in my travels"
 	}
 	
 	]

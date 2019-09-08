@@ -6,14 +6,13 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public bool IsWalking = false;
-    bool isInitialised = false;
+    public bool isInitialised = false;
 	public bool FlaggingGay = false;
 
     public GameObject IdleSprite;
     public GameObject WalkingSprite;
 
 	protected PersonInfo Data;
-    protected PersonalStory storyData;
 
 	// Found using tags
 	protected List<GameObject> Hat;
@@ -29,29 +28,34 @@ public class NPC : MonoBehaviour
 	protected List<GameObject> Hoodie;
 	protected List<GameObject> Vest;
 
+	private void Awake()
+	{
+		Hat = transform.FindObjectsWithTag( "Hat" );
+		Shirt = transform.FindObjectsWithTag( "Shirt" );
+		Hair1 = transform.FindObjectsWithTag( "Hair1" );
+		Hair2 = transform.FindObjectsWithTag( "Hair2" );
+		Hair3 = transform.FindObjectsWithTag( "Hair3" );
+		Flag_Pin = transform.FindObjectsWithTag( "Flag_Pin" );
+		Flag_Neckerchief = transform.FindObjectsWithTag( "Flag_Neckerchief" );
+		Flag_Patch = transform.FindObjectsWithTag( "Flag_Patch" );
+		Flag_Backpatch = transform.FindObjectsWithTag( "Flag_Backpatch" );
+		Flag_Hanky = transform.FindObjectsWithTag( "Flag_Hanky" );
+		Hoodie = transform.FindObjectsWithTag( "Hoodie" );
+		Vest = transform.FindObjectsWithTag( "Vest" );
+	}
 
-    public virtual void Init(bool flagged = false)
+	public virtual void Init(bool flagged = false)
     {
-        Hat = transform.FindObjectsWithTag("Hat");
-        Shirt = transform.FindObjectsWithTag("Shirt");
-        Hair1 = transform.FindObjectsWithTag("Hair1");
-        Hair2 = transform.FindObjectsWithTag("Hair2");
-        Hair3 = transform.FindObjectsWithTag("Hair3");
-        Flag_Pin = transform.FindObjectsWithTag("Flag_Pin");
-        Flag_Neckerchief = transform.FindObjectsWithTag("Flag_Neckerchief");
-        Flag_Patch = transform.FindObjectsWithTag("Flag_Patch");
-        Flag_Backpatch = transform.FindObjectsWithTag("Flag_Backpatch");
-        Flag_Hanky = transform.FindObjectsWithTag("Flag_Hanky");
-        Hoodie = transform.FindObjectsWithTag("Hoodie");
-        Vest = transform.FindObjectsWithTag("Vest");
-
         // TODO TEMP REMOVE
         GenerateAppearanceFromData(PersonInfo.GenerateRandom(JsonData.GetRandomName(), flagged));
 
-        //Personal Story
-        storyData = PersonalStory.GenerateRandom();
-
 		FlaggingGay = flagged;
+		if ( flagged )
+		{
+			//Personal Story
+			Data.StoryData = PersonalStory.GenerateRandom();
+		}
+
 		isInitialised = true;
     }
 
@@ -179,8 +183,31 @@ public class NPC : MonoBehaviour
 
     public PersonalStory GetPersonalStory()
     {
-        return storyData;
+        return Data.StoryData;
     }
+
+	protected string ParseStorySegment( string seg )
+	{
+		seg = seg.Replace( "[name]", Data.Name );
+		string otherfriend = "my friend";
+		{
+			var friends = FindObjectsOfType<NPC_Commune>();
+			if ( friends.Length > 1 )
+			{
+				for ( int attempts = 0; attempts < 100; attempts++ )
+				{
+					int rnd = Random.Range( 0, friends.Length );
+					if ( Data != friends[rnd].Data )
+					{
+						otherfriend = friends[rnd].Data.Name;
+						break;
+					}
+				}
+			}
+		}
+		seg = seg.Replace( "[otherfriend]", otherfriend );
+		return seg;
+	}
 
 	// Called only from city but there's no NPC_City and time is low
 	public void Invite()
@@ -192,7 +219,7 @@ public class NPC : MonoBehaviour
 		GetComponent<CityWander>().enabled = false;
 
 		// Open dialogue
-		SceneController.Instance.SummonDialogueBubble( JsonData.GetDialogueFromStoryID( storyData.storyID, PersonalStory.PersonalGoals.PART_1 ) );
+		SceneController.Instance.SummonDialogueBubble( ParseStorySegment( JsonData.GetDialogueFromStoryID( Data.StoryData.storyID, PersonalStory.PersonalGoals.PART_1 ) ) );
 
 		// Add friend to the commune with CityBridgingScript
 		SceneController.Instance.CityBridge.AddFriend( Data );
@@ -200,6 +227,6 @@ public class NPC : MonoBehaviour
 		// Delete from this scene when dialogue done
 
 		// TODO TEMP REMOVE
-		SceneController.Instance.SwitchToCommune();
+		//SceneController.Instance.SwitchToCommune();
 	}
 }

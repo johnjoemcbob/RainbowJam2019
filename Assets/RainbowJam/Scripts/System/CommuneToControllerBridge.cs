@@ -45,8 +45,9 @@ public class CommuneToControllerBridge : MonoBehaviour
                     GameObject friendObject = GameObject.Instantiate(CommuneNPCPrefab);
                     
                     var friendScript = friendObject.GetComponent<NPC_Commune>();
-					friendScript.Init( true );
-                    friendScript.GenerateAppearanceFromData(friend);
+					//friendScript.Init( true );
+					friendScript.isInitialised = true;
+					friendScript.GenerateAppearanceFromData(friend);
 
                     // Spawning all the friends together in one big clump might be, uh, weird?
                     friendObject.transform.SetParent(gameObject.transform);
@@ -54,7 +55,6 @@ public class CommuneToControllerBridge : MonoBehaviour
                     // New friends appear at the sellbox?
                     GameObject friendSpawn = SellBox.Instance.gameObject;
                     friendObject.transform.localPosition = friendSpawn.transform.localPosition;
-
                 }
             }
         }
