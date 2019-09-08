@@ -10,7 +10,7 @@ public class DialogueBubble : MonoBehaviour
     [HideInInspector]
     public string CurrentString;
 
-    public int TextAddFrameDelay = 1;
+    private float TextAddFrameDelay = 1.0f;
     private float FrameDelayAccumulator = 0.0f;
 
     [HideInInspector]
@@ -69,12 +69,12 @@ public class DialogueBubble : MonoBehaviour
 
     void InitialisePositioning(Vector2 offsetMin, Vector2 offsetMax)
     {
-        BackdropElement.offsetMax = offsetMax;
-        BackdropElement.offsetMin = offsetMin;
+        BubbleMax = offsetMax;
+        BubbleMin = offsetMin;
 
         TextElement.SetText("");
-        BubbleMax = BackdropElement.offsetMax;
-        BubbleMin = BackdropElement.offsetMin;
+        BackdropElement.offsetMax = BubbleMax * 2.0f;
+        BackdropElement.offsetMin = BubbleMin * 2.0f;
         BubbleScale = 0.0f; // scale bubble up?
     }
 

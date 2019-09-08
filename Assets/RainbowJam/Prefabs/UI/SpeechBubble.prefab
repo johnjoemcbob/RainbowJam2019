@@ -91,7 +91,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetString: Greetos, my burritos! This is my fun and cool and good text box.
   CurrentString: 
-  TextAddFrameDelay: 2
   FinishedDisplaying: 0
   TextElement: {fileID: 4232562269268070362}
   BackdropElement: {fileID: 2519861647585766380}
@@ -196,7 +195,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 32
   m_fontSizeMax: 48
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
