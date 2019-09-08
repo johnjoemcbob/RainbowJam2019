@@ -27,6 +27,7 @@ public class NPC : MonoBehaviour
 	protected List<GameObject> Flag_Backpatch;
 	protected List<GameObject> Hoodie;
 	protected List<GameObject> Vest;
+	protected List<GameObject> PuffyJacket;
 
 	private void Awake()
 	{
@@ -42,6 +43,7 @@ public class NPC : MonoBehaviour
 		Flag_Hanky = transform.FindObjectsWithTag( "Flag_Hanky" );
 		Hoodie = transform.FindObjectsWithTag( "Hoodie" );
 		Vest = transform.FindObjectsWithTag( "Vest" );
+		PuffyJacket = transform.FindObjectsWithTag( "PuffyJacket" );
 	}
 
 	public virtual void Init(bool flagged = false)
@@ -145,6 +147,16 @@ public class NPC : MonoBehaviour
 			if ( vestRenderer != null )
 			{
 				vestRenderer.material.color = Data.VestColor;
+			}
+		}
+		foreach ( var obj in PuffyJacket )
+		{
+			obj.SetActive( Data.HasPuffyJacket );
+
+			var puffyJacketRenderer = obj.GetComponentInChildren<SpriteRenderer>();
+			if ( puffyJacketRenderer != null )
+			{
+				puffyJacketRenderer.material.color = Data.PuffyJacketColor;
 			}
 		}
 		foreach ( var obj in Flag_Pin )

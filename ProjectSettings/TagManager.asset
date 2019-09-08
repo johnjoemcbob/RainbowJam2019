@@ -18,6 +18,7 @@ TagManager:
   - Flag_Hanky
   - Hoodie
   - Vest
+  - PuffyJacket
   layers:
   - Default
   - TransparentFX
