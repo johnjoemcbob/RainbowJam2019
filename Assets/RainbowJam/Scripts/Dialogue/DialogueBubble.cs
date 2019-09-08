@@ -104,7 +104,7 @@ public class DialogueBubble : MonoBehaviour
             BackdropElement.offsetMin = BubbleMin * (2.0f - BubbleScale);
             BackdropElement.offsetMax = BubbleMax * (2.0f - BubbleScale);
 
-            CurrentString = CurrentString.Substring(CurrentString.Length / 2);
+            CurrentString = ""; // this used to reverse-display the characters while the bubble shrank, but it's not super easy to predict when long strings will get squished and suddenly expand upwards for a frame or two, so Zoip. gone. done.
             TextElement.SetText(CurrentString);
 
             if(BubbleScale <= 0.0f)
