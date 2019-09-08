@@ -17,6 +17,8 @@ public class SoilBush : MonoBehaviour
 
 	public GameObject Bush;
 	public Berry[] Berries;
+	public AudioSource TillSoilSound;
+	public AudioSource BerryPickSound;
 
 	[HideInInspector]
 	public Stage CurrentStage;
@@ -37,6 +39,9 @@ public class SoilBush : MonoBehaviour
 		BuildableArea.Instance.Grid.nodes[cell.x, cell.y].Type = NesScripts.Controls.PathFind.NodeContent.TilledSoil;
 
 		GrowBerryType = (Berry.BerryType)Random.Range(0,9);
+
+		TillSoilSound.pitch = Random.Range(0.85f, 1.05f);
+		TillSoilSound.Play();
 	}
 
     void Update()
@@ -51,6 +56,7 @@ public class SoilBush : MonoBehaviour
 				Bush.transform.localScale = Vector3.one * progress;
 				if ( Time.time - StageTime >= BushGrowthTime )
 				{
+					Bush.transform.localScale = Vector3.one;
 					StartBerries();
 				}
 
@@ -99,6 +105,8 @@ public class SoilBush : MonoBehaviour
 
 	public int Harvest()
 	{
+		BerryPickSound.pitch = Random.Range(0.85f, 1.25f);
+		BerryPickSound.Play();
 		StartBerries();
 		// TODO different random? at least add to better variable control at top
 		return Random.Range( 3, 6 );
