@@ -58,6 +58,12 @@ public class NPC : MonoBehaviour
 			Data.StoryData = PersonalStory.GenerateRandom();
 		}
 
+		// Make people walk out of step.
+		foreach(var animator in transform.GetComponentsInChildren<Animator>())
+		{
+			animator.SetFloat("CycleOffset", Random.Range(0.0f, 1.0f));
+		}
+
 		isInitialised = true;
     }
 
