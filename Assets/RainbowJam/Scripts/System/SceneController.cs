@@ -90,7 +90,7 @@ public class SceneController : MonoBehaviour
         else
         {
             SummonDialogueBubble("Welcome to the communal jam farm! Click to advance text.");
-            SummonDialogueBubble("Press the W, S, A, D keys to move around.");
+            //SummonDialogueBubble("Press the W, S, A, D keys to move around.");
         }
 
         // Enable commune scene.
