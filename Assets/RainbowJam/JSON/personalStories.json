@@ -16,6 +16,27 @@
 	},
 	
 	{
+		"PART_1" : "Are you serious? A Jam-making commune? Sounds amazing! I'm [name]",
+		"PART_2" : "I didn't know I'd find cooking Jam so enjoyable, I'm getting pretty good at it too!",
+		"PART_3" : "I've loved making Jam but I think I want to take this 'cooking' thing more seriously, I'm leaving to travel and learn new recipies!",
+		"PART_4" : "Thanks for the invite, it's great to see you again! I've learnt so much about cooking, you should let me make something for you sometime!"
+	},
+	
+	{
+		"PART_1" : "Oh hey, I'm [name]. I'm not really a people-person but spending some time away from the city might be good for me.",
+		"PART_2" : "I've never been great at connecting with people but I've been chatting non-stop to [otherfriend] since I arrived! I've surprised myself!",
+		"PART_3" : "I've really enjoyed my time here, I never realised just how much I missed by keeping to myself all this time. I've decided to leave to try and reconnect with the wider world.",
+		"PART_4" : "It's great to see you! I've been doing really well. Sharing stories and experiences with others has become such a big part of my life now. I'd never have gotten here without your help!"
+	},
+	
+	{
+		"PART_1" : "I'd be up for making some Jam! To be honest I could do with getting away from my family. I'm [name]!",
+		"PART_2" : "It's refreshing being around people who understand me, I don't know why my family found it so hard.",
+		"PART_3" : "It's been a tough decision but I think I need to go back and try one last time to get my family to understand. I didn't have the confidence before but I feel like I'm up to the task now.",
+		"PART_4" : "Hey, it's been a while huh? About my family...they didn't really get it, or even try to understand me, so I moved out for good. I realised that people like you are the family I should be holding onto."
+	},
+	
+	{
 		"PART_1" : "I'll join!",
 		"PART_2" : "Thinking about Jam",
 		"PART_3" : "Thanks but I gtg",
