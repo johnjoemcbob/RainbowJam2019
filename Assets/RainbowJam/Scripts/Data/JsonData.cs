@@ -35,13 +35,13 @@ public class JsonData : MonoBehaviour
 
         //GET NAMES
         string namesTxt = "";
-        namesTxt = File.ReadAllText("Assets/RainbowJam/JSON/names.txt");
+        namesTxt = ((TextAsset)Resources.Load("names", typeof(TextAsset))).text;
         nameDatabase = namesTxt.Split( new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
 
         //GET STORIES
         string storyJson = "";
-        storyJson = File.ReadAllText("Assets/RainbowJam/JSON/personalStories.json");
+        storyJson = ((TextAsset)Resources.Load("personalStories", typeof(TextAsset))).text;
 
         storyDatabase = new StoryListContainer();
         storyDatabase = JsonUtility.FromJson<StoryListContainer>(storyJson);
