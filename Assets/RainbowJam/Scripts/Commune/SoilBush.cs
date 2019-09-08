@@ -65,6 +65,10 @@ public class SoilBush : MonoBehaviour
 				progress = Mathf.Max( 0, ( Time.time - StageTime ) / ( GrowTime / 2 ) - 1 );
 				foreach ( var berry in Berries )
 				{
+					if(progress >= 1.0f)
+					{
+						progress = 1.0f;
+					}
 					berry.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f) * progress;
 					berry.UpdateColourWithGrowthFactor(progress);
 				}
