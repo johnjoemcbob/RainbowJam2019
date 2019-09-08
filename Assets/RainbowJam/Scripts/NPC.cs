@@ -8,6 +8,7 @@ public class NPC : MonoBehaviour
     public bool IsWalking = false;
     public bool isInitialised = false;
 	public bool FlaggingGay = false;
+    public bool hasBeenInvited = false;
 
     public GameObject IdleSprite;
     public GameObject WalkingSprite;
@@ -230,6 +231,10 @@ public class NPC : MonoBehaviour
 	// Called only from city but there's no NPC_City and time is low
 	public void Invite()
 	{
+        if (hasBeenInvited)
+            return;
+
+
 		// Stop walking
 		IsWalking = false;
 		GetComponent<CityWander>().enabled = false;
@@ -241,7 +246,9 @@ public class NPC : MonoBehaviour
 		// Add friend to the commune with CityBridgingScript
 		SceneController.Instance.CityBridge.AddFriend( Data );
 
-		// TODO Delete from this scene when dialogue done
+        // TODO Delete from this scene when dialogue done
+        //Destroy(gameObject);
 
-	}
+        hasBeenInvited = true;
+    }
 }

@@ -38,6 +38,12 @@ public class SellingJob : Job
 	{
 		base.Update();
 
+		// Someone else took the jam?
+		if ( Workstation.Jams == 0 && NPC.Jams == 0 )
+		{
+			Finish();
+		}
+
 		if ( NPC.Jams == 0 )
 		{
 			// Pickup jam if reached
@@ -61,12 +67,6 @@ public class SellingJob : Job
 
 				Finish();
 			}
-		}
-
-		// Someone else took the jam?
-		if ( Workstation.Jams == 0 && NPC.Jams == 0 )
-		{
-			Finish();
 		}
 	}
 
