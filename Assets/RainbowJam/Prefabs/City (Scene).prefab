@@ -52,6 +52,7 @@ MonoBehaviour:
   friendPoolSize: 10
   totalCrowdSize: 200
   Friends: []
+  NotFriends: []
 --- !u!1 &545970891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,6 +1408,16 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: b7b7073fd14cc5e498f683631b56ce4b, type: 3}
+    - target: {fileID: 8701128618199384654, guid: 9991d6eb005abeb4eae6d0d20bfd05c5,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701128618199384654, guid: 9991d6eb005abeb4eae6d0d20bfd05c5,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9991d6eb005abeb4eae6d0d20bfd05c5, type: 3}
 --- !u!4 &986623052306570864 stripped
