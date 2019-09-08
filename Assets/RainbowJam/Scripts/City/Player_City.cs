@@ -78,6 +78,21 @@ public class Player_City : MonoBehaviour
 		if ( interactable != null && Input.GetKeyDown( KeyCode.E ) )
 		{
 			interactable.GetComponent<NPC>().Invite();
+            CollectFriend();
 		}
 	}
+
+    void CollectFriend()
+    {
+        GameObject collectionObj = GameObject.Find("CollectionScript");
+        if (collectionObj != null)
+        {
+            CityCollectionHandler collectHandler = collectionObj.GetComponent<CityCollectionHandler>();
+
+            if (collectHandler != null)
+            {
+                collectHandler.CollectNewFriend();
+            }
+        } 
+    }
 }
