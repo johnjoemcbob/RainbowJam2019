@@ -7,6 +7,11 @@ public class DialogueBubble : MonoBehaviour
 {
     public string TargetString;
 
+    [SerializeField]
+    private AudioSource TextTickSound;
+    [SerializeField]
+    private AudioSource OpenCloseSound;
+
     [HideInInspector]
     public string CurrentString;
 
@@ -28,9 +33,11 @@ public class DialogueBubble : MonoBehaviour
 
     [HideInInspector]
     public bool Opening = true;
+    public bool DidPlayOpeningSound = false;
 
     [HideInInspector]
     public bool Closing = false;
+    public bool DidPlayClosingSound = false;
     
 
     // Helper function & variables.
@@ -83,6 +90,11 @@ public class DialogueBubble : MonoBehaviour
     {
         if(BubbleScale < 1.0f && Opening)
         {
+            if(!DidPlayOpeningSound)
+            {
+                OpenCloseSound.Play();
+                DidPlayOpeningSound = true;
+            }
             BubbleScale += 0.1f * (Time.deltaTime * 60);
 
             BubbleScale = Mathf.Clamp01(BubbleScale);
@@ -97,6 +109,11 @@ public class DialogueBubble : MonoBehaviour
         }
         else if(BubbleScale > 0.0f && Closing)
         {
+            if(!DidPlayClosingSound)
+            {
+                OpenCloseSound.Play();
+                DidPlayClosingSound = true;
+            }
             BubbleScale -= 0.1f * (Time.deltaTime * 60);
 
             BubbleScale = Mathf.Clamp01(BubbleScale);
@@ -168,6 +185,12 @@ public class DialogueBubble : MonoBehaviour
             {
                 CurrentString += TargetString[CurrentString.Length];
                 TextElement.SetText(CurrentString);
+
+                if(CurrentString.Length % 3 == 0)
+                {
+                    TextTickSound.pitch = Random.Range(0.85f, 1.15f);
+                    TextTickSound.Play();
+                }
             }
         }
     }
