@@ -750,6 +750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad471557e1e0e144a87f4b8c477f74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxPeopleBuildingUpgradeStages: 050000000a0000000f000000
   CommuneNPCPrefab: {fileID: 4051550088034769657, guid: 357e8883bd27f1c45a9b88bfddb3c58c,
     type: 3}
   sceneController: {fileID: 0}

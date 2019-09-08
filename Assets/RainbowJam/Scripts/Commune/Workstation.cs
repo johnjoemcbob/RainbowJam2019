@@ -17,6 +17,9 @@ public class Workstation : MonoBehaviour
 	public Transform BerriesParent;
 	public Transform JamsParent;
 
+	public AudioSource CookingSoundLoop;
+	public AudioSource CookingDoneSound;
+
 	public GameObject RightSide;
 	public GameObject DropZone;
 	public GameObject CookZone;
@@ -73,6 +76,7 @@ public class Workstation : MonoBehaviour
 		{
 			CookStartTime = Time.time;
 			Debug.Log( "start cook" );
+			CookingSoundLoop.Play();
 		}
 		else if ( Time.time - CookStartTime >= COOK_TIME )
 		{
@@ -88,7 +92,9 @@ public class Workstation : MonoBehaviour
 			CookStartTime = 0;
 			Debug.Log( "Stop cook" );
 
+			CookingSoundLoop.Stop();
 			DoneWorkingEffect.Play();
+			CookingDoneSound.Play();
 
 			return true; // Just cooked
 		}

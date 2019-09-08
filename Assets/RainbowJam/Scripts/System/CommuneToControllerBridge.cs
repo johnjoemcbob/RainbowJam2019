@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class CommuneToControllerBridge : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject CommuneNPCPrefab;
+	public static CommuneToControllerBridge Instance;
+	public static bool IsParty = false; // Different logic for party segment
 
-    public SceneController sceneController;
+	public int[] MaxPeopleBuildingUpgradeStages = new int[] { 5, 10, 15 };
+
+	[Header( "References" )]
+	[SerializeField]
+	private GameObject CommuneNPCPrefab;
+	public SceneController sceneController;
+
+	[HideInInspector]
+	public static float CurrentMaxPeople;
 
 	protected Vector3 InitialPlayerPos;
 
@@ -16,7 +24,12 @@ public class CommuneToControllerBridge : MonoBehaviour
         sceneController = controller;
     }
 
-    void Start()
+	private void Awake()
+	{
+		Instance = this;
+	}
+
+	void Start()
     {
         if(CommuneNPCPrefab == null)
         {
@@ -24,7 +37,9 @@ public class CommuneToControllerBridge : MonoBehaviour
         }
 
 		InitialPlayerPos = Player_Commune.Instance.transform.position;
-    }
+
+		CurrentMaxPeople = MaxPeopleBuildingUpgradeStages[0];
+	}
 
     public void ResetPlayerPosition()
     {
@@ -66,4 +81,10 @@ public class CommuneToControllerBridge : MonoBehaviour
     {
         sceneController.SummonDialogueBubble(bubbleText);
     }
+
+	public static int GetCurrentCommuneNPCs()
+	{
+		// Find count of active npcs (those who leave are simply disabled gameobjects)
+		return Instance.GetComponentsInChildren<NPC_Commune>().Length;
+	}
 }
