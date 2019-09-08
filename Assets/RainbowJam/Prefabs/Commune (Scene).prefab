@@ -1301,7 +1301,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9284e0090c37a814990ec9b431a51d0d, type: 2}
+  - {fileID: 2100000, guid: 0a629d90b83b547a1a8295232c7ba820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8218,11 +8218,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2996134048983614439}
     m_Modifications:
-    - target: {fileID: 7772404531887186415, guid: 9991d6eb005abeb4eae6d0d20bfd05c5,
-        type: 3}
-      propertyPath: m_Name
-      value: CommuneAmbience
-      objectReference: {fileID: 0}
     - target: {fileID: 2830184569512825158, guid: 9991d6eb005abeb4eae6d0d20bfd05c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8277,6 +8272,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772404531887186415, guid: 9991d6eb005abeb4eae6d0d20bfd05c5,
+        type: 3}
+      propertyPath: m_Name
+      value: CommuneAmbience
       objectReference: {fileID: 0}
     - target: {fileID: 8701128618199384654, guid: 9991d6eb005abeb4eae6d0d20bfd05c5,
         type: 3}
