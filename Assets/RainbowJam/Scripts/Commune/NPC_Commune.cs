@@ -63,7 +63,17 @@ public class NPC_Commune : NPC
 		TargetPos = CurrentPos;
 
 		JobClasses[(int) CurrentJob].Start( this );
-	}
+
+
+        // Nametag UI
+        GameObject debugObj = transform.Find("Canvas/NameTag").gameObject;
+        debugObj.SetActive(true);
+        var text = debugObj.GetComponentInChildren<Text>();
+        text.text = GetPersonInfo().Name;
+
+        var bg = debugObj.GetComponentInChildren<Image>();
+        bg.rectTransform.sizeDelta = new Vector2(text.preferredWidth + 50.0f, bg.rectTransform.sizeDelta.y);
+    }
 
     public override void Update()
     {
@@ -76,10 +86,12 @@ public class NPC_Commune : NPC
 
 	protected void UpdateDebug()
 	{
-		// Debug UI
-		var text = GetComponentInChildren<Text>( true );
-		text.transform.parent.gameObject.SetActive( Player_Commune.DebugDisplay );
-		text.text = @"
+        // Debug UI
+        GameObject debugObj = transform.Find("Canvas/DebugDisplay").gameObject;
+        debugObj.SetActive(Player_Commune.DebugDisplay);
+
+        var text = debugObj.GetComponentInChildren<Text>(true);
+        text.text = @"
 		" + CurrentJob + " - Duration: " + JobClasses[(int) CurrentJob].GetTimeRemaining().ToString( "0.00" ) + "/" + JobClasses[(int) CurrentJob].Duration.ToString( "0.00" ) + @"
 		" + CurrentPos.x + ", " + CurrentPos.y + " to " + TargetPos.x + ", " + TargetPos.y + @"
 		Berries: " + Berries + @"
