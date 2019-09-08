@@ -50,6 +50,8 @@ public class SceneController : MonoBehaviour
             CityBridge.RegisterSceneController(this);
             CommuneBridge.RegisterSceneController(this);
             RequestStateChange(GameStates.COMMUNE, true);
+
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         if(DialogueBubbleCanvas == null || DialogueBubblePrefab == null)
@@ -167,6 +169,16 @@ public class SceneController : MonoBehaviour
             }
 
             ScreenFader.color = new Color(0, 0, 0, FadeAmt);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
