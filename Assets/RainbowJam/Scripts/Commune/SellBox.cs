@@ -81,9 +81,17 @@ public class SellBox : MonoBehaviour
 		// Check for next milestone reached
 		if ( CurrentMilestone < StoryMilestones.Length - 1 && Money >= StoryMilestones[CurrentMilestone+1] )
 		{
-			House.Instance.AddStory();
 			CurrentMilestone++;
-			SetThermometerValue(0.0f);
+			SetThermometerValue( 0.0f );
+			if ( CurrentMilestone == StoryMilestones.Length - 1 )
+			{
+				// Special party case
+				CommuneToControllerBridge.Instance.StartParty();
+			}
+			else
+			{
+				House.Instance.AddStory();
+			}
 		}
 		else
 		{
