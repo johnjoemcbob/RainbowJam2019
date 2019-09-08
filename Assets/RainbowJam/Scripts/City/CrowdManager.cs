@@ -26,17 +26,29 @@ public class CrowdManager : MonoBehaviour
 	[HideInInspector]
 	public List<GameObject> Friends = new List<GameObject>();
 
-	private void Awake()
+    [HideInInspector]
+    public List<GameObject> NotFriends = new List<GameObject>();
+
+    private void Awake()
 	{
 		Instance = this;
-	}
+        spawnPoints = new List<Vector3>();
+    }
 
-	void Start()
+    void Start()
+    {
+        //RefreshCrowd();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    void GetSpawnPoints()
     {
         //Sort out spawn positions
-        spawnPoints = new List<Vector3>();
-        Vector3 spawnPos = Vector3.zero;
-
         if (spawnPointContainer != null)
         {
             int spawnPointCount = spawnPointContainer.transform.childCount;
@@ -49,6 +61,34 @@ public class CrowdManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void RefreshCrowd()
+    {
+        if (spawnPoints.Count <= 0)
+            GetSpawnPoints();
+
+
+        //CLEAR EVERYTHING
+        GameObject currentNPCObj = null;
+
+        //FRIEND LIST
+        for (int i = 0; i < Friends.Count; i++)
+        {
+            currentNPCObj = Friends[i];
+            Destroy(currentNPCObj);
+        }
+
+        Friends.Clear();
+
+        //NOT FRIEND LIST
+        for (int i = 0; i < NotFriends.Count; i++)
+        {
+            currentNPCObj = NotFriends[i];
+            Destroy(currentNPCObj);
+        }
+
+        NotFriends.Clear();
 
 
 
@@ -76,8 +116,8 @@ public class CrowdManager : MonoBehaviour
                     friendObject.transform.Translate(0, yOffset, 0);
                 }
 
-				Friends.Add( friendObject );
-			}
+                Friends.Add(friendObject);
+            }
         }
 
 
@@ -105,12 +145,8 @@ public class CrowdManager : MonoBehaviour
             {
                 blankObject.transform.Translate(0, yOffset, 0);
             }
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            NotFriends.Add(blankObject);
+        }
     }
 }
