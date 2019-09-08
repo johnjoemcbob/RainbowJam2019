@@ -56,7 +56,7 @@ public class SoilBush : MonoBehaviour
 				Bush.transform.localScale = Vector3.one * progress;
 				if ( Time.time - StageTime >= BushGrowthTime )
 				{
-					Bush.transform.localScale = Vector3.one * progress;
+					Bush.transform.localScale = Vector3.one;
 					StartBerries();
 				}
 
