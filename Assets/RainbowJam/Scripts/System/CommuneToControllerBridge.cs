@@ -82,6 +82,24 @@ public class CommuneToControllerBridge : MonoBehaviour
         sceneController.SummonDialogueBubble(bubbleText);
     }
 
+	public void StartParty()
+	{
+		IsParty = true;
+
+		// Enable party prefab
+		transform.Find( "PartyMode" ).gameObject.SetActive( true );
+
+		// Show dialogue popup
+		SceneController.Instance.SummonDialogueBubble( "Wow! All your friends threw you a surprise party to say thank you!!" );
+
+		// Readd all npcs
+		foreach ( var npc in transform.GetComponentsInChildren<NPC_Commune>( true ) )
+		{
+			npc.gameObject.SetActive( true );
+			npc.FindJob();
+		}
+	}
+
 	public static int GetCurrentCommuneNPCs()
 	{
 		// Find count of active npcs (those who leave are simply disabled gameobjects)
