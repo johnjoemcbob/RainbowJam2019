@@ -212,11 +212,10 @@ public class NPC : MonoBehaviour
 	// Called only from city but there's no NPC_City and time is low
 	public void Invite()
 	{
-		// TODO
-
 		// Stop walking
 		IsWalking = false;
 		GetComponent<CityWander>().enabled = false;
+		GetComponent<Rigidbody>().isKinematic = true;
 
 		// Open dialogue
 		SceneController.Instance.SummonDialogueBubble( ParseStorySegment( JsonData.GetDialogueFromStoryID( Data.StoryData.storyID, PersonalStory.PersonalGoals.PART_1 ) ) );
@@ -224,9 +223,7 @@ public class NPC : MonoBehaviour
 		// Add friend to the commune with CityBridgingScript
 		SceneController.Instance.CityBridge.AddFriend( Data );
 
-		// Delete from this scene when dialogue done
+		// TODO Delete from this scene when dialogue done
 
-		// TODO TEMP REMOVE
-		//SceneController.Instance.SwitchToCommune();
 	}
 }

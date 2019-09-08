@@ -13,8 +13,19 @@ public class Player_City : MonoBehaviour
 	public GameObject WalkingSprite;
 
 	protected Vector3 BaseScale;
+	protected Vector3 InitialPos;
 
-    void Start()
+	private void Awake()
+	{
+		InitialPos = transform.position;
+	}
+
+	private void OnEnable()
+	{
+		transform.position = InitialPos;
+	}
+
+	void Start()
     {
 		BaseScale = WalkingSprite.transform.localScale;
 	}
