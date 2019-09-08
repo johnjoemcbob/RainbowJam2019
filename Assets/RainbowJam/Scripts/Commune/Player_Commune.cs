@@ -4,6 +4,7 @@
 public class Player_Commune : MonoBehaviour
 {
 	public static Player_Commune Instance;
+	public static bool DebugDisplay = false;
 
 	public const float MaxRange = 2;
 	public const float SwingSpeed = 100;
@@ -119,6 +120,12 @@ public class Player_Commune : MonoBehaviour
 			{
 				SwingTargetAngle[hand] = 0;
 			}
+		}
+
+		// Toggle debug
+		if ( Input.GetKeyDown( KeyCode.B ) )
+		{
+			DebugDisplay = !DebugDisplay;
 		}
 	}
 

@@ -6,8 +6,6 @@ using NesScripts.Controls.PathFind;
 
 public class NPC_Commune : NPC
 {
-	public static bool DebugDisplay = false;
-
 	public enum JobType
 	{
 		Relax,
@@ -78,14 +76,9 @@ public class NPC_Commune : NPC
 
 	protected void UpdateDebug()
 	{
-		if ( Input.GetKeyDown( KeyCode.B ) )
-		{
-			DebugDisplay = !DebugDisplay;
-		}
-
 		// Debug UI
 		var text = GetComponentInChildren<Text>( true );
-		text.transform.parent.gameObject.SetActive( DebugDisplay );
+		text.transform.parent.gameObject.SetActive( Player_Commune.DebugDisplay );
 		text.text = @"
 		" + CurrentJob + " - Duration: " + JobClasses[(int) CurrentJob].GetTimeRemaining().ToString( "0.00" ) + "/" + JobClasses[(int) CurrentJob].Duration.ToString( "0.00" ) + @"
 		" + CurrentPos.x + ", " + CurrentPos.y + " to " + TargetPos.x + ", " + TargetPos.y + @"
