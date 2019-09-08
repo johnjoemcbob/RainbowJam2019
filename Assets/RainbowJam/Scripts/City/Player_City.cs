@@ -82,9 +82,18 @@ public class Player_City : MonoBehaviour
 		{
             if (!interactable.GetComponent<NPC>().hasBeenInvited)
             {
-                interactable.GetComponent<NPC>().Invite();
-                interactable.GetComponentInChildren<Canvas>(true).gameObject.SetActive(false);
-                CollectFriend();
+
+                if (!IsCommuneFull())
+                {
+                    interactable.GetComponent<NPC>().Invite();
+                    interactable.GetComponentInChildren<Canvas>(true).gameObject.SetActive(false);
+                    CollectFriend();
+                }
+                else
+                {
+                    //No space...
+                    SceneController.Instance.SummonDialogueBubble("It looks like you don't have any space in your commune...you'll have to try again later :(");
+                }
             }
 		}
 	}
@@ -101,5 +110,23 @@ public class Player_City : MonoBehaviour
                 collectHandler.CollectNewFriend();
             }
         } 
+    }
+
+    bool IsCommuneFull()
+    {
+        bool full = false;
+
+        GameObject collectionObj = GameObject.Find("CollectionScript");
+        if (collectionObj != null)
+        {
+            CityCollectionHandler collectHandler = collectionObj.GetComponent<CityCollectionHandler>();
+
+            if (collectHandler != null)
+            {
+                return collectHandler.IsCommuneFull();
+            }
+        }
+
+        return full;
     }
 }

@@ -41,6 +41,9 @@ public class CityCollectionHandler : MonoBehaviour
         {
             communeFriendText = communeObj.GetComponent<Text>();
         }
+
+        UpdateFriendNumbers();
+        UpdateCommuneNumbers();
     }
 
     // Update is called once per frame
@@ -89,6 +92,8 @@ public class CityCollectionHandler : MonoBehaviour
 
     public void SetCommuneVariables(int current, float max)
     {
+        //Debug.Log("CURRENT: " + current + "   " + "MAX: " + max);
+
         communeFriendCount = current;
         communeMaxCount = max;
 
