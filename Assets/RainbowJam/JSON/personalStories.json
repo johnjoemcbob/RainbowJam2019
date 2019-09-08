@@ -2,10 +2,17 @@
 "storyList" : [
 
 	{
-		"PART_1" : "Invitation accepted",
-		"PART_2" : "Character development...",
-		"PART_3" : "Moving on",
-		"PART_4" : "What's up it's party time"
+		"PART_1" : "I'm feeling so burned out..! I need a break, and I really like the sound of your idea. Name's [name], by the way!",
+		"PART_2" : "It's so relaxing out here... I'm starting to feel less braindead already!",
+		"PART_3" : "This has been great, and I feel so much more stable now - I think I'm in the right headspace to get back to my passions. See you around!",
+		"PART_4" : "Hey! Great to see you again, and this place looks better than ever! Take a break if you're feeling tired though, okay? We can handle things here if you do!"
+	},
+
+	{
+		"PART_1" : "Hi, I'm... um... [name]! I'd like to come with you, if that's okay..!",
+		"PART_2" : "Sorry for the awkward introduction - I'm still getting used to saying '[name]' out loud... but it feels easier to do that here.",
+		"PART_3" : "It's been wonderful spending time around people who are so accepting of me; I'm feeling so much more confident about myself, knowing you all have my back!",
+		"PART_4" : "Hiiiii!! Guess who got their name officially changed on their passport today?!"
 	},
 	
 	{
@@ -19,7 +26,7 @@
 		"PART_1" : "Hello! I'm [name]! I just quit my job",
 		"PART_2" : "Have you spoken to [otherfriend]? They are really cool! We've been bonding over our shared experiences",
 		"PART_3" : "This was amazing! I'll never forget the friends I made here. I'm off to travel the world!",
-		"PART_4" : "Hoi! Bonjour! Olá! I learned so much in my travels"
+		"PART_4" : "Hoi! Bonjour! Olï¿½! I learned so much in my travels"
 	}
 	
 	]
