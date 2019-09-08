@@ -15,6 +15,7 @@ public class SellBox : MonoBehaviour
 	[Header( "References" )]
 	public Text MoneyText;
 	public GameObject DropZone;
+	public AudioSource SellSound;
 
 	[HideInInspector]
 	public int Money = 0;
@@ -93,5 +94,6 @@ public class SellBox : MonoBehaviour
 	public void SellJam( int count )
 	{
 		AddMoney( count * Price );
+		SellSound.Play();
 	}
 }
