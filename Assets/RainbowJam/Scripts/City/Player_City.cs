@@ -71,14 +71,21 @@ public class Player_City : MonoBehaviour
 		// If in range show user input above their head
 		foreach ( var friend in CrowdManager.Instance.Friends )
 		{
-			friend.GetComponentInChildren<Canvas>( true ).gameObject.SetActive( friend == interactable );
+            if (!friend.GetComponent<NPC>().hasBeenInvited)
+            {
+                friend.GetComponentInChildren<Canvas>(true).gameObject.SetActive(friend == interactable);
+            }
 		}
 
 		// If clicked then activate their story dialogue
 		if ( interactable != null && Input.GetKeyDown( KeyCode.E ) )
 		{
-			interactable.GetComponent<NPC>().Invite();
-            CollectFriend();
+            if (!interactable.GetComponent<NPC>().hasBeenInvited)
+            {
+                interactable.GetComponent<NPC>().Invite();
+                interactable.GetComponentInChildren<Canvas>(true).gameObject.SetActive(false);
+                CollectFriend();
+            }
 		}
 	}
 
