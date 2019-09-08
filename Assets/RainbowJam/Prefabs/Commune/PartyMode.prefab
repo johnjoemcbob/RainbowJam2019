@@ -65,7 +65,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.7832298
+  MinDistance: 0.5360584
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -14540,7 +14540,7 @@ PrefabInstance:
     - target: {fileID: 7772404531887186415, guid: 9991d6eb005abeb4eae6d0d20bfd05c5,
         type: 3}
       propertyPath: m_Name
-      value: SoundPlayer
+      value: Toot
       objectReference: {fileID: 0}
     - target: {fileID: 2830184569512825158, guid: 9991d6eb005abeb4eae6d0d20bfd05c5,
         type: 3}
