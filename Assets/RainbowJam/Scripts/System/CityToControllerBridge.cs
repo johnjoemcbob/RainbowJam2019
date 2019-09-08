@@ -17,6 +17,12 @@ public class CityToControllerBridge : MonoBehaviour
     {
         // TODO: Reset/respawn crowds & player pos?
 
+        GameObject crowdManager = transform.Find("CrowdManager").gameObject;
+
+        if (crowdManager != null)
+        {
+            crowdManager.GetComponent<CrowdManager>().RefreshCrowd();
+        }
     }
 
     public void SetFriends(List<PersonInfo> newFriends)
