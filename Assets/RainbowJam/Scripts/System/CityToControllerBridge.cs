@@ -15,13 +15,23 @@ public class CityToControllerBridge : MonoBehaviour
 
     public void PlayerEnteredCity()
     {
-        // TODO: Reset/respawn crowds & player pos?
+        // Reset/respawn crowds & player pos?
 
         GameObject crowdManager = transform.Find("CrowdManager").gameObject;
 
         if (crowdManager != null)
         {
             crowdManager.GetComponent<CrowdManager>().RefreshCrowd();
+        }
+
+
+        //Set commune variables
+        GameObject collectionHandler = transform.Find("CollectionScript").gameObject;
+
+        if (collectionHandler != null)
+        {
+            collectionHandler.GetComponent<CityCollectionHandler>().ResetNumbers();
+            collectionHandler.GetComponent<CityCollectionHandler>().SetCommuneVariables(CommuneToControllerBridge.GetCurrentCommuneNPCs(), CommuneToControllerBridge.CurrentMaxPeople);
         }
     }
 
@@ -43,6 +53,11 @@ public class CityToControllerBridge : MonoBehaviour
     public void SummonDialogueBubble(string bubbleText)
     {
         sceneController.SummonDialogueBubble(bubbleText);
+    }
+
+    public void SetCommuneVariables(int current, int max)
+    {
+
     }
 
 }
