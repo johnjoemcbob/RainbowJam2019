@@ -101,17 +101,20 @@ public class BuildableArea : MonoBehaviour
 		Test2.GetComponent<Renderer>().material.color = GridWithMovables.nodes[(int) gridcell.x, (int) gridcell.z].Type == NodeContent.Impasse ? Color.red : Color.white;
 
 		// User input, TODO maybe move to update so it's clearer
-		if ( Input.GetMouseButtonDown( 0 ) )
+		if ( DialogueBubble.QueuedDialogues.Count < 1) // don't do building inputs while a dialogue is still in view.
 		{
-			if ( Grid.nodes[(int) gridcell.x, (int) gridcell.z].Type == NodeContent.Empty )
+			if ( Input.GetMouseButtonDown( 0 ) )
 			{
-				PlaceObject( gridcell.x, gridcell.z, NodeContent.TilledSoil );
-				Player_Commune.Instance.Swing( 1 );
+				if ( Grid.nodes[(int) gridcell.x, (int) gridcell.z].Type == NodeContent.Empty )
+				{
+					PlaceObject( gridcell.x, gridcell.z, NodeContent.TilledSoil );
+					Player_Commune.Instance.Swing( 1 );
+				}
 			}
-		}
-		if ( Input.GetMouseButtonDown( 1 ) )
-		{
-			FindObjectOfType<NPC_Commune>().SetTargetCell( new Point( (int) gridcell.x, (int) gridcell.z ) );
+			if ( Input.GetMouseButtonDown( 1 ) )
+			{
+				FindObjectOfType<NPC_Commune>().SetTargetCell( new Point( (int) gridcell.x, (int) gridcell.z ) );
+			}
 		}
 	}
 

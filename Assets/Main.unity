@@ -390,7 +390,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CityScene: {fileID: 1445823823}
+  CityBridge: {fileID: 0}
   CommuneScene: {fileID: 57465118}
+  CommuneBridge: {fileID: 0}
   DialogueBubbleCanvas: {fileID: 250602796}
   DialogueBubblePrefab: {fileID: 2519861647585766383, guid: cc39f2a553df0c84780eeb0f2c206a68,
     type: 3}
@@ -497,7 +499,7 @@ PrefabInstance:
     - target: {fileID: 6433293312015619194, guid: 035b4bae8e42e5241966dadf65d0563a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6433293312015619193, guid: 035b4bae8e42e5241966dadf65d0563a,
         type: 3}

@@ -11,6 +11,7 @@ public class DialogueBubble : MonoBehaviour
     public string CurrentString;
 
     public int TextAddFrameDelay = 1;
+    private float FrameDelayAccumulator = 0.0f;
 
     [HideInInspector]
     public bool FinishedDisplaying = false;
@@ -82,7 +83,9 @@ public class DialogueBubble : MonoBehaviour
     {
         if(BubbleScale < 1.0f && Opening)
         {
-            BubbleScale += 0.1f;
+            BubbleScale += 0.1f * (Time.deltaTime * 60);
+
+            BubbleScale = Mathf.Clamp01(BubbleScale);
 
             BackdropElement.offsetMin = BubbleMin * (2.0f - BubbleScale);
             BackdropElement.offsetMax = BubbleMax * (2.0f - BubbleScale);
@@ -94,7 +97,9 @@ public class DialogueBubble : MonoBehaviour
         }
         else if(BubbleScale > 0.0f && Closing)
         {
-            BubbleScale -= 0.1f;
+            BubbleScale -= 0.1f * (Time.deltaTime * 60);
+
+            BubbleScale = Mathf.Clamp01(BubbleScale);
 
             BackdropElement.offsetMin = BubbleMin * (2.0f - BubbleScale);
             BackdropElement.offsetMax = BubbleMax * (2.0f - BubbleScale);
@@ -122,9 +127,16 @@ public class DialogueBubble : MonoBehaviour
             }
         }
 
-        if(!FinishedDisplaying && !Closing && Time.frameCount % TextAddFrameDelay == 0)
+        if(!FinishedDisplaying && !Closing)
         {
-            AdvanceTextDisplay();
+            FrameDelayAccumulator += Time.deltaTime;
+
+            // Fixed-timestep character advancement. Should add characters at a constant rate.
+            while(FrameDelayAccumulator > ((float)TextAddFrameDelay/60))
+            {
+                FrameDelayAccumulator -= ((float)TextAddFrameDelay/60);
+                AdvanceTextDisplay();
+            }
         }
 
         if(FinishedDisplaying)
