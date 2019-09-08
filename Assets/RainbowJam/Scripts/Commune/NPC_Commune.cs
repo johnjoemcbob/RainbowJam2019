@@ -83,10 +83,12 @@ public class NPC_Commune : NPC
 			DebugDisplay = !DebugDisplay;
 		}
 
-		// Debug UI
-		var text = GetComponentInChildren<Text>( true );
-		text.transform.parent.gameObject.SetActive( DebugDisplay );
-		text.text = @"
+        // Debug UI
+        GameObject debugObj = transform.Find("Canvas/DebugDisplay").gameObject;
+        debugObj.SetActive(DebugDisplay);
+
+        var text = debugObj.GetComponentInChildren<Text>(true);
+        text.text = @"
 		" + CurrentJob + " - Duration: " + JobClasses[(int) CurrentJob].GetTimeRemaining().ToString( "0.00" ) + "/" + JobClasses[(int) CurrentJob].Duration.ToString( "0.00" ) + @"
 		" + CurrentPos.x + ", " + CurrentPos.y + " to " + TargetPos.x + ", " + TargetPos.y + @"
 		Berries: " + Berries + @"
