@@ -65,7 +65,17 @@ public class NPC_Commune : NPC
 		TargetPos = CurrentPos;
 
 		JobClasses[(int) CurrentJob].Start( this );
-	}
+
+
+        // Nametag UI
+        GameObject debugObj = transform.Find("Canvas/NameTag").gameObject;
+        debugObj.SetActive(true);
+        var text = debugObj.GetComponentInChildren<Text>();
+        text.text = GetPersonInfo().Name;
+
+        var bg = debugObj.GetComponentInChildren<Image>();
+        bg.rectTransform.sizeDelta = new Vector2(text.preferredWidth + 50.0f, bg.rectTransform.sizeDelta.y);
+    }
 
     public override void Update()
     {
