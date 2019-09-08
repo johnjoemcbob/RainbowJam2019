@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CrowdManager : MonoBehaviour
 {
+	public static CrowdManager Instance;
+
     PersonInfo personInfo;
 
     [SerializeField]
@@ -21,9 +23,15 @@ public class CrowdManager : MonoBehaviour
     float yOffset = 0.25f;
     List<Vector3> spawnPoints;
 
+	[HideInInspector]
+	public List<GameObject> Friends = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+		Instance = this;
+	}
+
+	void Start()
     {
         //Sort out spawn positions
         spawnPoints = new List<Vector3>();
@@ -67,7 +75,9 @@ public class CrowdManager : MonoBehaviour
                 {
                     friendObject.transform.Translate(0, yOffset, 0);
                 }
-            }
+
+				Friends.Add( friendObject );
+			}
         }
 
 

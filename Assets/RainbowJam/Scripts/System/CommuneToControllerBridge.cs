@@ -9,7 +9,9 @@ public class CommuneToControllerBridge : MonoBehaviour
 
     public SceneController sceneController;
 
-    public void RegisterSceneController(SceneController controller)
+	protected Vector3 InitialPlayerPos;
+
+	public void RegisterSceneController(SceneController controller)
     {
         sceneController = controller;
     }
@@ -20,13 +22,17 @@ public class CommuneToControllerBridge : MonoBehaviour
         {
             Debug.LogError("Commune NPC Prefab not set, ensure it is before continuing.");
         }
+
+		InitialPlayerPos = Player_Commune.Instance.transform.position;
     }
 
     public void ResetPlayerPosition()
     {
-        // TODO: Move the player back to their initial spawn point.
-
-    }
+		if ( Player_Commune.Instance != null )
+		{
+			Player_Commune.Instance.transform.position = InitialPlayerPos;
+		}
+	}
 
     public void SpawnNewFriends(List<PersonInfo> friends)
     {
@@ -39,6 +45,7 @@ public class CommuneToControllerBridge : MonoBehaviour
                     GameObject friendObject = GameObject.Instantiate(CommuneNPCPrefab);
                     
                     var friendScript = friendObject.GetComponent<NPC_Commune>();
+					friendScript.Init( true );
                     friendScript.GenerateAppearanceFromData(friend);
 
                     // Spawning all the friends together in one big clump might be, uh, weird?
@@ -51,7 +58,9 @@ public class CommuneToControllerBridge : MonoBehaviour
                 }
             }
         }
-    }
+		// Spawned, now empty for next time
+		friends.Clear();
+	}
 
     public void SummonDialogueBubble(string bubbleText)
     {

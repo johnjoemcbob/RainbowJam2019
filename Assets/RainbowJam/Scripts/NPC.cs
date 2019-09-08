@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
 {
     public bool IsWalking = false;
     bool isInitialised = false;
+	public bool FlaggingGay = false;
 
     public GameObject IdleSprite;
     public GameObject WalkingSprite;
@@ -50,7 +51,8 @@ public class NPC : MonoBehaviour
         //Personal Story
         storyData = PersonalStory.GenerateRandom();
 
-        isInitialised = true;
+		FlaggingGay = flagged;
+		isInitialised = true;
     }
 
 
@@ -179,4 +181,25 @@ public class NPC : MonoBehaviour
     {
         return storyData;
     }
+
+	// Called only from city but there's no NPC_City and time is low
+	public void Invite()
+	{
+		// TODO
+
+		// Stop walking
+		IsWalking = false;
+		GetComponent<CityWander>().enabled = false;
+
+		// Open dialogue
+		SceneController.Instance.SummonDialogueBubble( JsonData.GetDialogueFromStoryID( storyData.storyID, PersonalStory.PersonalGoals.PART_1 ) );
+
+		// Add friend to the commune with CityBridgingScript
+		SceneController.Instance.CityBridge.AddFriend( Data );
+
+		// Delete from this scene when dialogue done
+
+		// TODO TEMP REMOVE
+		SceneController.Instance.SwitchToCommune();
+	}
 }

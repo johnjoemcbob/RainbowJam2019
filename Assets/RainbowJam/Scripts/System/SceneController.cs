@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
+	public static SceneController Instance;
 
-    [SerializeField]
+	[SerializeField]
     private GameObject CityScene;
-    private CityToControllerBridge CityBridge;
+    public CityToControllerBridge CityBridge;
 
     [SerializeField]
     private GameObject CommuneScene;
-    private CommuneToControllerBridge CommuneBridge;
+	public CommuneToControllerBridge CommuneBridge;
 
     [SerializeField]
     private Canvas DialogueBubbleCanvas;
@@ -25,17 +26,19 @@ public class SceneController : MonoBehaviour
     private float FadeAmt = 1.0f;
     private bool Fading = false;
 
-    public static SceneController Instance;
     private bool FirstTime = false;
     private Action OnFadeReachedPeak;
 
 
     private GameStates CurrentState = GameStates.INVALID;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+		Instance = this;
+	}
+
+	void Start()
     {
-        Instance = this;
         if(CityScene == null || CommuneScene == null)
         {
             Debug.LogError("ERROR: City Scene Prefab or Commune Scene Prefab have not been set!");
@@ -55,7 +58,7 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    private void SwitchToCity()
+    public void SwitchToCity()
     {
         // Going to the city. 
         Debug.Log("Switching to City scene!");
@@ -75,7 +78,7 @@ public class SceneController : MonoBehaviour
         OnFadeReachedPeak -= SwitchToCity;
     }
 
-    private void SwitchToCommune()
+	public void SwitchToCommune()
     {
         // Going to the commune. 
         Debug.Log("Switching to Commune scene!");
@@ -93,11 +96,11 @@ public class SceneController : MonoBehaviour
             //SummonDialogueBubble("Press the W, S, A, D keys to move around.");
         }
 
-        // Enable commune scene.
-        CommuneScene.SetActive(true);
-        
-        // Reset Player Pos in Commune (so that they don't immediately re-enter the city.)
-        CommuneBridge.ResetPlayerPosition();
+		// Reset Player Pos in Commune (so that they don't immediately re-enter the city.)
+		CommuneBridge.ResetPlayerPosition();
+
+		// Enable commune scene.
+		CommuneScene.SetActive(true);
 
         // Fetch gathered friends from city!
         CommuneBridge.SpawnNewFriends(CityBridge.GetFriends());

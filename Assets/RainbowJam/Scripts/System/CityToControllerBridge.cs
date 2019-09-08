@@ -24,6 +24,11 @@ public class CityToControllerBridge : MonoBehaviour
         friends = newFriends;
     }
 
+	public void AddFriend( PersonInfo newfriend )
+	{
+		friends.Add( newfriend );
+	}
+
     public List<PersonInfo> GetFriends()
     {
         return friends;
