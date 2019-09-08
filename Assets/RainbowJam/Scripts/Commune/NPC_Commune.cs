@@ -220,8 +220,7 @@ public class NPC_Commune : NPC
 	{
 		if ( TargetPos != cell )
 		{
-			TargetPos = cell;
-			Path = Pathfinding.FindPath( BuildableArea.Instance.GridWithMovables, CurrentPos, TargetPos );
+			SetTargetCell( cell );
 		}
 	}
 
@@ -244,6 +243,13 @@ public class NPC_Commune : NPC
 			Destroy( CurrentlyHeld );
 			CurrentlyHeld = null;
 		}
+	}
+
+	public void TalkToPlayer()
+	{
+		// Open dialogue and fill
+		SceneController.Instance.SummonDialogueBubble( ParseStorySegment( JsonData.GetDialogueFromStoryID( Data.StoryData.storyID, Data.StoryData.GetCurrentStage() ) ) );
+		Data.StoryData.TalkToPlayer();
 	}
 
 	protected void UpdateParentItemToCurrentHand()

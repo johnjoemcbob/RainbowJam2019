@@ -9,33 +9,46 @@ public class StoryJob : Job
 
 	public override bool IsAvailable( NPC_Commune npc )
 	{
-		// TODO if has next story segment available and player isn't already being talked at
-		return false;
+		return ( npc.GetPersonalStory().GetWantsToTalk() && ( Player_Commune.Instance.BeingTalkedAt == null ) );
 	}
 
 	public override void Start( NPC_Commune npc )
 	{
 		base.Start( npc );
 
-		// Find location next to player
-		//Duration = Random.Range( 5, 10 );
-		//TargetPos = NPC.CurrentPos; // Flag to randomise next update
+		// Flag so only one npc can talk at a time
+		Player_Commune.Instance.BeingTalkedAt = npc;
 	}
 
 	public override void Update()
 	{
 		base.Update();
 
-		if ( NPC.CurrentPos == TargetPos )
+		// Path to player but stop when one square away
+		int dist = Mathf.Abs( NPC.CurrentPos.x - TargetPos.x ) + Mathf.Abs( NPC.CurrentPos.y - TargetPos.y );
+		if ( dist <= 2 )
 		{
-			// Reached player
+			// Stop moving
+			NPC.SetTargetCell( NPC.CurrentPos );
+
 			// Open dialogue
 			// Mark story as told at this point
+			NPC.TalkToPlayer();
+
+			Finish();
+		}
+		else
+		{
+			// Continuously find player pos
+			TargetPos = BuildableArea.GetCellFromPosition( Player_Commune.Instance.transform.position );
+			NPC.SetIfNotTargetCell( TargetPos );
 		}
 	}
 
 	public override void Finish()
 	{
 		base.Finish();
+
+		Player_Commune.Instance.BeingTalkedAt = null;
 	}
 }
