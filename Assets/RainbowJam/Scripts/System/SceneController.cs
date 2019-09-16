@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
@@ -62,6 +63,13 @@ public class SceneController : MonoBehaviour
 
     public void SwitchToCity()
     {
+		if ( CommuneToControllerBridge.Instance.IsParty )
+		{
+			// Quit to menu
+			SceneManager.LoadScene( 0 );
+			return;
+		}
+
         // Going to the city. 
         Debug.Log("Switching to City scene!");
         
@@ -176,7 +184,7 @@ public class SceneController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().buildIndex == 1 )
         {
             Cursor.lockState = CursorLockMode.Locked;
         }

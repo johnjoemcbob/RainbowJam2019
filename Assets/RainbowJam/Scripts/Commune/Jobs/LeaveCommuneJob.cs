@@ -13,7 +13,7 @@ public class LeaveCommuneJob : Job
 		return (
 			( ( npc.GetPersonalStory().GetCurrentStage() == PersonalStory.PersonalGoals.PART_3 ) ||
 			( npc.GetPersonalStory().GetCurrentStage() == PersonalStory.PersonalGoals.PART_4 ) ) &&
-			!CommuneToControllerBridge.IsParty &&
+			!CommuneToControllerBridge.Instance.IsParty &&
 			!npc.GetPersonalStory().GetWantsToTalk()
 		);
 	}

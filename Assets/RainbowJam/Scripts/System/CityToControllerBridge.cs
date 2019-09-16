@@ -31,7 +31,7 @@ public class CityToControllerBridge : MonoBehaviour
         if (collectionHandler != null)
         {
             collectionHandler.GetComponent<CityCollectionHandler>().ResetNumbers();
-            collectionHandler.GetComponent<CityCollectionHandler>().SetCommuneVariables(CommuneToControllerBridge.GetCurrentCommuneNPCs(), CommuneToControllerBridge.CurrentMaxPeople);
+            collectionHandler.GetComponent<CityCollectionHandler>().SetCommuneVariables(CommuneToControllerBridge.GetCurrentCommuneNPCs(), CommuneToControllerBridge.Instance.CurrentMaxPeople);
         }
     }
 

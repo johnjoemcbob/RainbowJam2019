@@ -36,7 +36,7 @@ public class House : MonoBehaviour
 			{
 				bridgeScript.SummonDialogueBubble("Everyone's hard work has made the house bigger!");
 			}
-			CommuneToControllerBridge.CurrentMaxPeople = CommuneToControllerBridge.Instance.MaxPeopleBuildingUpgradeStages[story];
+			CommuneToControllerBridge.Instance.CurrentMaxPeople = CommuneToControllerBridge.Instance.MaxPeopleBuildingUpgradeStages[story];
 		}
 	}
 }

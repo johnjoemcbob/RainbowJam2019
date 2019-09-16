@@ -23,9 +23,15 @@ public class menuButtonScript : MonoBehaviour
         }
     }
 
+	private void Update()
+	{
+		// Fix weird bug on return to menu, cursor kept locking (SceneController no where in sight)
+		Cursor.lockState = CursorLockMode.None;
+	}
 
-    // ------------------------------------------
-    public void OnPlayClick()
+
+	// ------------------------------------------
+	public void OnPlayClick()
     {
         SceneManager.LoadScene("Main");
     }

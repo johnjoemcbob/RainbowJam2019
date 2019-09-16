@@ -15,6 +15,6 @@ public class CurrentMaxPeople : MonoBehaviour
 
 	void Update()
     {
-		text.text = CommuneToControllerBridge.GetCurrentCommuneNPCs() + "/" + CommuneToControllerBridge.CurrentMaxPeople;
+		text.text = CommuneToControllerBridge.GetCurrentCommuneNPCs() + "/" + CommuneToControllerBridge.Instance.CurrentMaxPeople;
     }
 }

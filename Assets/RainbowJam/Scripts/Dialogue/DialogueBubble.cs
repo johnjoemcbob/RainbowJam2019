@@ -56,6 +56,7 @@ public class DialogueBubble : MonoBehaviour
 		bubbleScript.TitleElement.enabled = ( title != "" );
 		bubbleScript.TitleElement.text = title;
 		bubbleScript.Initialise();
+		bubbleScript.transform.localScale = Vector3.one;
 
         QueuedDialogues.Add(bubbleScript);
 

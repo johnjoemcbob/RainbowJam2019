@@ -9141,6 +9141,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: CommuneTutorials
       objectReference: {fileID: 0}
+    - target: {fileID: 5290491495690751864, guid: b3df4d95314c9b94cb2dcded843ae538,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290491495690751864, guid: b3df4d95314c9b94cb2dcded843ae538,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290491496143009382, guid: b3df4d95314c9b94cb2dcded843ae538,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290491496143009382, guid: b3df4d95314c9b94cb2dcded843ae538,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290491495868535128, guid: b3df4d95314c9b94cb2dcded843ae538,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290491495868535128, guid: b3df4d95314c9b94cb2dcded843ae538,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290491496359566640, guid: b3df4d95314c9b94cb2dcded843ae538,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290491496359566640, guid: b3df4d95314c9b94cb2dcded843ae538,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561260729464332706, guid: b3df4d95314c9b94cb2dcded843ae538,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561260729464332706, guid: b3df4d95314c9b94cb2dcded843ae538,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3df4d95314c9b94cb2dcded843ae538, type: 3}
 --- !u!4 &1619085692 stripped

@@ -10,7 +10,7 @@ public class PartyJob : Job
 	public override bool IsAvailable( NPC_Commune npc )
 	{
 		// If party, must party
-		return CommuneToControllerBridge.IsParty;
+		return CommuneToControllerBridge.Instance.IsParty;
 	}
 
 	public override void Start( NPC_Commune npc )

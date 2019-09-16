@@ -83,6 +83,10 @@ public class Player_Commune : MonoBehaviour
 
 	protected float[] SwingTargetAngle = new float[] { 0, 0 };
 
+	protected Vector2 BetweenFootSteps = new Vector2( 0.3f, 0.4f );
+	protected float NextFootstep = 0;
+	protected AudioSource Source;
+
 	private void Awake()
 	{
 		Instance = this;
@@ -93,6 +97,7 @@ public class Player_Commune : MonoBehaviour
 		// Saving component references to improve performance.
 		m_Transform = GetComponent<Transform>();
 		m_Controller = GetComponent<CharacterController>();
+		Source = GetComponent<AudioSource>();
 
 		// Setting initial values.
 		m_Speed = m_WalkSpeed;
@@ -246,6 +251,17 @@ public class Player_Commune : MonoBehaviour
 
 		// Move the controller, and set grounded true or false depending on whether we're standing on something
 		m_Grounded = ( m_Controller.Move( m_MoveDirection * Time.deltaTime ) & CollisionFlags.Below ) != 0;
+
+		// Play footstep audio
+		float mag = ( Mathf.Abs( m_MoveDirection.x ) + Mathf.Abs( m_MoveDirection.z ) ) / 2;
+		if ( mag != 0 )
+		{
+			if ( NextFootstep <= Time.time )
+			{
+				Source.Play();
+				NextFootstep = Time.time + Random.Range( BetweenFootSteps.x, BetweenFootSteps.y );
+			}
+		}
 	}
 
 

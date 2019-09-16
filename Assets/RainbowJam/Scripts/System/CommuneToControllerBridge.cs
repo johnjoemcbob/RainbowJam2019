@@ -5,7 +5,7 @@ using UnityEngine;
 public class CommuneToControllerBridge : MonoBehaviour
 {
 	public static CommuneToControllerBridge Instance;
-	public static bool IsParty = false; // Different logic for party segment
+	public bool IsParty = false; // Different logic for party segment
 
 	public int[] MaxPeopleBuildingUpgradeStages = new int[] { 5, 10, 15 };
 
@@ -15,7 +15,7 @@ public class CommuneToControllerBridge : MonoBehaviour
 	public SceneController sceneController;
 
 	[HideInInspector]
-	public static float CurrentMaxPeople;
+	public float CurrentMaxPeople;
 
 	protected Vector3 InitialPlayerPos;
 
@@ -92,6 +92,8 @@ public class CommuneToControllerBridge : MonoBehaviour
 
 	public void StartParty()
 	{
+		if ( IsParty ) return; // In case hold F11
+
 		IsParty = true;
 
 		// Enable party prefab
@@ -107,6 +109,14 @@ public class CommuneToControllerBridge : MonoBehaviour
 			npc.SetPos( BuildableArea.GetCellFromPosition( Player_Commune.Instance.transform.position ) );
 			npc.FindJob();
 			npc.SetParty();
+		}
+
+		// Set to night time
+		FindObjectOfType<Camera>().backgroundColor = new Color( 0.2f, 0.2f, 0.2f, 1 );
+		FindObjectOfType<Light>().intensity = 0.2f;
+		foreach ( var sprite in FindObjectsOfType<SpriteRenderer>() )
+		{
+			sprite.color = sprite.color * Color.gray;
 		}
 	}
 

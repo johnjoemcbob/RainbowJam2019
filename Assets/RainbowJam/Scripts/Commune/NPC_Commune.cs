@@ -171,7 +171,7 @@ public class NPC_Commune : NPC
 
 	public void Interact()
 	{
-		if ( CommuneToControllerBridge.IsParty )
+		if ( CommuneToControllerBridge.Instance.IsParty )
 		{
 			// Tell story
 			SceneController.Instance.SummonDialogueBubble( ParseStorySegment( JsonData.GetDialogueFromStoryID( Data.StoryData.storyID, PersonalStory.PersonalGoals.PART_4 ) ), Data.Name );
