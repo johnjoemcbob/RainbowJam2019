@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class DialogueBubble : MonoBehaviour
 {
@@ -22,15 +22,17 @@ public class DialogueBubble : MonoBehaviour
     public bool FinishedDisplaying = false;
 
     [SerializeField]
-    private TextMeshProUGUI TextElement;
-	public TextMeshProUGUI TitleElement;
+    private Text TextElement;
+	public Text TitleElement;
+	public GameObject MouseIcon;
 
-    [SerializeField]
-    private RectTransform BackdropElement; 
+	[SerializeField]
+    private RectTransform BackdropElement;
 
-    private Vector2 BubbleMax;
-    private Vector2 BubbleMin;
-    private float BubbleScale;
+	private float DisappearStart = 200;
+	private Vector2 BubbleMinHelper = new Vector2( 1, 1 );
+	private Vector2 BubbleMaxHelper = new Vector2( -1, -1 );
+	private float BubbleScale;
 
     [HideInInspector]
     public bool Opening = true;
@@ -40,11 +42,10 @@ public class DialogueBubble : MonoBehaviour
     public bool Closing = false;
     public bool DidPlayClosingSound = false;
     
-
     // Helper function & variables.
     public static List<DialogueBubble> QueuedDialogues = new List<DialogueBubble>();
     
-    public static void SummonDialogueBubble(string targetText, string title, GameObject dialogueBubblePrefab, Transform canvas, Vector2 offsetMin, Vector2 offsetMax)
+    public static void SummonDialogueBubble(string targetText, string title, GameObject dialogueBubblePrefab, Transform canvas)
     {
         // Create and queue a dialogue bubble.
         var newBubble = GameObject.Instantiate(dialogueBubblePrefab);
@@ -54,7 +55,7 @@ public class DialogueBubble : MonoBehaviour
         bubbleScript.TargetString = targetText;
 		bubbleScript.TitleElement.enabled = ( title != "" );
 		bubbleScript.TitleElement.text = title;
-		bubbleScript.InitialisePositioning(offsetMin, offsetMax);
+		bubbleScript.Initialise();
 
         QueuedDialogues.Add(bubbleScript);
 
@@ -64,33 +65,24 @@ public class DialogueBubble : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         if(TextElement == null || BackdropElement == null)
         {
             Debug.LogError("Text or backdrop not set in prefab. Dead!");
         }
-        else
-        {
-            
-        }
     }
 
-    void InitialisePositioning(Vector2 offsetMin, Vector2 offsetMax)
+    void Initialise()
     {
-        BubbleMax = offsetMax;
-        BubbleMin = offsetMin;
+        TextElement.text = "";
+        BubbleScale = 0.0f; // Scale bubble up
+	}
 
-        TextElement.SetText("");
-        BackdropElement.offsetMax = BubbleMax * 2.0f;
-        BackdropElement.offsetMin = BubbleMin * 2.0f;
-        BubbleScale = 0.0f; // scale bubble up?
-    }
-
-    // Update is called once per frame
     void Update()
     {
+		MouseIcon.SetActive( BubbleScale == 1 );
+
         if(BubbleScale < 1.0f && Opening)
         {
             if(!DidPlayOpeningSound)
@@ -102,8 +94,8 @@ public class DialogueBubble : MonoBehaviour
 
             BubbleScale = Mathf.Clamp01(BubbleScale);
 
-            BackdropElement.offsetMin = BubbleMin * (2.0f - BubbleScale);
-            BackdropElement.offsetMax = BubbleMax * (2.0f - BubbleScale);
+			BackdropElement.offsetMin = BubbleMinHelper * DisappearStart * ( 1 - BubbleScale );
+			BackdropElement.offsetMax = BubbleMaxHelper * DisappearStart * ( 1 - BubbleScale );
 
             if(BubbleScale >= 1.0f)
             {
@@ -121,11 +113,11 @@ public class DialogueBubble : MonoBehaviour
 
             BubbleScale = Mathf.Clamp01(BubbleScale);
 
-            BackdropElement.offsetMin = BubbleMin * (2.0f - BubbleScale);
-            BackdropElement.offsetMax = BubbleMax * (2.0f - BubbleScale);
+			BackdropElement.offsetMin = BubbleMinHelper * DisappearStart * ( 1 - BubbleScale );
+			BackdropElement.offsetMax = BubbleMaxHelper * DisappearStart * ( 1 - BubbleScale );
 
             CurrentString = ""; // this used to reverse-display the characters while the bubble shrank, but it's not super easy to predict when long strings will get squished and suddenly expand upwards for a frame or two, so Zoip. gone. done.
-            TextElement.SetText(CurrentString);
+            TextElement.text = CurrentString;
 
             if(BubbleScale <= 0.0f)
             {
@@ -159,12 +151,18 @@ public class DialogueBubble : MonoBehaviour
             }
         }
 
-        if(FinishedDisplaying)
-        {
-            if(Input.GetMouseButtonDown(0))
-            {
+		if ( Input.GetMouseButtonDown( 0 ) )
+		{
+			if (FinishedDisplaying)
+			{
                 Dismiss();
             }
+			else if ( !FinishedDisplaying )
+			{
+				CurrentString = TargetString;
+				TextElement.text = CurrentString;
+				FinishedDisplaying = true;
+			}
         }
     }
 
@@ -187,7 +185,7 @@ public class DialogueBubble : MonoBehaviour
             else
             {
                 CurrentString += TargetString[CurrentString.Length];
-                TextElement.SetText(CurrentString);
+                TextElement.text = CurrentString;
 
                 if(CurrentString.Length % 3 == 0)
                 {
@@ -204,6 +202,6 @@ public class DialogueBubble : MonoBehaviour
         CurrentString = "";
 
         FinishedDisplaying = false;
-        TextElement.SetText(CurrentString);
+        TextElement.text = CurrentString;
     }
 }

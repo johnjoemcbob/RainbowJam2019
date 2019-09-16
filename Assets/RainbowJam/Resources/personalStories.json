@@ -37,35 +37,35 @@
 	},
 	
 	{
-        "PART_1" : "I'm sick of the hustle and bustle.",
+        "PART_1" : "I'm sick of the hustle and bustle. I'm [name]",
         "PART_2" : "It's much more peaceful out here...",
         "PART_3" : "I feel reinvigorated!",
         "PART_4" : "Partying is much better under a big sky!"
     },
 
     {
-        "PART_1" : "I can't stay in that house a moment longer.",
+        "PART_1" : "I can't stay in that house a moment longer. I'm [name]",
         "PART_2" : "I finally feel a sense of freedom.",
         "PART_3" : "I got a place near the river in a nearby town!",
         "PART_4" : "It's nice to see my friends before I move to the next town."
     },
 
     {
-        "PART_1" : "My parents don't understand why this matters so much to me.",
+        "PART_1" : "My parents don't understand why this matters so much to me. I'm [name]",
         "PART_2" : "I've made a new family here at the commune.",
         "PART_3" : "Me and [otherfriend] are moving in together!",
         "PART_4" : "I'm so excited to live with someone likeminded."
     },
 
     {
-        "PART_1" : "I feel like I'm not contributing, working at a dead-end job all day.",
+        "PART_1" : "I feel like I'm not contributing, working at a dead-end job all day. I'm [name].",
         "PART_2" : "Working together to make things with my hands feels so rewarding!",
         "PART_3" : "I'm opening my own business!",
         "PART_4" : "I can't believe how much jam we made together!"
     },
 	
 	{
-		"PART_1" : "I'll join!",
+		"PART_1" : "I'll join! I'm [name]!",
 		"PART_2" : "Thinking about Jam",
 		"PART_3" : "Thanks but I gtg",
 		"PART_4" : "Party."
@@ -75,7 +75,7 @@
 		"PART_1" : "Hello! I'm [name]! I just quit my job",
 		"PART_2" : "Have you spoken to [otherfriend]? They are really cool! We've been bonding over our shared experiences",
 		"PART_3" : "This was amazing! I'll never forget the friends I made here. I'm off to travel the world!",
-		"PART_4" : "Hoi! Bonjour! Ol�! I learned so much in my travels"
+		"PART_4" : "Hoi! Bonjour! Ola! I learned so much in my travels"
 	}
 	
 	]

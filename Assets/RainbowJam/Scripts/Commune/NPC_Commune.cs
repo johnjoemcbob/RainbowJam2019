@@ -26,6 +26,10 @@ public class NPC_Commune : NPC
 	[HideInInspector]
 	public int Berries = 0;
 
+	[Header( "References" )]
+	public GameObject DebugCanvas;
+	public GameObject NameCanvas;
+
 	[HideInInspector]
 	public Berry.BerryType HeldBerryType;
 
@@ -70,13 +74,9 @@ public class NPC_Commune : NPC
 
 
         // Nametag UI
-        GameObject debugObj = transform.Find("Canvas/NameTag").gameObject;
-        debugObj.SetActive(true);
-        var text = debugObj.GetComponentInChildren<Text>();
+        NameCanvas.SetActive(true);
+        var text = NameCanvas.GetComponentInChildren<Text>();
         text.text = GetPersonInfo().Name;
-
-        var bg = debugObj.GetComponentInChildren<Image>();
-        bg.rectTransform.sizeDelta = new Vector2(text.preferredWidth + 50.0f, bg.rectTransform.sizeDelta.y);
     }
 
     public override void Update()
@@ -91,10 +91,9 @@ public class NPC_Commune : NPC
 	protected void UpdateDebug()
 	{
         // Debug UI
-        GameObject debugObj = transform.Find("Canvas/DebugDisplay").gameObject;
-        debugObj.SetActive(Player_Commune.DebugDisplay);
+        DebugCanvas.SetActive(Player_Commune.DebugDisplay);
 
-        var text = debugObj.GetComponentInChildren<Text>(true);
+        var text = DebugCanvas.GetComponentInChildren<Text>(true);
         text.text = @"
 		" + CurrentJob + " - Duration: " + JobClasses[(int) CurrentJob].GetTimeRemaining().ToString( "0.00" ) + "/" + JobClasses[(int) CurrentJob].Duration.ToString( "0.00" ) + @"
 		" + CurrentPos.x + ", " + CurrentPos.y + " to " + TargetPos.x + ", " + TargetPos.y + @"
