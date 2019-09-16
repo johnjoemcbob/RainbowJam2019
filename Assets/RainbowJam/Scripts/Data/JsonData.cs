@@ -69,7 +69,8 @@ public class JsonData : MonoBehaviour
     }
 
 
-    // GET RANDOM STORY ---------------------------------------------------------------------
+	// GET RANDOM STORY ---------------------------------------------------------------------
+	protected static List<int> RemainingStoryIDs = new List<int>();
     public static int GetRandomStoryID()
     {
         int storyID = 0;
@@ -84,9 +85,19 @@ public class JsonData : MonoBehaviour
             return storyID;
 
         //Randomise. Max is exclusive
-        storyID = UnityEngine.Random.Range(0, storyDatabase.storyList.Count);
+		if ( RemainingStoryIDs.Count == 0 )
+		{
+			for ( int i = 0; i < storyDatabase.storyList.Count; i++ )
+			{
+				RemainingStoryIDs.Add( i );
+			}
+		}
+		int index = UnityEngine.Random.Range(0, RemainingStoryIDs.Count);
+		storyID = RemainingStoryIDs[index];
+		StoryList test = storyDatabase.storyList[storyID];
+		RemainingStoryIDs.RemoveAt( index );
 
-        return storyID;
+		return storyID;
     }
 
 
